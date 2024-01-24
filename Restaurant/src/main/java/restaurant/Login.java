@@ -30,4 +30,5 @@ public class Login {
   public boolean checkLogin(String username,String password) {
     return password.equals(loginDatabase.get(username));
   }
+  
 }
