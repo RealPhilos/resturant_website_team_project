@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class Main {
     public static void main(String[] args) throws FileNotFoundException {
       Login test = new Login(); 
+      System.out.println(test.checkLogin("abc", "123"));
+      System.out.println(test.checkLogin("abc", "456"));
+      System.out.println(test.checkLogin("def", "456"));
       //SpringApplication.run(Main.class, args);
     }
     

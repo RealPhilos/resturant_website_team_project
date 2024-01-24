@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.Scanner;
 
 public class Login {
-  private File loginDatabaseFile = new File("Login Database");
+  private File loginDatabaseFile = new File("/home/krish/git/TeamProject07/Restaurant/src/main/java/restaurant/LoginDatabase.txt");//CHANGE THE LOCATION FOR YOUR COMPUTER!!
   private HashMap<String,String> loginDatabase; 
   
   //Converts the database file in a HashMap.
@@ -27,4 +27,7 @@ public class Login {
     this.loginDatabase = fileReader();
   }
   
+  public boolean checkLogin(String username,String password) {
+    return password.equals(loginDatabase.get(username));
+  }
 }
