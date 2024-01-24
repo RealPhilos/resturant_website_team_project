@@ -5,8 +5,7 @@ import java.io.FileNotFoundException;
 import java.util.HashMap;
 import java.util.Scanner;
 
-public class Login {
-  private File loginDatabaseFile = new File("/home/krish/git/TeamProject07/Restaurant/src/main/java/restaurant/LoginDatabase.txt");//CHANGE THE LOCATION FOR YOUR COMPUTER!!
+public class Login { private File loginDatabaseFile = new File("/home/krish/git/TeamProject07/Restaurant/src/main/resources/Database/LoginDatabase.txt");//CHANGE THE LOCATION FOR YOUR COMPUTER!!
   private HashMap<String,String> loginDatabase; 
   
   //Converts the database file in a HashMap.

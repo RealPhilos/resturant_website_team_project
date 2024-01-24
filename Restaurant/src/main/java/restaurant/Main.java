@@ -14,11 +14,11 @@ public class Main {
       System.out.println(test.checkLogin("abc", "123"));
       System.out.println(test.checkLogin("abc", "456"));
       System.out.println(test.checkLogin("def", "456"));
-      //SpringApplication.run(Main.class, args);
+      SpringApplication.run(Main.class, args);
     }
     
-//    @GetMapping("/hello")
-//    public String hello(@RequestParam(value = "name", defaultValue = "Marcin") String name) {
-//      return String.format("Hello %s!", name);
-//    }
+    @GetMapping("/hello")
+    public String hello(@RequestParam(value = "name", defaultValue = "World") String name) {
+      return String.format("Hello %s!", name);
+    }
 }
