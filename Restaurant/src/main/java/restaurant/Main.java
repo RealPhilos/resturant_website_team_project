@@ -1,5 +1,6 @@
 package restaurant;
-import java.io.FileNotFoundException;
+import java.io.IOException;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 @SpringBootApplication
 @RestController
 public class Main {
-    public static void main(String[] args) throws FileNotFoundException {
+    public static void main(String[] args) throws IOException {
       Login test = new Login(); 
       System.out.println(test.checkLogin("abc", "123"));
       System.out.println(test.checkLogin("abc", "456"));
@@ -21,4 +22,5 @@ public class Main {
     public String hello(@RequestParam(value = "name", defaultValue = "World") String name) {
       return String.format("Hello %s!", name);
     }
+
 }
