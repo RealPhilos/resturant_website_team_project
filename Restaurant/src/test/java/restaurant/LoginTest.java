@@ -1,15 +1,40 @@
 package restaurant;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import java.io.FileNotFoundException;
-import restaurant.Login;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.io.IOException;
+
+import org.junit.jupiter.api.BeforeEach;
+//import restaurant.Login;
+import org.junit.jupiter.api.Test;
+
 
 public class LoginTest {
   
-  
-  //Test 1 
-  void testContructor() throws FileNotFoundException {
-    Login login = new Login();
-    assertNotNull(login); 
-  }
+
+    private Login login;
+
+    @BeforeEach
+    void setUp() throws IOException {
+        login = new Login();
+    }
+
+    @Test
+    void testConstructor() {
+        assertNotNull(login);
+    }
+
+    @Test
+    void testValidLogin() {
+        // Assuming 'abc 123' is a valid username-password pair in your LoginDatabase.txt
+        assertTrue(login.checkLogin("abc", "123"));
+    }
+
+    @Test
+    void testInvalidLogin() {
+        // Assuming 'xyz 999' is not a valid username-password pair
+        assertFalse(login.checkLogin("xyz", "999"));
+    }
 }
