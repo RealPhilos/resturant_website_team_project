@@ -20,6 +20,7 @@ public class UserService {
 
   /**
    * Checks if a user is already in the data base.
+   * 
    * @param user is what we are checking for.
    * @return true if user is in the database.
    */
@@ -29,5 +30,20 @@ public class UserService {
     } else {
       return false;
     }
+  }
+
+  /**
+   * This is to add a user to the database and it knows if it is a customer.
+   * 
+   * @param user the user to be added.
+   */
+  public void addUser(User user) {
+    User temp;
+    if (user.getRole() == null) {
+      temp = new User(user.getUsername(), user.getPassword(), "Customer");
+    } else {
+      temp = new User(user.getUsername(), user.getPassword(), user.getRole());
+    }
+    userRepo.save(temp);
   }
 }

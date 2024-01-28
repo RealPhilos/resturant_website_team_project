@@ -30,12 +30,16 @@ public class UserController {
 
   /**
    * This will add a user to the database.
+   * 
    * @param user is the object that will be created when the user makes a account.
    */
   @PostMapping("add")
-  public void addUser(@RequestBody User user) {
+  public String addUser(@RequestBody User user) {
     if (!checkUser(user)) {
-      // TODO
+      userservice.addUser(user);
+      return "User added";
+    } else {
+      return "Username already in use";
     }
   }
 }
