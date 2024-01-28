@@ -18,7 +18,7 @@ public class UserController {
     this.userservice = userservice;
   }
   
-  @GetMapping("check")
+  @PostMapping("check")
   public boolean checkUser(@RequestBody User user) {
     return userservice.checkUser(user);
   }

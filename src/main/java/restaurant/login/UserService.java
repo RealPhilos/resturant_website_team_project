@@ -14,6 +14,10 @@ public class UserService {
   }
   
   public boolean checkUser(User user) {
-    return user.getPassword().equals(userRepo.getUser(user.getUsername()));
+    if (userRepo.existsById(user.getUsername())) {
+      return user.getPassword().equals(userRepo.getUser(user.getUsername()).get().getPassword());
+    }else {
+      return false;
+    }
   }
 }

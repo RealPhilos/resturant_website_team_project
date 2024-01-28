@@ -3,11 +3,6 @@ package restaurant.login;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
 
 @Entity
 @Table(name = "Login")
@@ -22,6 +17,11 @@ public class User {
     this.username = username;
     this.password = password;
     this.role = role;
+  }
+  
+  public User(String username, String password) {
+    this.username = username;
+    this.password = password;
   }
   
   public User() {}
