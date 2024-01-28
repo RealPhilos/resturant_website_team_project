@@ -4,8 +4,13 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
-public interface UserRepository extends JpaRepository<User,String> {
+/**
+ * This is to add out own querys for our database.
+ * 
+ * @author Krish Macwan - Zlac463
+ */
+public interface UserRepository extends JpaRepository<User, String> {
 
   @Query("SELECT u FROM User u WHERE u.username = ?1")
-  Optional<User>getUser(String username);
+  Optional<User> getUser(String username);
 }

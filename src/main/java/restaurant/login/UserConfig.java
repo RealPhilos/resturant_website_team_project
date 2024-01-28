@@ -5,17 +5,22 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+/**
+ * This is to pre-make a table.
+ * 
+ * @author Krish Macwan - Zlac463
+ */
 @Configuration
 public class UserConfig {
 
   @Bean
   CommandLineRunner commandLineRunner(UserRepository repository) {
-    return args ->{
-      User krish = new User("Krish","123","Chef");
-      User luque = new User("Luque","123","Chef");
-      User malcolm = new User("Malcolm","123","Chef");
-      User philip = new User("Malcolm","123","Chef");
-      repository.saveAll(List.of(krish,luque,malcolm,philip));
+    return args -> {
+      User krish = new User("Krish", "123", "Chef");
+      User luque = new User("Luque", "123", "Chef");
+      User malcolm = new User("Malcolm", "123", "Chef");
+      User philip = new User("Philip", "123", "Chef");
+      repository.saveAll(List.of(krish, luque, malcolm, philip));
     };
   }
 }
