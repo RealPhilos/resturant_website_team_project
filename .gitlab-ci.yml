@@ -1,0 +1,32 @@
+stages:
+  - build
+  - test
+  - validation
+  - package
+#  - javafx
+
+build-job:
+  stage: build
+  script:
+    - mvn clean compile
+
+test-job:
+  stage: test
+  script:
+    - mvn test
+
+checkstyle-job:
+  stage: validation
+  script:
+    - mvn checkstyle:check
+
+package-job:
+  stage: package
+  script:
+    - mvn package
+  artifacts:
+    when: on_success
+    expire_in: 30 days
+    paths:
+      - "Restaurant/target/*.jar"
+
