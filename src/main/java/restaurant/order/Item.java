@@ -20,7 +20,7 @@ import restaurant.login.User;
  * @author Malcolm Berset - Zlac157
  */
 @Entity // Indicates that this class is an entity to be managed by JPA.
-@Table(name = "Item") // Specifies the name of the database table to map to.
+@Table(name = "Orders") // Specifies the name of the database table to map to.
 public class Item {
     
     @Id // Indicates that this field is the primary key of the entity.
