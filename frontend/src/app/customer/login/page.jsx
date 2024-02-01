@@ -20,7 +20,7 @@ function CustomerLoginPage() {
             placeholder="Enter your password"
           />
           <span className="text-sm text-gray-600">
-            Already a member? Sign Up{" "}
+            Not a member? Sign Up{" "}
             <Link
               className="text-blue-900 font-semibold"
               href="/customer/signup"
