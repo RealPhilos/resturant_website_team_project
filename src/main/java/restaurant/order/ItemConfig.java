@@ -11,7 +11,8 @@ import restaurant.login.UserRepository;
 /**
  * Configuration class for initializing items and associating them with users.
  * 
- * @Author Malcolm Berset - Zlac157
+ * @author Malcolm Berset - Zlac157
+ * @author Luque van der Merwe - ZLAC180
  */
 @Configuration // Indicates that this class is a Spring configuration class.
 @Order(4) // Specifies the order in which this configuration should be loaded.
