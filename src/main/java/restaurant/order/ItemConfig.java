@@ -14,7 +14,7 @@ import restaurant.login.UserRepository;
  * @Author Malcolm Berset - Zlac157
  */
 @Configuration // Indicates that this class is a Spring configuration class.
-@Order(2) // Specifies the order in which this configuration should be loaded.
+@Order(4) // Specifies the order in which this configuration should be loaded.
 public class ItemConfig {
 
   /**
@@ -28,14 +28,18 @@ public class ItemConfig {
   CommandLineRunner itemDataInitializer(ItemRepository itemRepository,
       UserRepository userRepository) {
     return args -> {
-      User user1 = userRepository.getUser("Krish").orElseThrow(() -> 
-      new RuntimeException("User not found"));
-      User user2 = userRepository.getUser("Malcolm").orElseThrow(() -> 
-      new RuntimeException("User not found"));
+      User user1 =
+          userRepository.getUser("Krish").orElseThrow(() -> new RuntimeException("User not found"));
+      User user2 = userRepository.getUser("Malcolm")
+          .orElseThrow(() -> new RuntimeException("User not found"));
       Item sushi = new Item("sushi", 3, "table 1", user1);
+      sushi.setStatus("ordered");
       Item pasta = new Item("pasta", 2, "table 1", user1);
+      pasta.setStatus("cooking");
       Item pizza = new Item("pizza", 3, "table 2", user2);
+      pizza.setStatus("done");
       Item burger = new Item("burger", 3, "table 2", user2);
+      burger.setStatus("delivered");
       itemRepository.saveAll(List.of(sushi, pasta, pizza, burger));
     };
   }

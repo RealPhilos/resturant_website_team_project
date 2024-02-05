@@ -16,6 +16,7 @@ import restaurant.login.User;
  * Represents an item ordered in a restaurant.
  * 
  * @author Malcolm Berset - Zlac157
+ * @author Luque van der Merwe - ZLAC180
  */
 @Entity // Indicates that this class is an entity to be managed by JPA.
 @Table(name = "Orders") // Specifies the name of the database table to map to.
@@ -29,6 +30,7 @@ public class Item {
   private Integer quantity; // Quantity of the item.
   private String tableNumber; // Table number where the item is ordered.
   private LocalDateTime orderTime; // Timestamp when the item was ordered.
+  private Status orderStatus; // Status of the order (cooking / delivered)
 
   @JsonBackReference // Used to break the serialization loop between User and Item entities.
   @ManyToOne // Indicates a many-to-one relationship with User entity.
@@ -47,9 +49,18 @@ public class Item {
     this.quantity = quantity;
     this.tableNumber = tableNumber;
     this.user = user;
+    this.orderStatus = Status.ORDERED;
   }
 
   // Getters and Setters 
+  
+  public void setStatus(String status) {
+    this.orderStatus = Status.convertFromString(status);
+  }
+  
+  public String getStatus() {
+    return this.orderStatus.toString();
+  }
 
   public User getUser() {
     return user;
