@@ -23,6 +23,9 @@ public class Food {
   private Long foodId;
   private int qty;
   private String name;
+  private String description;
+  private String category;
+  private Long price;
 
   public Food() {}
 
@@ -31,10 +34,13 @@ public class Food {
     this.name = food;
   }
 
-  public Food(Long foodId, int qty, String name) {
+  public Food(Long foodId, int qty, String name, String image,String description, String category, Long price) {
     this.foodId = foodId;
     this.qty = qty;
     this.name = name;
+    this.description = description;
+    this.category = category;
+    this.price = price;
   }
 
   public String getName() {
@@ -53,9 +59,33 @@ public class Food {
     this.qty = qty;
   }
 
+  public String getCategory() {
+    return this.category;
+  }
+
+  public void setCategory(String category) {
+    this.category = category;
+  }
+
+  public Long getPrice() {
+    return this.price;
+  }
+
+  public void setPrice(Long price) {
+    this.price = price;
+  }
+
+  public String getDescription() {
+    return this.description;
+  }
+  
+  public void setDescription(String description) {
+    this.description = description;
+  }
+
   @Override
   public String toString() {
-    return "Menu [food = " + name + ", qty = " + qty + "]";
+    return "Menu [food = " + name + ", qty = " + qty + ", category " + category + ", price " + price + "]";
   }
 
   public Long getFoodId() {
