@@ -1,12 +1,10 @@
 package restaurant.order;
 
 import java.util.List;
-
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
-
 import restaurant.login.User;
 import restaurant.login.UserRepository;
 
@@ -18,22 +16,27 @@ import restaurant.login.UserRepository;
 @Configuration // Indicates that this class is a Spring configuration class.
 @Order(2) // Specifies the order in which this configuration should be loaded.
 public class ItemConfig {
-    
-    /**
-     * Initializes items and associates them with users.
-     *
-     * @param itemRepository The repository for managing items.
-     * @param userRepository The repository for managing users.
-     * @return A CommandLineRunner for initializing items and user associations.
-     */
-    @Bean
-    CommandLineRunner itemDataInitializer(ItemRepository itemRepository, UserRepository userRepository) {
-        return args -> {
-            User user1 = userRepository.findById("Krish").orElseThrow(() -> new RuntimeException("User not found"));
-            Item sushi = new Item("sushi", 3, "table 1", user1);
-            User user2 = userRepository.findById("Malcolm").orElseThrow(() -> new RuntimeException("User not found"));
-            Item pizza = new Item("pizza", 3, "table 2", user2);
-            itemRepository.saveAll(List.of(sushi, pizza));
-        };
-    }
+
+  /**
+   * Initializes items and associates them with users.
+   *
+   * @param itemRepository The repository for managing items.
+   * @param userRepository The repository for managing users.
+   * @return A CommandLineRunner for initializing items and user associations.
+   */
+  @Bean
+  CommandLineRunner itemDataInitializer(ItemRepository itemRepository,
+      UserRepository userRepository) {
+    return args -> {
+      User user1 = userRepository.getUser("Krish").orElseThrow(() -> 
+      new RuntimeException("User not found"));
+      User user2 = userRepository.getUser("Malcolm").orElseThrow(() -> 
+      new RuntimeException("User not found"));
+      Item sushi = new Item("sushi", 3, "table 1", user1);
+      Item pasta = new Item("pasta", 2, "table 1", user1);
+      Item pizza = new Item("pizza", 3, "table 2", user2);
+      Item burger = new Item("burger", 3, "table 2", user2);
+      itemRepository.saveAll(List.of(sushi, pasta, pizza, burger));
+    };
+  }
 }
