@@ -12,6 +12,7 @@ import jakarta.persistence.Table;
  * Represents an order at a restaurant.
  * 
  * @author Luque van der Merwe - ZLAC180
+ * @author Philip Anaafi Asumadu -ZKAC229
  */
 
 @Entity
