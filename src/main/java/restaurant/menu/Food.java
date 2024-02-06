@@ -25,7 +25,7 @@ public class Food {
   private String name;
   private String description;
   private String category;
-  private Long price;
+  private Double price;
 
   public Food() {}
 
@@ -34,8 +34,7 @@ public class Food {
     this.name = food;
   }
 
-  public Food(Long foodId, int qty, String name, String image,String description, String category, Long price) {
-    this.foodId = foodId;
+  public Food(int qty, String name, String description, String category, Double price) {
     this.qty = qty;
     this.name = name;
     this.description = description;
@@ -67,11 +66,11 @@ public class Food {
     this.category = category;
   }
 
-  public Long getPrice() {
+  public Double getPrice() {
     return this.price;
   }
 
-  public void setPrice(Long price) {
+  public void setPrice(Double price) {
     this.price = price;
   }
 
