@@ -38,7 +38,8 @@ public class FoodService {
   }
 
   @Transactional
-  public void updateFood(Long foodId, int qty, String foodName) {
+  public void updateFood(Long foodId, int qty, String foodName, String description, String category,
+      Double price) {
     Food food = foodRepo.findById(foodId).orElseThrow(
         () -> new IllegalStateException("Food with ID " + foodId + " does not exist"));
 
@@ -50,5 +51,21 @@ public class FoodService {
     if (qty > 0 && !Objects.equals(food.getQty(), qty)) {
       food.setQty(qty);
     }
+
+    if (description != null && description.length() > 0
+        && !Objects.equals(food.getDescription(), description)) {
+      food.setDescription(description);
+    }
+
+    if (category != null && category.length() > 0
+        && !Objects.equals(food.getCategory(), category)) {
+      food.setCategory(category);
+    }
+
+    if (price != null && price > 0 && !Objects.equals(food.getPrice(), price)) {
+      food.setPrice(price);
+    }
+
+
   }
 }
