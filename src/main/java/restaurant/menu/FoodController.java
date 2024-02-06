@@ -40,8 +40,12 @@ public class FoodController {
 
   @PutMapping(path = "{foodId}")
   public void updateOrder(@PathVariable("foodId") Long foodId,
-      @RequestParam(required = true) int qty, @RequestParam(required = true) String food) {
-    foodService.updateFood(foodId, qty, food);
+      @RequestParam(required = true) int qty, 
+      @RequestParam(required = true) String food, 
+      @RequestParam(required = false) String description, 
+      @RequestParam(required = false) String category, 
+      @RequestParam(required = false) Double price){
+    foodService.updateFood(foodId, qty, food, description, category, price);
 
   }
 
