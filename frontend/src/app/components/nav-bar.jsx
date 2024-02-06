@@ -3,7 +3,7 @@ import React from "react";
 
 function NavBar() {
   return (
-    <div className="bg-gray-300 px-16 py-7 flex items-center justify-between">
+    <div className="bg-gray-300 px-[9vw] py-7 flex items-center justify-between">
       <span className="text-xl text-green-800">Restaurant</span>
 
       <div className="flex gap-9 text-gray-700 items-center">
