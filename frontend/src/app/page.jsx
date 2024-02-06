@@ -6,7 +6,7 @@ import Link from "next/link";
 export default function Home() {
   return (
     <div>
-      <Head>
+      {/* <Head>
         <title>Oaxaca Restaurant</title>
         <meta name="description" content="This is the Oaxaca Restaurant Menu" />
         <link
@@ -61,7 +61,7 @@ export default function Home() {
         <br></br>
       </main>
 
-      <footer>Video of Restaurant, Reviews</footer>
+      <footer>Video of Restaurant, Reviews</footer> */}
     </div>
   );
 }
