@@ -2,6 +2,8 @@ package restaurant.order;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -21,6 +23,7 @@ import restaurant.login.User;
 @Entity // Indicates that this class is an entity to be managed by JPA.
 @Table(name = "Orders") // Specifies the name of the database table to map to.
 public class Item {
+  
 
   @Id // Indicates that this field is the primary key of the entity.
   @GeneratedValue(strategy = GenerationType.IDENTITY) // Specifies how the ID should be generated.
@@ -30,7 +33,9 @@ public class Item {
   private Integer quantity; // Quantity of the item.
   private String tableNumber; // Table number where the item is ordered.
   private LocalDateTime orderTime; // Timestamp when the item was ordered.
-  private Status orderStatus; // Status of the order (cooking / delivered)
+  
+  @Enumerated(EnumType.STRING) // This will store the enum value as a string in the database
+  private Status orderStatus; // Status of the order.
 
   @JsonBackReference // Used to break the serialization loop between User and Item entities.
   @ManyToOne // Indicates a many-to-one relationship with User entity.
@@ -58,8 +63,8 @@ public class Item {
     this.orderStatus = Status.convertFromString(status);
   }
   
-  public String getStatus() {
-    return this.orderStatus.toString();
+  public Status getStatus() {
+    return orderStatus;
   }
 
   public User getUser() {
@@ -114,6 +119,7 @@ public class Item {
     return "Item{" + "id= " + id + ", name= " + name  + ", quantity= " + quantity 
         + ", tableNumber= " + tableNumber  
         + ", orderTime= " + orderTime 
+        + ", orderStatus= " + orderStatus
         + ", user= " + user 
         + '}';
   }
