@@ -48,10 +48,23 @@ public class ItemController {
    * @param username the username of the user whose items are to be retrieved.
    * @return list of objects ordered by the specified user in JSON format.
    */
-  @GetMapping("/user/{username}")
+  @GetMapping("getByUser/{username}")
   public List<Item> getItemsByUsername(@PathVariable String username) {
     return itemService.getItemsByUsername(username);
   }
+  
+  /**
+   * Retrieves all items ordered by a specific table.
+   * 
+   * 
+   * @param tableNumber the table number of the table whose items are to be retrieved.
+   * @return list of objects ordered by the specified table in JSON format.
+   */
+  @GetMapping("getByTable/{tableNumber}")
+  public List<Item> getItemsByTableNumber(@PathVariable String tableNumber) {
+    return itemService.getItemsByTableNumber(tableNumber);
+  }
+
 
   /**
    * Add a new item based on the provided request body.
@@ -82,7 +95,7 @@ public class ItemController {
    * @param itemId The ID of the item to be canceled.
    * @return A success message if the item is canceled successfully.
    */
-  @DeleteMapping(path = "delete/item/{itemId}")
+  @DeleteMapping(path = "deleteItemById/{itemId}")
   public String cancelItem(@PathVariable("itemId") Long itemId) {
     itemService.cancelItem(itemId);
     return "Item canceled successfully";
@@ -94,13 +107,12 @@ public class ItemController {
    * @param username The username of the items to be deleted.
    * @return A success message if the items are deleted successfully.
    */
-  @DeleteMapping(path = "delete/user/{username}")
+  @DeleteMapping(path = "deleteItemsByUser/{username}")
   public String deleteItemsByUsername(@PathVariable("username") String username) {
     itemService.deleteItemsByUsername(username);
     return "Items canceled successfully";
-
   }
-
+  
 
 }
 
