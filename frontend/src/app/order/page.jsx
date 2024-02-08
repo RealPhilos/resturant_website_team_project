@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Head from 'next/head'
 import Image from 'next/image'
 
@@ -28,12 +28,75 @@ export default function Order() {
   };
 
   const addToCart = () => {
-    // Add the item and quantity to your cart here
+    // Check if the item is already in the cart
+    const existingCartItem = cart.find(item => item.name === currentItem.name);
+  
+    if (existingCartItem) {
+      // If the item is already in the cart, increase the quantity
+      setCart(prevCart => prevCart.map(item =>
+        item.name === currentItem.name ? { ...item, quantity: Number(item.quantity) + Number(quantity) } : item
+      ));
+    } else {
+      // If the item is not in the cart, add it
+      const cartItem = { ...currentItem, quantity: Number(quantity) };
+      setCart(prevCart => [...prevCart, cartItem]);
+    }
+  
     console.log(`Added ${quantity} of ${currentItem.name} to cart.`);
     closeModal();
   };
+  
+  
 
+  const [totalCost, setTotalCost] = useState(0);
 
+  useEffect(() => {
+    if (currentItem) {
+      // Remove the dollar sign and convert the price to a number
+      const price = Number(currentItem.price.replace('$', ''));
+      // Calculate the total cost
+      const cost = price * quantity;
+      // Update the total cost state
+      setTotalCost(cost);
+    }
+  }, [quantity, currentItem]);
+
+  const [cart, setCart] = useState([]);
+
+  function Cart({ cart }) {
+
+    const cartTotal = cart.reduce((total, item) => {
+      return total + (Number(item.price.replace('$', '')) * item.quantity);
+    }, 0);
+
+    return (
+      <div>
+        <h2 className="text-1xl font-semibold underline mb-1">Your Cart</h2>
+        {cart.map((item, index) => (
+          <div key={index} style={{ display: 'flex', justifyContent: 'space-between', border: '1px solid black', padding: '10px', margin: '10px 0' }}>
+            <div>
+              <h3 className="text-md text-gray-600 font-semibold mb-2">{item.name} x{item.quantity}</h3>
+              <p>Total: ${(Number(item.price.replace('$', '')) * item.quantity).toFixed(2)}</p>
+            </div>
+            <button onClick={() => removeFromCart(item)}>Remove</button>
+          </div>
+        ))}
+        {isCartOpen && <p className="text-1xl font-semibold">Cart Total: ${cartTotal.toFixed(2)}</p>}
+      </div>
+    );
+  }
+  
+const [isCartOpen, setIsCartOpen] = useState(false);
+
+  const toggleCart = () => {
+    setIsCartOpen(!isCartOpen);
+  };
+
+  const removeFromCart = (itemToRemove) => {
+    setCart(prevCart => prevCart.filter(item => item !== itemToRemove));
+    console.log(`Removed ${itemToRemove.name} from cart.`);
+  };
+  
   return (
     <div>
       <Head>
@@ -45,24 +108,6 @@ export default function Order() {
       <main>
         <div>
           <nav style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap' }}>
-            <style jsx>{`
-              button {
-              padding: 10px 20px;
-              font-size: 20px;
-              font-family: 'Montserrat', sans-serif;
-              font-weight: 1000;
-              color: black;
-              background-color: #ADD8E6;
-              margin: 5px;
-              transition: background-color 0.3s ease;
-            }
-
-              button:hover {
-                background-color: #FFFFFF;
-            }
-
-          `}</style>
-
            <style jsx global>{`
 
             .food-item {
@@ -103,9 +148,9 @@ export default function Order() {
             <div style={{ display: 'flex', flexDirection: 'row', gap: '1rem' }}>
             <div>
             <Image src={item.img} width={150} height={150} alt={item.name} />
-            <h2>{item.name}</h2>
-            <p>Price: {item.price}</p>
-            <p>Calories: {item.calories}</p>
+            <h3 className="text-lg font-semibold">{item.name}</h3>
+            <h3 className="text-md text-gray-600 mb-2">Price: {item.price}</h3>
+            <p className="text-gray-700 text-sm  mb-2">Calories: {item.calories}</p>
             </div>
           </div>
         </div>
@@ -133,18 +178,30 @@ export default function Order() {
               zIndex: 1001,
            }}>
 
-          <h2>{currentItem.name}</h2>
-          <Image src={currentItem.img} width={150} height={150} alt={currentItem.name} />
-          <p>Price: {currentItem.price}</p>
-          <p>Calories: {currentItem.calories}</p>
-          <label>
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+            <h1 className="text-2xl font-semibold underline mb-4">{currentItem.name}</h1>
+            <Image src={currentItem.img} width={250} height={250} alt={currentItem.name} />
+            <h3 className="text-md text-gray-600 mb-2">Price: {currentItem.price}</h3>
+            <p className="text-gray-700 text-sm  mb-2">Calories: {currentItem.calories}</p>
+            <label className="text-lg font-semibold mb-2">
             Quantity:
-            <input type="number" value={quantity} min="1" onChange={(e) => setQuantity(e.target.value)} />
-          </label>
+            <input type="number" value={quantity} min="1" onChange={(e) => setQuantity(e.target.value)} style={{ width: '200px', height: '25px', textAlign: 'center' }}/>
+            </label>
+            <p className="text-lg font-semibold">Total Cost: ${totalCost.toFixed(2)}</p>
+            </div>
+
 
           <button onClick={addToCart}>Add to Cart</button>
           <button onClick={closeModal}>Close</button>
           {/* Add to cart button and quantity selector */}
+
+          <div>
+          {/* Other components */}
+          <button onClick={toggleCart}>
+          <img src="/cart-icon.png" width={50} height={50} alt="Cart" />
+          </button>
+          {isCartOpen && <Cart cart={cart} />}
+          </div>
 
           <style jsx>{`
             button {
