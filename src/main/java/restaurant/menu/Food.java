@@ -22,7 +22,6 @@ public class Food {
   @SequenceGenerator(name = "food_sequence", sequenceName = "food_sequence", allocationSize = 1)
   @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "food_sequence")
   private Long foodId;
-  private int qty;
   private String name;
   private String description;
   private String category;
@@ -30,13 +29,11 @@ public class Food {
 
   public Food() {}
 
-  public Food(int qty, String food) {
-    this.qty = qty;
+  public Food(String food) {
     this.name = food;
   }
 
-  public Food(int qty, String name, String description, String category, Double price) {
-    this.qty = qty;
+  public Food(String name, String description, String category, Double price) {
     this.name = name;
     this.description = description;
     this.category = category;
@@ -51,13 +48,6 @@ public class Food {
     this.name = name;
   }
 
-  public int getQty() {
-    return qty;
-  }
-
-  public void setQty(int qty) {
-    this.qty = qty;
-  }
 
   public String getCategory() {
     return this.category;
@@ -85,7 +75,7 @@ public class Food {
 
   @Override
   public String toString() {
-    return "Menu [food = " + name + ", qty = " + qty + ", category " + category + ", price " + price + "]";
+    return "Menu [food = " + name + ", category " + category + ", price " + price + "]";
   }
 
   public Long getFoodId() {
