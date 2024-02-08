@@ -23,6 +23,7 @@ public class Food {
   @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "food_sequence")
   private Long foodId;
   private String name;
+  private String imgPath;
   private String description;
   private String category;
   private Double price;
@@ -33,8 +34,9 @@ public class Food {
     this.name = food;
   }
 
-  public Food(String name, String description, String category, Double price) {
+  public Food(String name, String imgPath, String description, String category, Double price) {
     this.name = name;
+    this.imgPath = imgPath;
     this.description = description;
     this.category = category;
     this.price = price;
@@ -48,6 +50,13 @@ public class Food {
     this.name = name;
   }
 
+  public String getImgPath() {
+    return imgPath;
+  }
+
+  public void setImgPath(String imgPath) {
+    this.imgPath = imgPath;
+  }
 
   public String getCategory() {
     return this.category;
