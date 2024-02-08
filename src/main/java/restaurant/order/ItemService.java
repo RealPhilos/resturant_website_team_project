@@ -32,6 +32,11 @@ public class ItemService {
   public List<Item> getItemsByUsername(String username) {
     return itemRepository.findByUserUsername(username);
   }
+  
+  public List<Item> getItemsByTableNumber(String tableNumber) {
+    return itemRepository.findByTableNumber(tableNumber);
+  }
+
 
 
   /**
@@ -67,5 +72,6 @@ public class ItemService {
     List<Item> itemsToDelete = itemRepository.findByUserUsername(username);
     itemRepository.deleteAll(itemsToDelete);
   }
+  
 }
 
