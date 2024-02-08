@@ -43,7 +43,7 @@ public class FoodService {
     Food food = foodRepo.findById(foodId).orElseThrow(
         () -> new IllegalStateException("Food with ID " + foodId + " does not exist"));
 
-    if (food != null && food.getName().length() > 0
+    if (food != null && foodName != null &&food.getName().length() > 0
         && !Objects.equals(food.getName(), foodName)) {
       food.setName(foodName);
     }
