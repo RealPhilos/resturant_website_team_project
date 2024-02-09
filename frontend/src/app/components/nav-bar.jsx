@@ -19,9 +19,11 @@ function NavBar() {
         <Link href="">
           <span>Allergen</span>
         </Link>
+        <Link href="/login">
         <button className="bg-green-800 text-white px-3 py-2 rounded-md">
-          Basket (3)
+          Login
         </button>
+        </Link>
       </div>
     </div>
   );
