@@ -4,7 +4,7 @@ import React from "react";
 function CustomerLoginPage() {
   return (
     <div>
-      <form className="mx-auto w-2/5 border border-blue-500 rounded p-8 mt-12 flex flex-col gap-7 items-center">
+      <form className="mx-auto w-2/5 border border-green-800 rounded p-8 mt-12 flex flex-col gap-7 items-center">
         <span className="text-xl font-bold">Customer Login</span>
         <div className="flex flex-col w-3/4 gap-1">
           <label>Email</label>
@@ -22,7 +22,7 @@ function CustomerLoginPage() {
           <span className="text-sm text-gray-600">
             Not a member? Sign Up{" "}
             <Link
-              className="text-blue-900 font-semibold"
+              className="text-green-900 font-semibold"
               href="/customer/signup"
             >
               here!
@@ -30,7 +30,7 @@ function CustomerLoginPage() {
           </span>
         </div>
         <input
-          className="bg-blue-500 p-3 w-40 rounded-lg text-white cursor-pointer"
+          className="bg-green-800 p-3 w-40 rounded-lg text-white cursor-pointer"
           type="submit"
           value="Log In"
         />
