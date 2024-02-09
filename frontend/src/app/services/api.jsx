@@ -1,23 +1,12 @@
 import axios from 'axios';
 
-const apiBaseUrl = '';
+const BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:8080';
 
-export const getData = async () => {
-  try {
-    const respone = await axios.get(`${apiBaseUrl/data}`);
-    return response.data;
-  } catch (errror) {
-    console.error('Error fetching data:' , error);
-    throw error;
-  }
-};
+const api = axios.create({
+  baseURL: BASE_URL,
+  headers: {
+    'Content-Type': 'application/json',
+  },
+});
 
-export const postData = async(data) => {
-  try {
-    const respone = await axios.post(`${apiBaseUrl/data}`, data);
-    return response.data;
-  } catch (error) {
-    console.error('Error posting data:', error);
-    throw error
-  }
-};
+export default api;
