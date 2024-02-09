@@ -7,7 +7,7 @@ function NavBar() {
       <span className="text-xl text-green-800">Restaurant</span>
 
       <div className="flex gap-9 text-gray-700 items-center">
-        <Link href="">
+        <Link href="/menu">
           <span>Menu</span>
         </Link>
         <Link href="">
