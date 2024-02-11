@@ -1,8 +1,8 @@
 import React from "react";
 
-function MenuCard({ menu, idx }) {
+function MenuCard({ menu }) {
   return (
-    <div key={idx} className="w-full bg-white rounded-3xl border ">
+    <div className="w-full bg-white rounded-3xl border ">
       <img
         src="/pizza.jpeg"
         alt={menu.name}
