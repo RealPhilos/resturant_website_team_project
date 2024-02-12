@@ -87,9 +87,14 @@ export default function Order() {
   }
   
 const [isCartOpen, setIsCartOpen] = useState(false);
+const [isOverlayCartOpen, setIsOverlayCartOpen] = useState(false);
 
   const toggleCart = () => {
     setIsCartOpen(!isCartOpen);
+  };
+
+  const toggleOverlayCart = () => {
+    setIsOverlayCartOpen(!isOverlayCartOpen);
   };
 
   const removeFromCart = (itemToRemove) => {
@@ -128,6 +133,15 @@ const [isCartOpen, setIsCartOpen] = useState(false);
       <div className="flex items-end gap-10">
         <span className="text-5xl font-serif">Order</span>
         <span>All items served fresh with fresh ingredients</span>
+        <span>
+        <div>
+          {/* Other components */}
+          <button onClick={toggleCart}>
+          <img src="/cart-icon.png" width={50} height={50} alt="Cart" />
+          </button>
+          {isCartOpen && <Cart cart={cart} />}
+          </div>
+          </span>
       </div>
       <div>
         <button className="py-2 bg-green-700 text-white mr-2 px-3 text-sm rounded-3xl">
@@ -196,11 +210,11 @@ const [isCartOpen, setIsCartOpen] = useState(false);
           {/* Add to cart button and quantity selector */}
 
           <div>
-          {/* Other components */}
-          <button onClick={toggleCart}>
+          {/* Overlay Cart Button */}
+          <button onClick={toggleOverlayCart}>
           <img src="/cart-icon.png" width={50} height={50} alt="Cart" />
           </button>
-          {isCartOpen && <Cart cart={cart} />}
+          {isOverlayCartOpen && <Cart cart={cart} />}
           </div>
 
           <style jsx>{`

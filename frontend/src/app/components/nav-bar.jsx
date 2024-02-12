@@ -10,14 +10,11 @@ function NavBar() {
         <Link href="/menu">
           <span>Menu</span>
         </Link>
-        <Link href="">
+        <Link href="/order">
           <span>Order</span>
         </Link>
         <Link href="">
-          <span>Track</span>
-        </Link>
-        <Link href="">
-          <span>Allergen</span>
+          <span>Table</span>
         </Link>
         <Link href="/login">
         <button className="bg-green-800 text-white px-3 py-2 rounded-md">
