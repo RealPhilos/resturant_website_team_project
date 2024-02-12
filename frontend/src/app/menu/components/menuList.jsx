@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import MenuCard from "./menuCard";
-import { BASE_URL } from "../constants";
+import { BASE_URL } from "../../constants";
 
 function MenuList() {
   const [menus, setMenus] = useState([]);
