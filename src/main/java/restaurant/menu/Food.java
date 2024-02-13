@@ -12,6 +12,7 @@ import jakarta.persistence.Table;
  * Represents an order at a restaurant.
  * 
  * @author Luque van der Merwe - ZLAC180
+ * @author Philip Anaafi Asumadu -ZKAC229
  */
 
 @Entity
@@ -21,20 +22,24 @@ public class Food {
   @SequenceGenerator(name = "food_sequence", sequenceName = "food_sequence", allocationSize = 1)
   @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "food_sequence")
   private Long foodId;
-  private int qty;
   private String name;
+  private String imgPath;
+  private String description;
+  private String category;
+  private Double price;
 
   public Food() {}
 
-  public Food(int qty, String food) {
-    this.qty = qty;
+  public Food(String food) {
     this.name = food;
   }
 
-  public Food(Long foodId, int qty, String name) {
-    this.foodId = foodId;
-    this.qty = qty;
+  public Food(String name, String imgPath, String description, String category, Double price) {
     this.name = name;
+    this.imgPath = imgPath;
+    this.description = description;
+    this.category = category;
+    this.price = price;
   }
 
   public String getName() {
@@ -45,17 +50,41 @@ public class Food {
     this.name = name;
   }
 
-  public int getQty() {
-    return qty;
+  public String getImgPath() {
+    return imgPath;
   }
 
-  public void setQty(int qty) {
-    this.qty = qty;
+  public void setImgPath(String imgPath) {
+    this.imgPath = imgPath;
+  }
+
+  public String getCategory() {
+    return this.category;
+  }
+
+  public void setCategory(String category) {
+    this.category = category;
+  }
+
+  public Double getPrice() {
+    return this.price;
+  }
+
+  public void setPrice(Double price) {
+    this.price = price;
+  }
+
+  public String getDescription() {
+    return this.description;
+  }
+  
+  public void setDescription(String description) {
+    this.description = description;
   }
 
   @Override
   public String toString() {
-    return "Menu [food = " + name + ", qty = " + qty + "]";
+    return "Menu [food = " + name + ", category " + category + ", price " + price + "]";
   }
 
   public Long getFoodId() {

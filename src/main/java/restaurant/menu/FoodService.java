@@ -38,17 +38,35 @@ public class FoodService {
   }
 
   @Transactional
-  public void updateFood(Long foodId, int qty, String foodName) {
+  public void updateFood(Long foodId, String foodName, String imgPath, String description, String category,
+      Double price) {
     Food food = foodRepo.findById(foodId).orElseThrow(
         () -> new IllegalStateException("Food with ID " + foodId + " does not exist"));
 
-    if (food != null && food.getName().length() > 0
+    if (food != null && foodName != null &&food.getName().length() > 0
         && !Objects.equals(food.getName(), foodName)) {
       food.setName(foodName);
     }
 
-    if (qty > 0 && !Objects.equals(food.getQty(), qty)) {
-      food.setQty(qty);
+    if (imgPath != null && imgPath.length() > 0
+        && !Objects.equals(food.getImgPath(), imgPath)) {
+      food.setImgPath(imgPath);
     }
+
+    if (description != null && description.length() > 0
+        && !Objects.equals(food.getDescription(), description)) {
+      food.setDescription(description);
+    }
+
+    if (category != null && category.length() > 0
+        && !Objects.equals(food.getCategory(), category)) {
+      food.setCategory(category);
+    }
+
+    if (price != null && price > 0 && !Objects.equals(food.getPrice(), price)) {
+      food.setPrice(price);
+    }
+
+
   }
 }
