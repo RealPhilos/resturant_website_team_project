@@ -6,6 +6,7 @@ import { BASE_URL } from "../../constants";
 
 function MenuList() {
   const [menus, setMenus] = useState([]);
+
   useEffect(() => {
     async function fetchMenus() {
       const response = await fetch(`${BASE_URL}/foods`);
