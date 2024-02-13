@@ -22,16 +22,22 @@ function MenuList({ isListView }) {
   }, []);
 
   if (isListView) {
-    return menus.map((menu) => {
-      <MenuListItem key={menu.foodId} menu={menu} />;
-    });
+    return (
+      <div className="flex flex-col gap-3 mt-8">
+        {menus.map((menu) => (
+          <MenuListItem key={menu.foodId} menu={menu} />
+        ))}
+      </div>
+    );
   }
 
-  return menus.map((menu) => (
+  return (
     <div className="grid grid-cols-3 gap-4 gap-x-12 mt-8">
-      <MenuCard key={menu.foodId} menu={menu} />
+      {menus.map((menu) => (
+        <MenuCard key={menu.foodId} menu={menu} />
+      ))}
     </div>
-  ));
+  );
 }
 
 export default MenuList;
