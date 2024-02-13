@@ -10,7 +10,7 @@ function MenuPage() {
     <div className="w-full">
       <MenuHeader isListView={isListView} setIsListView={setIsListView} />
       <hr />
-      <MenuList />
+      <MenuList isListView={isListView} />
     </div>
   );
 }

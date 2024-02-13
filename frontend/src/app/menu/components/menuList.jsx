@@ -3,8 +3,9 @@
 import React, { useEffect, useState } from "react";
 import MenuCard from "./menuCard";
 import { BASE_URL } from "../../constants";
+import MenuListItem from "./menuListItem";
 
-function MenuList() {
+function MenuList({ isListView }) {
   const [menus, setMenus] = useState([]);
 
   useEffect(() => {
@@ -20,13 +21,17 @@ function MenuList() {
     fetchMenus();
   }, []);
 
-  return (
+  if (isListView) {
+    return menus.map((menu) => {
+      <MenuListItem key={menu.foodId} menu={menu} />;
+    });
+  }
+
+  return menus.map((menu) => (
     <div className="grid grid-cols-3 gap-4 gap-x-12 mt-8">
-      {menus.map((menu) => (
-        <MenuCard key={menu.foodId} menu={menu} />
-      ))}
+      <MenuCard key={menu.foodId} menu={menu} />
     </div>
-  );
+  ));
 }
 
 export default MenuList;

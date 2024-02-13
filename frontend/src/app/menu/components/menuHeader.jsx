@@ -19,9 +19,9 @@ function MenuHeader({ isListView, setIsListView }) {
         >
           Default
         </button>
-        <button className="py-2 border-gray-500 border text-black mr-2 px-4 text-sm rounded-3xl">
+        {/* <button className="py-2 border-gray-500 border text-black mr-2 px-4 text-sm rounded-3xl">
           A-Z
-        </button>
+        </button> */}
         <button
           onClick={() => setIsListView(true)}
           className={clsx(
