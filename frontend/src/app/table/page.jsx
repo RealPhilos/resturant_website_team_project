@@ -30,17 +30,28 @@ const TablePage = () => {
   };
 
   return (
-    <div className="flex flex-wrap justify-center items-center h-screen">
-      {/* Map through the table states and render a TableColour component for each table */}
-      {tableStates.map(table => (
-        <TableColour
-          key={table.id}
-          status={table.status}
-          onClick={() => updateTableStatus(table.id, 'free')} // Pass a function to handle table status updates
-        />
-      ))}
+    <div>
+      <div className="py-6 flex justify-between items-end">
+        <div className="flex items-end gap-10">
+          <span className="text-5xl font-serif">Tables</span>
+          <span>All items served fresh with fresh ingredients</span>
+        </div>
+      </div>
+  
+      <hr />
+      
+      <div className="flex flex-wrap justify-center items-center h-screen">
+        {/* Map through the table states and render a TableColour component for each table */}
+        {tableStates.map(table => (
+          <TableColour
+            key={table.id}
+            status={table.status}
+            onClick={() => updateTableStatus(table.id, 'free')} // Pass a function to handle table status updates
+          />
+        ))}
+      </div>
     </div>
-  );
+  );  
 };
 
 export default TablePage;
