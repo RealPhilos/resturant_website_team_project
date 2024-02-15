@@ -1,5 +1,7 @@
 "use client";
 
+// Edited by Luque van der Merwe - ZLAC180
+
 import React, { useEffect, useState } from "react";
 import MenuCard from "./menuCard";
 import { BASE_URL } from "../../constants";
@@ -11,46 +13,16 @@ function MenuList() {
       const response = await fetch(`${BASE_URL}/foods`);
       const data = await response.json();
 
-      if (response.ok) {
-        setMenus(data);
+
+      //Changed to catch and display errors
+      if (!response.ok) {
+        throw new Error('HTTP error! Status: ${response.status}');
       }
+      setMenus(data);
     }
 
     fetchMenus();
   }, []);
-  // const menus = [
-  //   {
-  //     name: "Pizza",
-  //     description: "Ingredients - Cheese, Tomato, Chicken, Onion",
-  //     price: 12.99,
-  //   },
-  //   {
-  //     name: "Burger",
-  //     description: "Ingredients - Cheese, Tomato, Chicken, Onion",
-  //     price: 11.99,
-  //   },
-  //   {
-  //     name: "Sandwich",
-  //     description: "Ingredients - Cheese, Tomato, Chicken, Onion",
-  //     price: 10.99,
-  //   },
-  //   {
-  //     name: "Pasta",
-  //     description: "Ingredients - Cheese, Tomato, Chicken, Onion",
-  //     price: 11.49,
-  //     image: "/pasta.jpeg",
-  //   },
-  //   {
-  //     name: "Burger",
-  //     description: "Ingredients - Cheese, Tomato, Chicken, Onion",
-  //     price: 12.99,
-  //   },
-  //   {
-  //     name: "Sandwich",
-  //     description: "Ingredients - Cheese, Tomato, Chicken, Onion",
-  //     price: 12.99,
-  //   },
-  // ];
 
   return (
     <div className="grid grid-cols-3 gap-4 gap-x-12 mt-8">
