@@ -12,13 +12,13 @@ export default function ItemList() {
       id: 2,
       name: "Sushi",
       price: 10,
-      quantity: 1,
+      quantity: 3,
     },
     {
       id: 3,
       name: "Ginger Beer",
       price: 1.5,
-      quantity: 1,
+      quantity: 2,
     },
   ];
   return (
