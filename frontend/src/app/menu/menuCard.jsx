@@ -2,7 +2,9 @@ import React from "react";
 
 function MenuCard({ menu, idx }) {
   return (
-    <div key={idx} className="w-full bg-white rounded-3xl border ">
+    <div
+      key={idx}
+      className="w-full bg-white rounded-3xl border hover:scale-105 transition-transform">
       <img
         src="/pizza.jpeg"
         alt={menu.name}
