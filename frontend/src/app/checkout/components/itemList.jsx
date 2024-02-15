@@ -1,4 +1,8 @@
+"use client";
+
+import { useContext } from "react";
 import ItemCard from "./itemCard";
+import { CartContext } from "@/app/providers/cart";
 
 export default function ItemList() {
   const dummyData = [
@@ -21,9 +25,10 @@ export default function ItemList() {
       quantity: 2,
     },
   ];
+  const { items } = useContext(CartContext);
   return (
     <div className="w-2/3">
-      {dummyData.map((data) => (
+      {items.map((data) => (
         <ItemCard item={data} />
       ))}
     </div>
