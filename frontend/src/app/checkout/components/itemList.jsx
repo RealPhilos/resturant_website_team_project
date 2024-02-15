@@ -22,7 +22,7 @@ export default function ItemList() {
     },
   ];
   return (
-    <div>
+    <div className="w-2/3">
       {dummyData.map((data) => (
         <ItemCard item={data} />
       ))}
