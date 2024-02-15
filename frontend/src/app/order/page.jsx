@@ -14,6 +14,10 @@ export default function Order() {
   const foodItems = [
     { name: 'Burger', price: '$5', calories: '250', img: '/pizza.jpeg' },
     { name: 'Pizza', price: '$10', calories: '300', img: '/pizza.jpeg' },
+    { name: 'Sandwich', price: '$10', calories: '300', img: '/pizza.jpeg' },
+    { name: 'Pasta', price: '$10', calories: '300', img: '/pizza.jpeg' },
+    { name: 'Rice', price: '$10', calories: '300', img: '/pizza.jpeg' },
+    { name: 'Stew', price: '$10', calories: '300', img: '/pizza.jpeg' },
     // Add more food items here
   ]
 
