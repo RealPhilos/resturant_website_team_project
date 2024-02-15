@@ -1,13 +1,17 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const TableColour = ({ status, onClick }) => {
   const colours = {
-    free: 'green',
-    unavailable: 'red',
-    pending: 'yellow'
+    free: 'bg-green-500 hover:bg-green-700',
+    unavailable: 'bg-red-500 hover:bg-red-700',
+    pending: 'bg-yellow-500 hover:bg-yellow-700'
   };
   
-  const [currentColour, setCurrentColour] = useState(colours[status] || 'green');
+  const [currentColour, setCurrentColour] = useState(colours[status] || 'bg-green-500 hover:bg-green-700');
+
+  useEffect(() => {
+    setCurrentColour(colours[status]);
+  }, [status]);
 
   const handleButtonClick = () => {
     const statusColours = Object.values(colours);
@@ -18,7 +22,7 @@ const TableColour = ({ status, onClick }) => {
 
   return (
     <button
-    className={`bg-${currentColour}-500 hover:bg-${currentColour}-700 text-white front-bold py-2 px-4 rounded`}
+    className={`${currentColour} text-white front-bold py-2 px-4 rounded`}
     onClick={handleButtonClick}
     >
       Change Colour
