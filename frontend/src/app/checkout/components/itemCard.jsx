@@ -5,7 +5,7 @@ function ItemCard({ item: { id, name, price, quantity } }) {
       <div className="flex flex-col gap-2 w-full p-4">
         <div className="w-full font-semibold flex justify-between">
           <span>{name}</span>
-          <span>£{price}</span>
+          <span>£{quantity * price}</span>
         </div>
         <span className="text-green-800">£{price}</span>
         <div className="flex gap-2 text-sm bg-gray-400 text-white w-fit py-1 px-2 rounded-md">
