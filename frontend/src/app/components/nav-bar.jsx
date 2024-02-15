@@ -13,8 +13,8 @@ function NavBar() {
         <Link href="/order">
           <span>Order</span>
         </Link>
-        <Link href="">
-          <span>Table</span>
+        <Link href="/table">
+          <span>Tables</span>
         </Link>
         <Link href="/login">
         <button className="bg-green-800 text-white px-3 py-2 rounded-md">
