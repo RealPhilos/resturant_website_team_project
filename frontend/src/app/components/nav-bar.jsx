@@ -10,7 +10,7 @@ function NavBar() {
         <Link href="/menu">
           <span>Menu</span>
         </Link>
-        <Link href="">
+        <Link href="/checkout">
           <span>Order</span>
         </Link>
         <Link href="">
