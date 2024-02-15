@@ -1,5 +1,3 @@
-import React from "react";
-
 function MenuHeader() {
   return (
     <div className="py-6 flex justify-between items-end">
