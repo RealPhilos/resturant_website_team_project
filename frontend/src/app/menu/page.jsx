@@ -4,11 +4,9 @@ import MenuHeader from "./components/menuHeader";
 
 function MenuPage() {
   return (
-    <div className="w-full">
-      <MenuHeader />
-      <hr />
+    
       <MenuList />
-    </div>
+    
   );
 }
 

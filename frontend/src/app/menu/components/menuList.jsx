@@ -11,6 +11,21 @@ import api from '../../services/api';
  */
 function MenuList() {
   const [menus, setMenus] = useState([]);
+  const[sortOrder,setSortOrder] = useState('a-z');
+
+  
+  const handleSortOrder = (sortOrder) => {
+    setSortOrder(sortOrder);
+    if(sortOrder === 'A-Z'){
+      setMenus(menus.sort((a,b) => a.name.localeCompare(b.name)));
+    }
+    else if(sortOrder === 'Price low to high'){
+      setMenus(menus.sort((a,b) => a.price - b.price));
+    }
+    else if(sortOrder === 'Price high to low'){
+      setMenus(menus.sort((a,b) => b.price - a.price));
+    }
+  };
   
   const handleOrder = (menuItem) => {
     // Logic to handle ordering, such as setting state and opening a modal
@@ -23,7 +38,7 @@ function MenuList() {
     const fetchMenu = async () => {
       try {
         const response = await api.get('/foods');
-        setMenus(response.data);
+        setMenus(response.data.sort((a,b) => a.name.localeCompare(b.name)));
       } catch (error) {
         console.error("Error fetching menu data:", error);
       }
@@ -32,13 +47,15 @@ function MenuList() {
     fetchMenu();
   }, []);
   return (
-   
+    <div className="w-full">
+    <MenuHeader  onSortOrderChange={handleSortOrder} />
+    <hr />
     <div className="grid grid-cols-3 gap-4 gap-x-12 mt-8">
       {menus.map((menu) => (
         <MenuCard key={menu.foodId} menu={menu} onOrder={handleOrder} />
       ))}
     </div>
-
+  </div>
   );
 }
 

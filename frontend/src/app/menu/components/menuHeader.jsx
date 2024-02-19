@@ -3,15 +3,15 @@
 
 import React, { useState } from "react";
 
-const FilterButtons = ["Default", "Price low to high", "Price high to low"];
+const FilterButtons = ["A-Z", "Price low to high", "Price high to low"];
 
 /**
  * Functional component that represents the header of the menu.
  *
  * @returns The rendered header component.
  */
-function MenuHeader() {
-  const [activeButton, setActiveButton] = useState("Default");
+function MenuHeader({ onSortOrderChange }) {
+  const [activeButton, setActiveButton] = useState("A-Z");
 
   /**
    * Handles the button click event and updates the active button state.
@@ -20,6 +20,7 @@ function MenuHeader() {
    */
   const handleButtonClick = (buttonName) => {
     setActiveButton(buttonName);
+    onSortOrderChange(buttonName);
   };
 
   return (
