@@ -38,6 +38,7 @@ function MenuList() {
     const fetchMenu = async () => {
       try {
         const response = await api.get('/foods');
+        // Sort the menu items alphabetically by name by default
         setMenus(response.data.sort((a,b) => a.name.localeCompare(b.name)));
       } catch (error) {
         console.error("Error fetching menu data:", error);
