@@ -12,7 +12,7 @@ import api from '../../services/api';
  */
 function MenuList() {
   const [menus, setMenus] = useState([]);
-  const[sortOrder,setSortOrder] = useState('a-z');
+  const[sortOrder,setSortOrder] = useState('A-Z');
 
   
   const handleSortOrder = (sortOrder) => {
