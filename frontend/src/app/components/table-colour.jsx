@@ -25,7 +25,7 @@ const TableColour = ({ status, onClick }) => {
     className={`${currentColour} text-white front-bold py-2 px-4 rounded`}
     onClick={handleButtonClick}
     >
-      Change Colour
+      Table
     </button>
   );
 };
