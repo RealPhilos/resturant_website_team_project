@@ -8,7 +8,6 @@ function MenuPage() {
   const [isListView, setIsListView] = useState(false);
   return (
     <div className="w-full">
-      <MenuHeader isListView={isListView} setIsListView={setIsListView} />
       <hr />
       <MenuList isListView={isListView} />
     </div>  
