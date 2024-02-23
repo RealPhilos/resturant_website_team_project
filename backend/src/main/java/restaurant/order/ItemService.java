@@ -72,6 +72,4 @@ public class ItemService {
     List<Item> itemsToDelete = itemRepository.findByUserUsername(username);
     itemRepository.deleteAll(itemsToDelete);
   }
-  
 }
-

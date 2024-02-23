@@ -14,6 +14,8 @@ import jakarta.persistence.Table;
 import java.time.LocalDateTime;
 import restaurant.login.User;
 
+
+
 /**
  * Represents an item ordered in a restaurant.
  * 
@@ -23,6 +25,7 @@ import restaurant.login.User;
 @Entity // Indicates that this class is an entity to be managed by JPA.
 @Table(name = "Orders") // Specifies the name of the database table to map to.
 public class Item {
+<<<<<<< HEAD
   
 
   @Id // Indicates that this field is the primary key of the entity.

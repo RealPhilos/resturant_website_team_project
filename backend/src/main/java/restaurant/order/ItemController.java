@@ -112,7 +112,4 @@ public class ItemController {
     itemService.deleteItemsByUsername(username);
     return "Items canceled successfully";
   }
-  
-
 }
-
