@@ -12,7 +12,6 @@ function MenuPage() {
       <hr />
       <MenuList isListView={isListView} />
     </div>  
-      <MenuList />
   );
 }
 
