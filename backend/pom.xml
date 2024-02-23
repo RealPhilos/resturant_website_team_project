@@ -59,11 +59,11 @@
                         <version>10.9.3</version>
                     </dependency>
                 </dependencies>
-                <!--<configuration>
+                <configuration>
                     <violationSeverity>warning</violationSeverity>
                     <failsOnError>True</failsOnError>
                     <configLocation>/src/main/resources/googlePlus.xml</configLocation>
-                </configuration>-->
+                </configuration>
                 <executions>
                     <execution>
                         <id>validate</id>
