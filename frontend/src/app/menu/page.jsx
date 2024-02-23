@@ -11,7 +11,8 @@ function MenuPage() {
       <MenuHeader isListView={isListView} setIsListView={setIsListView} />
       <hr />
       <MenuList isListView={isListView} />
-    </div>
+    </div>  
+      <MenuList />
   );
 }
 

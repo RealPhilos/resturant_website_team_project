@@ -7,21 +7,7 @@ function CustomerSignUpPage() {
       <form className="mx-auto w-2/5 border border-green-800 rounded p-8 mt-12 flex flex-col gap-7 items-center">
         <span className="text-xl font-bold">Customer Sign Up</span>
         <div className="flex flex-col w-3/4 gap-1">
-          <label>First Name</label>
-          <input
-            className="p-2 bg-gray-200 rounded-md"
-            placeholder="Enter your email"
-          />
-        </div>
-        <div className="flex flex-col w-3/4 gap-1">
-          <label>Last Name</label>
-          <input
-            className="p-2 bg-gray-200 rounded-md"
-            placeholder="Enter your email"
-          />
-        </div>
-        <div className="flex flex-col w-3/4 gap-1">
-          <label>Email</label>
+          <label>Username</label>
           <input
             className="p-2 bg-gray-200 rounded-md"
             placeholder="Enter your email"

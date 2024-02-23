@@ -10,18 +10,17 @@ function NavBar() {
         <Link href="/menu">
           <span>Menu</span>
         </Link>
-        <Link href="/checkout">
+        <Link href="/order">
           <span>Order</span>
         </Link>
         <Link href="">
-          <span>Track</span>
+          <span>Table</span>
         </Link>
-        <Link href="">
-          <span>Allergen</span>
-        </Link>
+        <Link href="/login">
         <button className="bg-green-800 text-white px-3 py-2 rounded-md">
-          Basket (3)
+          Login
         </button>
+        </Link>
       </div>
     </div>
   );

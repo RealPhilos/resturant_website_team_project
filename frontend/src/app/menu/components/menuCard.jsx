@@ -1,18 +1,37 @@
-import React from "react";
+import React from 'react';
 
-function MenuCard({ menu }) {
+/**
+ * `MenuCard` is a React component that displays a menu item and triggers an `onOrder` callback when clicked.
+ * @author Zlac157 - Malcolm Berset
+ */
+function MenuCard({ menu, onOrder }) {
+  // This function will be called when the MenuCard is clicked
+  const handleClick = () => {
+    // Call the onOrder function passed as a prop with the menu item
+    onOrder(menu);
+  };
+
   return (
-    <div className="w-full bg-white rounded-3xl border ">
+    <div 
+      className="w-full bg-white rounded-3xl border food-item" 
+      onClick={handleClick}
+      style={{ cursor: 'pointer', transition: 'transform .2s' }}
+    >
       <img
-        src="/pizza.jpeg"
+        src= "/pizza.jpeg" //{menu.imgPath}// Make sure this points to the correct image path
         alt={menu.name}
         className="w-full rounded-t-3xl h-56 object-cover"
       />
       <div className="p-4 rounded-3xl bg-[#FAFAF5]">
         <h3 className="text-lg font-semibold">{menu.name}</h3>
-        <h3 className="text-md text-gray-600 mb-2">£{menu.price}</h3>
-        <p className="text-gray-700 text-sm  mb-2">{menu.description}</p>
+        <p className="text-md text-gray-600 mb-2">£{menu.price}</p>
+        <p className="text-gray-700 text-sm mb-2">{menu.description}</p>
       </div>
+      <style jsx>{`
+        .food-item:hover {
+          transform: scale(1.05); /* Slightly larger zoom on hover */
+        }
+      `}</style>
     </div>
   );
 }
