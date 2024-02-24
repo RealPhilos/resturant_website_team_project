@@ -6,6 +6,7 @@ export const CartContext = createContext({
   items: [],
   addItem: (i) => {},
   incrementQty: (id) => {},
+  decrementQty: (id) => {},
   getSubtotal: () => {},
 });
 
@@ -37,12 +38,34 @@ export default function CartContextProvider({ children }) {
     );
   }
 
+  function decrementQty(id) {
+    setItems(
+      items.reduce((prev, item) => {
+        if (item.foodId == id) {
+          if (item.quantity == 1) {
+            return prev;
+          }
+          return [
+            ...prev,
+            {
+              ...item,
+              quantity: item.quantity - 1,
+            },
+          ];
+        }
+        return [...prev, item];
+      }, [])
+    );
+  }
+
   function getSubtotal() {
     return items.reduce((prev, item) => prev + item.quantity * item.price, 0);
   }
 
   return (
-    <CartContext.Provider value={{ items, addItem, incrementQty, getSubtotal }}>
+    <CartContext.Provider
+      value={{ items, addItem, incrementQty, decrementQty, getSubtotal }}
+    >
       {children}
     </CartContext.Provider>
   );
