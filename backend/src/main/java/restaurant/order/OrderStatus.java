@@ -5,12 +5,12 @@ package restaurant.order;
  * 
  * @author Luque van der Merwe - ZLAC180
  */
-public enum Status {
+public enum OrderStatus {
   ORDERED("ordered"), COOKING("cooking"), DONE("done"), DELIVERED("delivered");
 
   private String textValue;
 
-  Status(String textValue) {
+  OrderStatus(String textValue) {
     this.textValue = textValue;
   }
 
@@ -20,16 +20,16 @@ public enum Status {
    * @param str String status to be converted
    * @return Returns enum constant corresponding to parameter given
    */
-  public static Status convertFromString(String str) {
+  public static OrderStatus convertFromString(String str) {
     switch (str) {
       case "delivered":
-        return Status.DELIVERED;
+        return OrderStatus.DELIVERED;
       case "cooking":
-        return Status.COOKING;
+        return OrderStatus.COOKING;
       case "done":
-        return Status.DONE;
+        return OrderStatus.DONE;
       default:
-        return Status.ORDERED;
+        return OrderStatus.ORDERED;
     }
   }
 
