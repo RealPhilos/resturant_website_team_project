@@ -9,7 +9,7 @@ export default function ItemList() {
   return (
     <div className="w-2/3">
       {items.map((data) => (
-        <ItemCard item={data} />
+        <ItemCard key={data.foodId} item={data} />
       ))}
     </div>
   );

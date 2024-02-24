@@ -4,7 +4,8 @@ import { createContext, useState } from "react";
 
 export const CartContext = createContext({
   items: [],
-  addItem: () => {},
+  addItem: (i) => {},
+  incrementQty: (id) => {},
 });
 
 export default function CartContextProvider({ children }) {
@@ -12,14 +13,8 @@ export default function CartContextProvider({ children }) {
 
   function addItem(i) {
     if (items.find((item) => item.foodId == i.foodId)) {
-      setItems(
-        items.map((item) => {
-          if (item.foodId == i.foodId) {
-            item.quantity++;
-          }
-          return item;
-        })
-      );
+      incrementQty(i.foodId);
+      return;
     }
     setItems([
       ...items,
@@ -29,8 +24,19 @@ export default function CartContextProvider({ children }) {
       },
     ]);
   }
+
+  function incrementQty(id) {
+    setItems(
+      items.map((item) => {
+        if (item.foodId == id) {
+          item.quantity++;
+        }
+        return item;
+      })
+    );
+  }
   return (
-    <CartContext.Provider value={{ items, addItem }}>
+    <CartContext.Provider value={{ items, addItem, incrementQty }}>
       {children}
     </CartContext.Provider>
   );
