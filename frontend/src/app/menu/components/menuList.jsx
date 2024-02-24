@@ -28,12 +28,6 @@ function MenuList() {
     }
   };
 
-  const handleOrder = (menuItem) => {
-    // Logic to handle ordering, such as setting state and opening a modal
-    console.log(`Ordering: ${menuItem.name}`);
-    // Set the current item, show modal, etc.
-  };
-
   useEffect(() => {
     const fetchMenu = async () => {
       try {
@@ -53,7 +47,7 @@ function MenuList() {
       <hr />
       <div className="grid grid-cols-3 gap-4 gap-x-12 mt-8">
         {menus.map((menu) => (
-          <MenuCard key={menu.foodId} menu={menu} onOrder={handleOrder} />
+          <MenuCard key={menu.foodId} menu={menu} />
         ))}
       </div>
     </div>

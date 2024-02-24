@@ -1,16 +1,19 @@
-import React from "react";
+import { CartContext } from "@/app/providers/cart";
+import React, { useContext } from "react";
 
 /**
  * `MenuCard` is a React component that displays a menu item and triggers an `onOrder` callback when clicked.
  * @author Zlac157 - Malcolm Berset
  * @author WLIS205 - Parvesh Kumar
  */
-function MenuCard({ menu, onOrder }) {
+function MenuCard({ menu }) {
+  const { addItem } = useContext(CartContext);
   // This function will be called when the MenuCard is clicked
   const handleClick = () => {
-    // Call the onOrder function passed as a prop with the menu item
-    onOrder(menu);
+    addItem(menu);
   };
+
+  console.log(menu);
 
   return (
     <div

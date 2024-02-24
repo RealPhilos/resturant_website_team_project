@@ -14,8 +14,8 @@ public class FoodConfig {
   @Bean
   CommandLineRunner orderCommandLineRunner(FoodRepository repo) {
     return args -> {
-      Food o1 = new Food("Burger");
-      Food o2 = new Food("Pizza");
+      Food o1 = new Food("Burger", "", "", "Main", 3.49);
+      Food o2 = new Food("Pizza", "", "", "Main", 5.29);
       Food o3 = new Food("Chicken Wings", "src/resources/SOMEIMAGE.jpg", " ", "Sides", 9.99);
       Food o4 = new Food("Tacos", "src/resources/SOMEIMAGE.jpg", " ", "Main", 6.99);
       Food o5 = new Food("Steak", "src/resources/SOMEIMAGE.jpg", " ", "Main", 12.99);

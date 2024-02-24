@@ -6,6 +6,7 @@ import { CartContext } from "../providers/cart";
 
 function NavBar() {
   const { items } = useContext(CartContext);
+
   return (
     <div className="bg-gray-300 px-[13vw] py-7 flex items-center justify-between">
       <span className="text-xl text-green-800">Restaurant</span>
@@ -25,7 +26,7 @@ function NavBar() {
             Login
           </button>
         </Link>
-        <Link href="">
+        <Link href="/checkout">
           <span className="bg-green-800 text-white px-3 py-2 rounded-md">
             Basket ({items.length})
           </span>

@@ -8,39 +8,26 @@ export const CartContext = createContext({
 });
 
 export default function CartContextProvider({ children }) {
-  const [items, setItems] = useState([
-    {
-      id: 1,
-      name: "Mozzarella Pizza",
-      price: 15,
-      quantity: 1,
-    },
-    {
-      id: 2,
-      name: "Sushi",
-      price: 10,
-      quantity: 3,
-    },
-    {
-      id: 3,
-      name: "Ginger Beer",
-      price: 1.5,
-      quantity: 2,
-    },
-  ]);
+  const [items, setItems] = useState([]);
 
   function addItem(i) {
-    if (items.find((item) => item.id == i.id)) {
+    if (items.find((item) => item.foodId == i.foodId)) {
       setItems(
         items.map((item) => {
-          if (item.id == id) {
+          if (item.foodId == i.foodId) {
             item.quantity++;
           }
           return item;
         })
       );
     }
-    setItems([...items, i]);
+    setItems([
+      ...items,
+      {
+        ...i,
+        quantity: 1,
+      },
+    ]);
   }
   return (
     <CartContext.Provider value={{ items, addItem }}>
