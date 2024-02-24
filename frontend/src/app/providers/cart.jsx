@@ -6,6 +6,7 @@ export const CartContext = createContext({
   items: [],
   addItem: (i) => {},
   incrementQty: (id) => {},
+  getSubtotal: () => {},
 });
 
 export default function CartContextProvider({ children }) {
@@ -35,8 +36,13 @@ export default function CartContextProvider({ children }) {
       })
     );
   }
+
+  function getSubtotal() {
+    return items.reduce((prev, item) => prev + item.quantity * item.price, 0);
+  }
+
   return (
-    <CartContext.Provider value={{ items, addItem, incrementQty }}>
+    <CartContext.Provider value={{ items, addItem, incrementQty, getSubtotal }}>
       {children}
     </CartContext.Provider>
   );
