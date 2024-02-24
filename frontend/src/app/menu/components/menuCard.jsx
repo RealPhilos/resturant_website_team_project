@@ -1,8 +1,9 @@
-import React from 'react';
+import React from "react";
 
 /**
  * `MenuCard` is a React component that displays a menu item and triggers an `onOrder` callback when clicked.
  * @author Zlac157 - Malcolm Berset
+ * @author WLIS205 - Parvesh Kumar
  */
 function MenuCard({ menu, onOrder }) {
   // This function will be called when the MenuCard is clicked
@@ -12,13 +13,13 @@ function MenuCard({ menu, onOrder }) {
   };
 
   return (
-    <div 
-      className="w-full bg-white rounded-3xl border food-item" 
+    <div
+      className="w-full bg-white rounded-3xl border food-item"
       onClick={handleClick}
-      style={{ cursor: 'pointer', transition: 'transform .2s' }}
+      style={{ cursor: "pointer", transition: "transform .2s" }}
     >
       <img
-        src= "/pizza.jpeg" //{menu.imgPath}// Make sure this points to the correct image path
+        src="/pizza.jpeg" //{menu.imgPath}// Make sure this points to the correct image path
         alt={menu.name}
         className="w-full rounded-t-3xl h-56 object-cover"
       />
