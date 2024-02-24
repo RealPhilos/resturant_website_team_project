@@ -25,8 +25,6 @@ import restaurant.login.User;
 @Entity // Indicates that this class is an entity to be managed by JPA.
 @Table(name = "Orders") // Specifies the name of the database table to map to.
 public class Item {
-<<<<<<< HEAD
-  
 
   @Id // Indicates that this field is the primary key of the entity.
   @GeneratedValue(strategy = GenerationType.IDENTITY) // Specifies how the ID should be generated.
@@ -38,7 +36,7 @@ public class Item {
   private LocalDateTime orderTime; // Timestamp when the item was ordered.
   
   @Enumerated(EnumType.STRING) // This will store the enum value as a string in the database
-  private Status orderStatus; // Status of the order.
+  private OrderStatus orderStatus; // Status of the order.
 
   @JsonBackReference // Used to break the serialization loop between User and Item entities.
   @ManyToOne // Indicates a many-to-one relationship with User entity.
@@ -57,16 +55,16 @@ public class Item {
     this.quantity = quantity;
     this.tableNumber = tableNumber;
     this.user = user;
-    this.orderStatus = Status.ORDERED;
+    this.orderStatus = OrderStatus.ORDERED;
   }
 
   // Getters and Setters 
   
   public void setStatus(String status) {
-    this.orderStatus = Status.convertFromString(status);
+    this.orderStatus = OrderStatus.convertFromString(status);
   }
   
-  public Status getStatus() {
+  public OrderStatus getStatus() {
     return orderStatus;
   }
 
