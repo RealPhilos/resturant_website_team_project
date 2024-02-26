@@ -34,6 +34,15 @@ public class Food {
     this.name = food;
   }
 
+  /**
+   * constructor method for the Food.
+   *
+   * @param name food name
+   * @param imgPath path of the image
+   * @param description description for the food
+   * @param category category name for the food
+   * @param price price of the food
+   */
   public Food(String name, String imgPath, String description, String category, Double price) {
     this.name = name;
     this.imgPath = imgPath;
@@ -77,7 +86,7 @@ public class Food {
   public String getDescription() {
     return this.description;
   }
-  
+
   public void setDescription(String description) {
     this.description = description;
   }

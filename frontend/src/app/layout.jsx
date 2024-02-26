@@ -6,7 +6,7 @@ import CartContextProvider from "./providers/cart";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "Test Restaurant",
+  title: "Oaxaca Restaurant",
   description: "Resturant App",
 };
 
@@ -14,10 +14,10 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
-        <NavBar />
-        <div className="px-[13vw]">
-          <CartContextProvider>{children}</CartContextProvider>
-        </div>
+        <CartContextProvider>
+          <NavBar />
+          <div className="px-[13vw]">{children}</div>
+        </CartContextProvider>
       </body>
     </html>
   );

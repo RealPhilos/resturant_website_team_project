@@ -12,7 +12,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-  
+
+/**
+ * FoodController class to handle the requests regarding food.
+ */
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping(path = "foods")
@@ -42,12 +45,11 @@ public class FoodController {
 
   @PutMapping(path = "{foodId}")
   public void updateOrder(@PathVariable("foodId") Long foodId,
-      @RequestParam(required = false) String food, 
-      @RequestParam(required = false) String imgPath, 
-      @RequestParam(required = false) String description, 
-      @RequestParam(required = false) String category, 
-      @RequestParam(required = false) Double price){
-    foodService.updateFood(foodId, food,imgPath,description, category, price);
+      @RequestParam(required = false) String food, @RequestParam(required = false) String imgPath,
+      @RequestParam(required = false) String description,
+      @RequestParam(required = false) String category,
+      @RequestParam(required = false) Double price) {
+    foodService.updateFood(foodId, food, imgPath, description, category, price);
 
   }
 
