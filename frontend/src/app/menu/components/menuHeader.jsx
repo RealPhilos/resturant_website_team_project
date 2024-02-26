@@ -7,6 +7,9 @@ const FilterButtons = ["A-Z", "Price low to high", "Price high to low"];
 /**
  * Functional component that represents the header of the menu.
  *
+ * @author - ?
+ * @author Luque van der Merwe - ZLAC180 
+ * 
  * @returns The rendered header component.
  */
 function MenuHeader({ onSortOrderChange }) {
@@ -23,10 +26,9 @@ function MenuHeader({ onSortOrderChange }) {
   };
 
   return (
-    <div className="py-6 flex justify-between items-end">
-      <div className="flex items-end gap-10">
-        <span className="text-5xl font-serif">Menu</span>
-        <span>All items served fresh with fresh ingredients</span>
+    <div className="py-4 flex justify-between items-center assign-baseline">
+      <div className="flex items-end gap-4">
+        <span className="text-l font-serif">All items served fresh with fresh ingredients</span>
       </div>
       <div>
         {FilterButtons.map((buttonName) => (
@@ -34,8 +36,8 @@ function MenuHeader({ onSortOrderChange }) {
             key={buttonName}
             className={
               buttonName === activeButton
-                ? "py-2 bg-green-700 text-white mr-2 px-3 text-sm rounded-3xl"
-                : "py-2 border-gray-500 border text-black mr-2 px-4 text-sm rounded-3xl"
+                ? "py-1.5 bg-green-700 text-white mr-2 px-2.5 text-sm rounded-2xl"
+                : "py-1.5 border-gray-500 border text-black mr-2 px-3 text-sm rounded-2xl"
             }
             onClick={() => handleButtonClick(buttonName)}
           >
