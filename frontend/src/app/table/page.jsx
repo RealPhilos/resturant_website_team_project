@@ -11,7 +11,13 @@ const TablePage = () => {
     { id: 3, status: 'free' },
     { id: 4, status: 'free' },
     { id: 5, status: 'free' },
-    { id: 6, status: 'free' }
+    { id: 6, status: 'free' },
+    { id: 7, status: 'free'},
+    { id: 8, status: 'free'},
+    { id: 9, status: 'free'},
+    { id: 10, status: 'free'},
+    { id: 11, status: 'free'}, 
+    { id: 12, status: 'free'}
   ];
 
   // State to manage table states
@@ -42,10 +48,21 @@ const TablePage = () => {
   
       <hr />
       
-      <div>
-        {/* First Row */}
-        <div className="flex justify-center items-center">
-          {tableStates.slice(0, 3).map(table => (
+      <div className="grid grid-cols-3 gap-4">
+        {/* Left Column - 4 */}
+          <div className="flex flex-col">
+            {tableStates.slice(0, 4).map(table => (
+              <TableColour
+                key={table.id}
+                status={table.status}
+                onClick={() => updateTableStatus(table.id, 'free')}
+              />
+            ))}
+          </div>
+
+        {/* Middle Column - 4 */}
+        <div className="flex flex-col">
+          {tableStates.slice(4, 8).map(table => (
             <TableColour
               key={table.id}
               status={table.status}
@@ -54,9 +71,9 @@ const TablePage = () => {
           ))}
         </div>
 
-        {/* Second Row */}
-        <div className="flex justify-center items-center">
-          {tableStates.slice(3, 6).map(table => (
+        {/* Right Column - 4 */}
+        <div className="flex flex-col">
+          {tableStates.slice(8, 12).map(table => (
             <TableColour
               key={table.id}
               status={table.status}
