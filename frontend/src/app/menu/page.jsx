@@ -1,12 +1,13 @@
-import React from "react";
+"use client";
+
 import MenuList from "./components/menuList";
-import MenuHeader from "./components/menuHeader";
 
 function MenuPage() {
   return (
-    
+    <div className="w-full">
+      <hr />
       <MenuList />
-    
+    </div>
   );
 }
 

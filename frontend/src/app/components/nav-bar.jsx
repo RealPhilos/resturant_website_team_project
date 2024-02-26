@@ -1,7 +1,12 @@
+"use client";
+
 import Link from "next/link";
-import React from "react";
+import { useContext } from "react";
+import { CartContext } from "../providers/cart";
 
 function NavBar() {
+  const { items } = useContext(CartContext);
+
   return (
     <div className="bg-gray-300 px-[13vw] py-7 flex items-center justify-between">
       <span className="text-xl text-green-800">Restaurant</span>
@@ -17,9 +22,14 @@ function NavBar() {
           <span>Table</span>
         </Link>
         <Link href="/login">
-        <button className="bg-green-800 text-white px-3 py-2 rounded-md">
-          Login
-        </button>
+          <button className="bg-green-800 text-white px-3 py-2 rounded-md">
+            Login
+          </button>
+        </Link>
+        <Link href="/checkout">
+          <span className="bg-green-800 text-white px-3 py-2 rounded-md">
+            Basket ({items.length})
+          </span>
         </Link>
       </div>
     </div>
