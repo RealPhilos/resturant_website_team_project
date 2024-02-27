@@ -4,22 +4,29 @@ import Link from "next/link";
 import React from "react";
 import api from "../services/axiosConfig";
 
+
+
 const handleClick = () => {
   const data = {
     username: document.getElementById("username").value,
     password: document.getElementById("password").value,
   };
 
-  api.post("/login/check", data)
+  api
+    .post("/login/check", data)
     .then(function (response) {
-      console.log(response.data);
-      return response;
+      if (response.data == false) {
+        alert("Login fail.");
+      } else {
+        window.location = "http://localhost:3000/menu";
+      }
     })
     .catch(function (error) {
       console.log(error);
       return error;
     });
 };
+
 
 function CustomerLoginPage() {
   return (
@@ -53,6 +60,7 @@ function CustomerLoginPage() {
               here!
             </Link>
           </span>
+          <span id="login_failed"></span>
         </div>
         <input
           className="bg-green-800 p-3 w-40 rounded-lg text-white cursor-pointer"

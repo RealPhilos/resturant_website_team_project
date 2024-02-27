@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@import 'tailwindcss/tailwind.css';
+
+.food-item {
+  @apply transition-transform duration-200;
+}
+
+.food-item:hover {
+  @apply transform scale-105;
+}
