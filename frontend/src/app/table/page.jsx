@@ -42,29 +42,31 @@ const TablePage = () => {
       <div className="py-6 flex justify-between items-end">
         <div className="flex items-end gap-10">
           <span className="text-5xl font-serif">Tables</span>
-          <span>Red is Unavailable, Yellow is Pending, Green is Ready.</span>
+          <span>Green is Ready, Red is Unavailable, Yellow is Pending.</span>
         </div>
       </div>
   
       <hr />
       
       <div className="grid grid-cols-3 gap-4">
-        {/* Left Column - 4 */}
-          <div className="flex flex-col">
-            {tableStates.slice(0, 4).map(table => (
-              <TableColour
-                key={table.id}
-                status={table.status}
-                onClick={() => updateTableStatus(table.id, 'free')}
-              />
-            ))}
-          </div>
+      {/* Left Column - 4 tables */}
+      <div className="flex flex-col">
+        {tableStates.slice(0, 4).map((table, index) => (
+          <TableColour
+            key={table.id}
+            index={index} // Pass index as a prop
+            status={table.status}
+            onClick={() => updateTableStatus(table.id, 'free')}
+          />
+        ))}
+      </div>
 
         {/* Middle Column - 4 */}
         <div className="flex flex-col">
-          {tableStates.slice(4, 8).map(table => (
+          {tableStates.slice(4, 8).map((table, index) => (
             <TableColour
               key={table.id}
+              index={index + 4} // Index + 4 so it counts tables properly and starts at 5.
               status={table.status}
               onClick={() => updateTableStatus(table.id, 'free')}
             />
@@ -73,9 +75,10 @@ const TablePage = () => {
 
         {/* Right Column - 4 */}
         <div className="flex flex-col">
-          {tableStates.slice(8, 12).map(table => (
+          {tableStates.slice(8, 12).map((table, index) => (
             <TableColour
               key={table.id}
+              index={index + 8}
               status={table.status}
               onClick={() => updateTableStatus(table.id, 'free')}
             />
