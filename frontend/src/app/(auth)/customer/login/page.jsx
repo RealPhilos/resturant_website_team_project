@@ -1,21 +1,45 @@
+"use client";
+
 import Link from "next/link";
-import React from "react";
+import { useState } from "react";
 
 function CustomerLoginPage() {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleUsernameChange = (e) => {
+    setUsername(e.target.value);
+  };
+
+  const handlePasswordChange = (e) => {
+    setPassword(e.target.value);
+  };
+
+  const handleSubmit = () => {
+    fetch();
+  };
+
   return (
     <div>
-      <form className="mx-auto w-2/5 border border-green-800 rounded p-8 mt-12 flex flex-col gap-7 items-center">
+      <form
+        onSubmit={handleSubmit}
+        className="mx-auto w-2/5 border border-green-800 rounded p-8 mt-12 flex flex-col gap-7 items-center"
+      >
         <span className="text-xl font-bold">Customer Login</span>
         <div className="flex flex-col w-3/4 gap-1">
-          <label>Email</label>
+          <label>Username</label>
           <input
+            value={username}
+            onChange={handleUsernameChange}
             className="p-2 bg-gray-200 rounded-md"
-            placeholder="Enter your email"
+            placeholder="Enter your username"
           />
         </div>
         <div className="flex flex-col w-3/4 gap-1">
           <label>Password</label>
           <input
+            value={password}
+            onChange={handlePasswordChange}
             className="p-2 bg-gray-200 rounded-md"
             placeholder="Enter your password"
           />
