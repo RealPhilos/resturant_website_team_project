@@ -1,8 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-<<<<<<< HEAD
- 
+@import 'tailwindcss/tailwind.css';
+
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -66,7 +66,7 @@
     --ring: 216 12.2% 83.9%;
   }
 }
- 
+
 @layer base {
   * {
     @apply border-border;
@@ -75,7 +75,3 @@
     @apply bg-background text-foreground;
   }
 }
-=======
-
-@import 'tailwindcss/tailwind.css';
->>>>>>> feature-Table
