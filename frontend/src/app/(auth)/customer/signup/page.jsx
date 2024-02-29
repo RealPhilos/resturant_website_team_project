@@ -1,5 +1,6 @@
 "use client";
 
+import { useToast } from "@/components/ui/use-toast";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
@@ -9,6 +10,8 @@ function CustomerSignUpPage() {
   const [confirmPassword, setConfirmPassword] = useState("");
 
   const router = useRouter();
+
+  const { toast } = useToast();
 
   const handleUsernameChange = (e) => {
     setUsername(e.target.value);
@@ -38,6 +41,11 @@ function CustomerSignUpPage() {
     });
 
     if (res.ok) {
+      toast({
+        title: "Signup success",
+        description:
+          "Account signup is successful! You can login using this credentials now.",
+      });
       router.push("/customer/login");
     }
   };
@@ -61,6 +69,7 @@ function CustomerSignUpPage() {
         <div className="flex flex-col w-3/4 gap-1">
           <label>Password</label>
           <input
+            type="password"
             value={password}
             onChange={handlePasswordChange}
             className="p-2 bg-gray-200 rounded-md"
@@ -70,6 +79,7 @@ function CustomerSignUpPage() {
         <div className="flex flex-col w-3/4 gap-1">
           <label>Confirm Password</label>
           <input
+            type="password"
             value={confirmPassword}
             onChange={handleConfirmPasswordChange}
             className="p-2 bg-gray-200 rounded-md"

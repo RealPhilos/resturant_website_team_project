@@ -1,6 +1,7 @@
 "use client";
 
 import { AuthContext } from "@/app/providers/auth";
+import { useToast } from "@/components/ui/use-toast";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useContext, useEffect, useState } from "react";
@@ -8,6 +9,8 @@ import { useContext, useEffect, useState } from "react";
 function CustomerLoginPage() {
   const { isLoggedIn, setIsLoggedIn } = useContext(AuthContext);
   const router = useRouter();
+
+  const { toast } = useToast();
 
   useEffect(() => {
     if (isLoggedIn) {
@@ -41,6 +44,10 @@ function CustomerLoginPage() {
 
     if (res.ok) {
       setIsLoggedIn(true);
+      toast({
+        title: "Login success",
+        description: "Your account login is successful!",
+      });
       router.push("/");
     }
   };
