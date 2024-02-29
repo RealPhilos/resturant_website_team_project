@@ -1,9 +1,20 @@
 "use client";
 
+import { AuthContext } from "@/app/providers/auth";
 import Link from "next/link";
-import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { useContext, useEffect, useState } from "react";
 
 function CustomerLoginPage() {
+  const { isLoggedIn, setIsLoggedIn } = useContext(AuthContext);
+  const router = useRouter();
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      return router.replace("/");
+    }
+  }, [isLoggedIn]);
+
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -15,8 +26,24 @@ function CustomerLoginPage() {
     setPassword(e.target.value);
   };
 
-  const handleSubmit = () => {
-    fetch();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const res = await fetch("http://localhost:8080/login/check", {
+      method: "POST",
+      body: JSON.stringify({
+        username,
+        password,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    if (res.ok) {
+      setIsLoggedIn(true);
+      console.log(res.ok);
+      router.push("/");
+    }
   };
 
   return (
@@ -39,6 +66,7 @@ function CustomerLoginPage() {
           <label>Password</label>
           <input
             value={password}
+            type="password"
             onChange={handlePasswordChange}
             className="p-2 bg-gray-200 rounded-md"
             placeholder="Enter your password"
