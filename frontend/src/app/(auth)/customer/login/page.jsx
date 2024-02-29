@@ -5,10 +5,17 @@ import { useToast } from "@/components/ui/use-toast";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useContext, useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
 
 function CustomerLoginPage() {
   const { isLoggedIn, setIsLoggedIn } = useContext(AuthContext);
   const router = useRouter();
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
   const { toast } = useToast();
 
@@ -18,19 +25,9 @@ function CustomerLoginPage() {
     }
   }, [isLoggedIn]);
 
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const handleLoginSubmit = async (data) => {
+    const { username, password } = data;
 
-  const handleUsernameChange = (e) => {
-    setUsername(e.target.value);
-  };
-
-  const handlePasswordChange = (e) => {
-    setPassword(e.target.value);
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
     const res = await fetch("http://localhost:8080/login/check", {
       method: "POST",
       body: JSON.stringify({
@@ -55,28 +52,32 @@ function CustomerLoginPage() {
   return (
     <div>
       <form
-        onSubmit={handleSubmit}
+        onSubmit={handleSubmit(handleLoginSubmit)}
         className="mx-auto w-2/5 border border-green-800 rounded p-8 mt-12 flex flex-col gap-7 items-center"
       >
         <span className="text-xl font-bold">Customer Login</span>
         <div className="flex flex-col w-3/4 gap-1">
           <label>Username</label>
           <input
-            value={username}
-            onChange={handleUsernameChange}
+            {...register("username", { required: true })}
             className="p-2 bg-gray-200 rounded-md"
             placeholder="Enter your username"
           />
+          {errors.username && (
+            <span className="text-red-700">Username is required</span>
+          )}
         </div>
         <div className="flex flex-col w-3/4 gap-1">
           <label>Password</label>
           <input
-            value={password}
+            {...register("password", { required: true })}
             type="password"
-            onChange={handlePasswordChange}
             className="p-2 bg-gray-200 rounded-md"
             placeholder="Enter your password"
           />
+          {errors.password && (
+            <span className="text-red-700">Password is required</span>
+          )}
           <span className="text-sm text-gray-600">
             Not a member? Sign Up{" "}
             <Link
