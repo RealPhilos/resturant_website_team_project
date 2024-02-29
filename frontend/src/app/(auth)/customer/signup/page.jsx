@@ -2,32 +2,21 @@
 
 import { useToast } from "@/components/ui/use-toast";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useForm } from "react-hook-form";
 
 function CustomerSignUpPage() {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
   const router = useRouter();
 
   const { toast } = useToast();
 
-  const handleUsernameChange = (e) => {
-    setUsername(e.target.value);
-  };
-
-  const handlePasswordChange = (e) => {
-    setPassword(e.target.value);
-  };
-
-  const handleConfirmPasswordChange = (e) => {
-    setConfirmPassword(e.target.value);
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
+  const handleSignUpSubmit = async (data) => {
+    const { username, password, confirmPassword } = data;
     const res = await fetch("http://localhost:8080/login/add", {
       method: "POST",
       body: JSON.stringify({
@@ -53,38 +42,46 @@ function CustomerSignUpPage() {
   return (
     <div>
       <form
-        onSubmit={handleSubmit}
+        onSubmit={handleSubmit(handleSignUpSubmit)}
         className="mx-auto w-2/5 border border-green-800 rounded p-8 mt-12 flex flex-col gap-7 items-center"
       >
         <span className="text-xl font-bold">Customer Sign Up</span>
         <div className="flex flex-col w-3/4 gap-1">
           <label>Username</label>
           <input
-            value={username}
-            onChange={handleUsernameChange}
+            {...register("username", { required: true })}
             className="p-2 bg-gray-200 rounded-md"
-            placeholder="Enter your email"
+            placeholder="Enter your username"
           />
+          {errors.username && (
+            <span className="text-red-700">Username is required</span>
+          )}
         </div>
         <div className="flex flex-col w-3/4 gap-1">
           <label>Password</label>
           <input
             type="password"
-            value={password}
-            onChange={handlePasswordChange}
+            {...register("password", { required: true })}
             className="p-2 bg-gray-200 rounded-md"
             placeholder="Enter your password"
           />
+          {errors.password && (
+            <span className="text-red-700">Password is required</span>
+          )}
         </div>
         <div className="flex flex-col w-3/4 gap-1">
           <label>Confirm Password</label>
           <input
             type="password"
-            value={confirmPassword}
-            onChange={handleConfirmPasswordChange}
+            {...register("confirmPassword", { required: true })}
             className="p-2 bg-gray-200 rounded-md"
-            placeholder="Enter your password"
+            placeholder="Confirm your password"
           />
+          {errors.confirmPassword && (
+            <span className="text-red-700">
+              Confirm password field is required
+            </span>
+          )}
         </div>
         <input
           className="bg-green-800 p-3 w-40 rounded-lg text-white cursor-pointer"
