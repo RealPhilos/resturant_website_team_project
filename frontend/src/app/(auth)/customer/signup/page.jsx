@@ -8,6 +8,7 @@ function CustomerSignUpPage() {
   const {
     register,
     handleSubmit,
+    watch,
     formState: { errors },
   } = useForm();
 
@@ -73,13 +74,21 @@ function CustomerSignUpPage() {
           <label>Confirm Password</label>
           <input
             type="password"
-            {...register("confirmPassword", { required: true })}
+            {...register("confirmPassword", {
+              required: true,
+              validate: (cp) => {
+                if (watch("password") != cp) {
+                  return "Please enter the same password from above!";
+                }
+              },
+            })}
             className="p-2 bg-gray-200 rounded-md"
             placeholder="Confirm your password"
           />
           {errors.confirmPassword && (
             <span className="text-red-700">
-              Confirm password field is required
+              {errors.confirmPassword.message ||
+                "Confirm password field is required"}
             </span>
           )}
         </div>
