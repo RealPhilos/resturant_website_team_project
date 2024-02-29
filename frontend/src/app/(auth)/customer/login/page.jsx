@@ -41,7 +41,6 @@ function CustomerLoginPage() {
 
     if (res.ok) {
       setIsLoggedIn(true);
-      console.log(res.ok);
       router.push("/");
     }
   };
