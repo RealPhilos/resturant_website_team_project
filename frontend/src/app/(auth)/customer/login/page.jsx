@@ -8,7 +8,7 @@ import { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 
 function CustomerLoginPage() {
-  const { isLoggedIn, setIsLoggedIn } = useContext(AuthContext);
+  const { isLoggedIn, setIsLoggedIn, setUsername } = useContext(AuthContext);
   const router = useRouter();
 
   const {
@@ -41,6 +41,7 @@ function CustomerLoginPage() {
 
     if (res.ok) {
       setIsLoggedIn(true);
+      setUsername(username);
       toast({
         title: "Login success",
         description: "Your account login is successful!",
