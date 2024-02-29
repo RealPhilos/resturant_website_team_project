@@ -168,48 +168,30 @@ function Basket() {
                 </button>
               </div>
             ) : (
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "row",
-                  alignItems: "center",
-                }}
-              >
+              <div className="flex gap-2 self-start">
                 <button
-                  style={{
-                    backgroundColor: "#FFFFFF",
-                    border: "1px solid #E5E7EB",
-                    borderRadius: "1.5rem",
-                    padding: "0.5em 1em",
-                    margin: "1em 0",
-                    cursor: "pointer",
-                  }}
-                  onMouseEnter={(e) =>
-                    (e.target.style.backgroundColor = "#90EE90")
-                  }
-                  onMouseLeave={(e) =>
-                    (e.target.style.backgroundColor = "#FAFAF5")
-                  }
+                  className="bg-white rounded-2xl px-2 py-1 cursor-pointer hover:bg-gray-300 border border-gray-500"
+                  // style={{
+                  //   backgroundColor: "#FFFFFF",
+                  //   border: "1px solid #E5E7EB",
+                  //   borderRadius: "1.5rem",
+                  //   padding: "0.5em 1em",
+                  //   margin: "1em 0",
+                  //   cursor: "pointer",
+                  // }}
+                  // onMouseEnter={(e) =>
+                  //   (e.target.style.backgroundColor = "#90EE90")
+                  // }
+                  // onMouseLeave={(e) =>
+                  //   (e.target.style.backgroundColor = "#FAFAF5")
+                  // }
                   onClick={() => openQuantityBar(item)}
                 >
                   Edit
                 </button>
 
                 <button
-                  style={{
-                    backgroundColor: "#FFFFFF",
-                    border: "1px solid #E5E7EB",
-                    borderRadius: "1.5rem",
-                    padding: "0.5em 1em",
-                    margin: "1em 0",
-                    cursor: "pointer",
-                  }}
-                  onMouseEnter={(e) =>
-                    (e.target.style.backgroundColor = "#FFCCCB")
-                  }
-                  onMouseLeave={(e) =>
-                    (e.target.style.backgroundColor = "#FAFAF5")
-                  }
+                  className="bg-red-800 text-white px-2 py-1 mx-1 my-0 cursor-pointer rounded-2xl hover:bg-red-700"
                   onClick={() => removeFromCart(item)}
                 >
                   Remove
