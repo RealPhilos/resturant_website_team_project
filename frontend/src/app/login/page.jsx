@@ -4,8 +4,6 @@ import Link from "next/link";
 import React from "react";
 import api from "../services/axiosConfig";
 
-
-
 const handleClick = () => {
   const data = {
     username: document.getElementById("username").value,
@@ -26,7 +24,6 @@ const handleClick = () => {
       return error;
     });
 };
-
 
 function CustomerLoginPage() {
   return (

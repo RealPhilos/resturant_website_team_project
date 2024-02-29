@@ -1,9 +1,7 @@
 "use client";
 import Link from "next/link";
 import React from "react";
-import { useState } from "react";
-
-var buttonText = "Login";
+import AuthButton from "./auth-button";
 
 function NavBar() {
   return (
@@ -21,14 +19,7 @@ function NavBar() {
         <Link href="/table">
           <span>Tables</span>
         </Link>
-        <Link href="/customer/login">
-          <button
-            className="bg-green-800 text-white px-3 py-2 rounded-md"
-            id="LoginButton"
-          >
-            {buttonText}
-          </button>
-        </Link>
+        <AuthButton />
       </div>
     </div>
   );
