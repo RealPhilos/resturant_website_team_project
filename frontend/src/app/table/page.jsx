@@ -4,6 +4,7 @@ import TableColour from "../components/table-colour";
 import { useState } from 'react';
 
 const TablePage = () => {
+
   // Define the initial state of the tables
   const initialTableStates = [
     { id: 1, status: 'free' },
@@ -42,7 +43,8 @@ const TablePage = () => {
       <div className="py-6 flex justify-between items-end">
         <div className="flex items-end gap-10">
           <span className="text-5xl font-serif">Tables</span>
-          <span>Green is Ready, Red is Unavailable, Yellow is Pending.</span>
+          <span>Green is Ready, Red is Unavailable, Yellow is the table almost ready.</span>
+          <span>A table for two are for 1-4, a 4 person table is tables 5 -8 and a table for 6 are table 9-12</span>
         </div>
       </div>
   
@@ -50,23 +52,25 @@ const TablePage = () => {
       
       <div className="grid grid-cols-3 gap-4">
       {/* Left Column - 4 tables */}
-      <div className="flex flex-col">
+      <div className="flex flex-col gap-4">
         {tableStates.slice(0, 4).map((table, index) => (
           <TableColour
             key={table.id}
             index={index} // Pass index as a prop
             status={table.status}
+            size = "small"
             onClick={() => updateTableStatus(table.id, 'free')}
           />
         ))}
       </div>
 
         {/* Middle Column - 4 */}
-        <div className="flex flex-col">
+        <div className="flex flex-col gap-4">
           {tableStates.slice(4, 8).map((table, index) => (
             <TableColour
               key={table.id}
               index={index + 4} // Index + 4 so it counts tables properly and starts at 5.
+              size = "medium"
               status={table.status}
               onClick={() => updateTableStatus(table.id, 'free')}
             />
@@ -74,12 +78,13 @@ const TablePage = () => {
         </div>
 
         {/* Right Column - 4 */}
-        <div className="flex flex-col">
+        <div className="flex flex-col gap-4">
           {tableStates.slice(8, 12).map((table, index) => (
             <TableColour
               key={table.id}
               index={index + 8}
               status={table.status}
+              size = "large"
               onClick={() => updateTableStatus(table.id, 'free')}
             />
           ))}
