@@ -1,5 +1,6 @@
 "use client";
-import React, { useState, useEffect } from "react";
+
+import { useState, useEffect } from "react";
 
 function Basket() {
   const [cart, setCart] = useState(() => {
@@ -38,9 +39,6 @@ function Basket() {
         item === itemToUpdate ? { ...item, quantity: editedQuantity } : item
       )
     );
-    console.log(
-      `Updated quantity of ${itemToUpdate.name} to ${editedQuantity}.`
-    );
     closeQuantityBar();
   };
 
@@ -61,48 +59,22 @@ function Basket() {
       </div>
 
       <hr />
-      <br></br>
 
       <div>
-        <h2 className="text-4xl font-serif underline mb-1">Your Orders</h2>
+        <h2 className="text-4xl font-serif underline my-2">Your Orders</h2>
         {cart.map((item, index) => (
           <div
-            className="p-4 rounded-3xl bg-[#FAFAF5]"
+            className="p-4 rounded-3xl bg-[#FAFAF5] flex justify-between border my-4"
             key={index}
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              border: "1px solid #E5E7EB",
-              borderRadius: "1.5rem",
-              padding: "10px",
-              margin: "10px 0",
-            }}
           >
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "row",
-                alignItems: "center",
-                width: "100%",
-              }}
-            >
+            <div className="flex items-center w-full">
               <img
                 src={item.imgPath}
                 alt={item.name}
-                width={100}
-                height={100}
-                style={{
-                  borderRadius: "1.5rem",
-                  border: "1px solid #E5E7EB",
-                  marginRight: "10px",
-                }}
+                className="w-24 h-20 rounded-2xl mr-2"
               />
 
-              <div
-                style={{
-                  marginRight: "50px",
-                }}
-              >
+              <div className="mx-6">
                 <h3 className="text-2xl font-serif mb-2">
                   {item.name} x{item.quantity}
                 </h3>
@@ -138,7 +110,7 @@ function Basket() {
                 </button>
               </div>
             ) : (
-              <div className="flex gap-2 self-start">
+              <div className="flex gap-2 self-center">
                 <button
                   className="bg-white rounded-2xl px-2 py-1 cursor-pointer hover:bg-gray-300 border border-gray-500"
                   onClick={() => openQuantityBar(item)}
@@ -156,7 +128,7 @@ function Basket() {
             )}
           </div>
         ))}
-        <p className="text-2xl font-semibold">
+        <p className="text-2xl font-semibold text-right pr-1">
           Cart Total: ${cartTotal.toFixed(2)}
         </p>
       </div>
