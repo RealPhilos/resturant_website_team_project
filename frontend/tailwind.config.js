@@ -73,11 +73,6 @@ module.exports = {
       },
     },
   },
-<<<<<<< HEAD
   plugins: [require("tailwindcss-animate")],
-}
-=======
   variants: {},
-  plugins: [],
-};
->>>>>>> feature-Table
+}

@@ -79,7 +79,7 @@ function Basket() {
                   {item.name} x{item.quantity}
                 </h3>
                 <p>
-                  Total: $
+                  Total: £
                   {(
                     Number(item.price.toString().replace("$", "")) *
                     item.quantity
@@ -129,7 +129,7 @@ function Basket() {
           </div>
         ))}
         <p className="text-2xl font-semibold text-right pr-1">
-          Cart Total: ${cartTotal.toFixed(2)}
+          Cart Total: £{cartTotal.toFixed(2)}
         </p>
         <button className="float-right mr-1 text-lg font-semibold text-white bg-green-800 rounded-2xl px-3 py-2 mt-2">
           Go to checkout
