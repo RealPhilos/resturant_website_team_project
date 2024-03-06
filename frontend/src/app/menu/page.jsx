@@ -151,39 +151,14 @@ function MenuPage() {
               </p>
             </div>
 
-            <button
+            <div
               style={{
-                backgroundColor: "#FFFFFF",
-                border: "1px solid #E5E7EB",
-                borderRadius: "1.5rem",
-                padding: "0.5em 1em",
-                margin: "1em 0",
-                cursor: "pointer",
+                display: "flex",
+                justifyContent: "center", // This will spread your buttons evenly
+                marginTop: "20px", // Add some space above the buttons
+                width: "100%",
               }}
-              onMouseEnter={(e) => (e.target.style.backgroundColor = "#90EE90")}
-              onMouseLeave={(e) => (e.target.style.backgroundColor = "#FAFAF5")}
-              onClick={addToCart}
             >
-              Add to Cart
-            </button>
-
-            <button
-              style={{
-                backgroundColor: "#FFFFFF",
-                border: "1px solid #E5E7EB",
-                borderRadius: "1.5rem",
-                padding: "0.5em 1em",
-                margin: "1em 0",
-                cursor: "pointer",
-              }}
-              onMouseEnter={(e) => (e.target.style.backgroundColor = "#90EE90")}
-              onMouseLeave={(e) => (e.target.style.backgroundColor = "#FAFAF5")}
-              onClick={closeModal}
-            >
-              Close
-            </button>
-
-            <Link href="/basket">
               <button
                 style={{
                   backgroundColor: "#FFFFFF",
@@ -194,15 +169,57 @@ function MenuPage() {
                   cursor: "pointer",
                 }}
                 onMouseEnter={(e) =>
-                  (e.target.style.backgroundColor = "#FAFAF5")
+                  (e.target.style.backgroundColor = "#90EE90")
                 }
                 onMouseLeave={(e) =>
-                  (e.target.style.backgroundColor = "#FFFFFF")
+                  (e.target.style.backgroundColor = "#FAFAF5")
                 }
+                onClick={addToCart}
               >
-                <img src="/cart-icon.png" width={40} height={40} alt="Cart" />
+                Add to Cart
               </button>
-            </Link>
+
+              <button
+                style={{
+                  backgroundColor: "#FFFFFF",
+                  border: "1px solid #E5E7EB",
+                  borderRadius: "1.5rem",
+                  padding: "0.5em 1em",
+                  margin: "1em 0",
+                  cursor: "pointer",
+                }}
+                onMouseEnter={(e) =>
+                  (e.target.style.backgroundColor = "#90EE90")
+                }
+                onMouseLeave={(e) =>
+                  (e.target.style.backgroundColor = "#FAFAF5")
+                }
+                onClick={closeModal}
+              >
+                Close
+              </button>
+
+              <Link href="/basket">
+                <button
+                  style={{
+                    backgroundColor: "#FFFFFF",
+                    border: "1px solid #E5E7EB",
+                    borderRadius: "1.5rem",
+                    padding: "0.5em 1em",
+                    margin: "1em 0",
+                    cursor: "pointer",
+                  }}
+                  onMouseEnter={(e) =>
+                    (e.target.style.backgroundColor = "#FAFAF5")
+                  }
+                  onMouseLeave={(e) =>
+                    (e.target.style.backgroundColor = "#FFFFFF")
+                  }
+                >
+                  <img src="/cart-icon.png" width={40} height={40} alt="Cart" />
+                </button>
+              </Link>
+            </div>
           </div>
         </>
       )}
