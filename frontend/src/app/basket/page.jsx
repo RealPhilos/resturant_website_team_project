@@ -1,5 +1,5 @@
 "use client";
-
+import api from "../services/api";
 import { useState, useEffect } from "react";
 
 function Basket() {
@@ -47,6 +47,32 @@ function Basket() {
       total + Number(item.price.toString().replace("$", "")) * item.quantity
     );
   }, 0);
+
+  const sendOrdersToServer = async () => {
+    for (const item of cart) {
+      const orderData = {
+        name: item.name,
+        quantity: item.quantity,
+        tableNumber: "table 1",
+        status: "",
+        user: {
+          username: "Malcolm",
+        },
+      };
+
+      try {
+        await api.post("/order/add", orderData);
+        console.log(`Order for ${item.name} sent successfully.`);
+        //alert(`Order for ${item.name} sent successfully.`);
+      } catch (error) {
+        console.error(`Error sending order for ${item.name}:`, error);
+        alert(`Error sending order for ${item.name}.`);
+      }
+    }
+
+    setCart([]);
+    alert("Orders sent successfully!");
+  };
 
   return (
     <div>
@@ -131,6 +157,12 @@ function Basket() {
         <p className="text-2xl font-semibold text-right pr-1">
           Cart Total: £{cartTotal.toFixed(2)}
         </p>
+        <button
+          onClick={sendOrdersToServer}
+          className="float-right mr-1 text-lg font-semibold text-white bg-green-800 rounded-2xl px-3 py-2 mt-2"
+        >
+          Send Orders
+        </button>
         <button className="float-right mr-1 text-lg font-semibold text-white bg-green-800 rounded-2xl px-3 py-2 mt-2">
           Go to checkout
         </button>
