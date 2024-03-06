@@ -1,6 +1,7 @@
 "use client";
 import TableColour from "../components/table-colour";
 import { useState } from 'react';
+import Footer from '../components/footer';
 
 const TablePage = () => {
 
@@ -50,18 +51,18 @@ const TablePage = () => {
       <hr />
       
       <div className="grid grid-cols-3 gap-4">
-      {/* Left Column - 4 tables */}
-      <div className="flex flex-col gap-4">
-        {tableStates.slice(0, 4).map((table, index) => (
-          <TableColour
-            key={table.id}
-            index={index} // Pass index as a prop
-            status={table.status}
-            size = "small"
-            onClick={() => updateTableStatus(table.id, 'free')}
-          />
-        ))}
-      </div>
+        {/* Left Column - 4 tables */}
+        <div className="flex flex-col gap-4">
+          {tableStates.slice(0, 4).map((table, index) => (
+            <TableColour
+              key={table.id}
+              index={index} // Pass index as a prop
+              status={table.status}
+              size = "small"
+              onClick={() => updateTableStatus(table.id, 'free')}
+            />
+          ))}
+        </div>
 
         {/* Middle Column - 4 */}
         <div className="flex flex-col gap-4">
@@ -88,6 +89,21 @@ const TablePage = () => {
             />
           ))}
         </div>
+
+        <button className="flex flex-col bottom-8 gap-4 bg-green-800 text-white px-3 py-2 rounded-md w-25 h-25">Reserve</button>
+        
+        </div>
+
+        <div className="min-h-screen">
+        {/* Your application content */}
+        {/* For example: */}
+        <header>
+          {/* Header content */}
+        </header>
+        <main>
+          {/* Main content */}
+        </main>
+        <Footer />
       </div>
     </div>
   );  
