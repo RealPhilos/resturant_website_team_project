@@ -5,6 +5,12 @@ import MenuHeader from "./components/menuHeader";
 import Image from "next/image";
 import Link from "next/link";
 
+/**
+ * MenuPage component is use for rendering the menu items and handling modal actions.
+ *
+ * @author Zlac456 - Krish Macwan
+ * @author WLIS205 - Parvesh Kumar
+ */
 function MenuPage() {
   const [showModal, setShowModal] = useState(false);
   const [currentItem, setCurrentItem] = useState(null);
@@ -154,8 +160,8 @@ function MenuPage() {
             <div
               style={{
                 display: "flex",
-                justifyContent: "center", // This will spread your buttons evenly
-                marginTop: "20px", // Add some space above the buttons
+                justifyContent: "center", // Spread buttons evenly
+                marginTop: "20px", // Space above the buttons
                 width: "100%",
               }}
             >
