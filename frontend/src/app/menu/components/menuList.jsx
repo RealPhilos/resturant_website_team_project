@@ -13,7 +13,7 @@ import api from "../../services/api";
  * @author WLIS205 - Parvesh Kumar
  */
 
-function MenuList() {
+function MenuList({ openModal }) {
   const [menus, setMenus] = useState([]);
   const [sortOrder, setSortOrder] = useState("A-Z");
 
@@ -47,7 +47,7 @@ function MenuList() {
       <hr />
       <div className="grid grid-cols-3 gap-4 gap-x-12 mt-8">
         {menus.map((menu) => (
-          <MenuCard key={menu.foodId} menu={menu} />
+          <MenuCard key={menu.foodId} menu={menu} openModal={openModal} />
         ))}
       </div>
     </div>

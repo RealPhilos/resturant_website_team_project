@@ -6,11 +6,11 @@ import React, { useContext } from "react";
  * @author Zlac157 - Malcolm Berset
  * @author WLIS205 - Parvesh Kumar
  */
-function MenuCard({ menu }) {
+function MenuCard({ menu, openModal }) {
   const { addItem } = useContext(CartContext);
   // This function will be called when the MenuCard is clicked
   const handleClick = () => {
-    addItem(menu);
+    openModal(menu);
   };
 
   console.log(menu);
@@ -22,7 +22,7 @@ function MenuCard({ menu }) {
       style={{ cursor: "pointer", transition: "transform .2s" }}
     >
       <img
-        src="/pizza.jpeg" //{menu.imgPath}// Make sure this points to the correct image path
+        src={menu.imgPath}
         alt={menu.name}
         className="w-full rounded-t-3xl h-56 object-cover"
       />

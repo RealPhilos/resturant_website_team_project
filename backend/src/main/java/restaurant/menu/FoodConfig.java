@@ -14,12 +14,22 @@ public class FoodConfig {
   @Bean
   CommandLineRunner orderCommandLineRunner(FoodRepository repo) {
     return args -> {
-      Food o1 = new Food("Burger", "", "", "Main", 3.49);
-      Food o2 = new Food("Pizza", "", "", "Main", 5.29);
-      Food o3 = new Food("Chicken Wings", "src/resources/SOMEIMAGE.jpg", " ", "Sides", 9.99);
-      Food o4 = new Food("Tacos", "src/resources/SOMEIMAGE.jpg", " ", "Main", 6.99);
-      Food o5 = new Food("Steak", "src/resources/SOMEIMAGE.jpg", " ", "Main", 12.99);
-      Food o6 = new Food("Salad", "src/resources/SOMEIMAGE.jpg", " ", "Sides", 5.99);
+
+      Food o1 = new Food("Burger", "/burger.jpeg",
+          "Ingredients - Beef patty, Cheddar cheese, Lettuce, Tomato, Onion", "Main", 3.49);
+      Food o2 = new Food("Pizza", "/pizza.jpeg",
+          "Ingredients - Pizza dough, Mozzarella cheese, Tomato sauce, Pepperoni, Basil", "Main",
+          5.29);
+      Food o3 = new Food("Chicken Wings", "/chicken.jpeg",
+          "Ingredients - Chicken wings, Hot sauce, Butter, Garlic powder, Salt", "Sides", 9.99);
+      Food o4 = new Food("Tacos", "/tacos.jpeg",
+          "Ingredients - Corn tortillas, Shredded chicken, Cheddar cheese, Salsa, Lettuce", "Main",
+          6.99);
+      Food o5 = new Food("Steak", "/steak.jpeg",
+          "Ingredients - Ribeye steak, Salt, Black pepper, Garlic, Butter", "Main", 12.99);
+      Food o6 = new Food("Salad", "/salad.jpeg",
+          "Ingredients - Mixed greens, Cherry tomatoes, Cucumber, Red onion, Feta cheese", "Sides",
+          5.99);
       repo.saveAll(List.of(o1, o2, o3, o4, o5, o6));
       System.out.println(o1.getFoodId());
       System.out.println(o1.getPrice());

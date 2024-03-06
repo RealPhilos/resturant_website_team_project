@@ -16,7 +16,7 @@ import jakarta.persistence.Table;
  */
 
 @Entity
-@Table
+@Table(name = "Menu")
 public class Food {
   @Id
   @SequenceGenerator(name = "food_sequence", sequenceName = "food_sequence", allocationSize = 1)
