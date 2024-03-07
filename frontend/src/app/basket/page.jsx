@@ -166,6 +166,9 @@ function Basket() {
         <button className="float-right mr-1 text-lg font-semibold text-white bg-green-800 rounded-2xl px-3 py-2 mt-2">
           Go to checkout
         </button>
+        <button className="float-right mr-1 text-lg font-semibold text-white bg-green-800 rounded-2xl px-3 py-2 mt-2">
+          Call waiter
+        </button>
       </div>
     </div>
   );
