@@ -46,7 +46,7 @@ const TablePage = () => {
   <div className="flex items-end gap-10">
     <p className="text-sm text-gray-500">
       <span className="text-green-500">Green</span> indicates a ready table,{' '}
-      <span className="text-red-500">Red</span> means the table is unavailable, and{' '}
+      <span className="text-red-500">Red</span> means the table is unavailable and{' '}
       <span className="text-yellow-500">Yellow</span> signifies the table is almost ready.
     </p>
     <p className="text-sm text-gray-500">
@@ -59,7 +59,7 @@ const TablePage = () => {
   
       <hr />
       
-      <div className="grid grid-cols-3 gap-4 mt-8">
+      <div className="grid grid-cols-3 gap-4 bg-gray-300 py-4 mt-8">
         {/* Left Column - 4 tables */}
         <div className="flex flex-col gap-4 items-center">
           {tableStates.slice(0, 4).map((table, index) => (
@@ -72,7 +72,7 @@ const TablePage = () => {
             />
           ))}
         </div>
-
+        
         {/* Middle Column - 4 */}
         <div className="flex flex-col gap-4 items-center">
           {tableStates.slice(4, 8).map((table, index) => (
@@ -84,6 +84,7 @@ const TablePage = () => {
               onClick={() => updateTableStatus(table.id, 'free')}
             />
           ))}
+          <span>Reserve a "Green" Table.</span>
         </div>
 
         {/* Right Column - 4 */}
@@ -98,10 +99,11 @@ const TablePage = () => {
             />
           ))}
         </div>
-
-        <button className="flex flex-col bottom-8 gap-4 bg-green-800 text-white px-3 py-2 rounded-md w-25 h-25 mt-8  items-center">Reserve</button>
         
         </div>
+        
+        <button className="flex flex-col bottom-8 gap-4 w-full bg-green-500 hover:bg-green-700 text-white px-3 py-2 rounded-md w-25 h-25 mt-8  items-center"
+        >Reserve</button>
 
         <div className="min-h-screen">
         {/* Your application content */}
