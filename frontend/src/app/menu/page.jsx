@@ -233,7 +233,7 @@ function MenuPage() {
           </div>
         </>
       )}
-      { role == "Chef"  || role == "Waiter" && 
+      { (role == "Chef"  || role == "Waiter") && 
       <>
         <button className = "py-1.5 bg-green-700 text-white mr-2 px-2.5 text-sm rounded-2xl">Change Menu</button>
         <br></br>
