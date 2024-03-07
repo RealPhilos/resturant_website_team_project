@@ -8,7 +8,7 @@ import { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 
 function CustomerLoginPage() {
-  const { isLoggedIn, setIsLoggedIn, setUsername } = useContext(AuthContext);
+  const { isLoggedIn, setIsLoggedIn, setUsername ,setRole } = useContext(AuthContext);
   const router = useRouter();
 
   const {
@@ -38,10 +38,15 @@ function CustomerLoginPage() {
         "Content-Type": "application/json",
       },
     });
+    const result = await res.json();
 
-    if (res.ok) {
+    console.log(result);
+
+    if (result.isPasswordCorrect) {
       setIsLoggedIn(true);
       setUsername(username);
+      setRole(result.role)
+      
       toast({
         title: "Login success",
         description: "Your account login is successful!",

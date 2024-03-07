@@ -1,4 +1,5 @@
 package restaurant.login;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.web.bind.annotation.GetMapping;
@@ -24,7 +25,7 @@ public class UserController {
   }
 
   @PostMapping("check")
-  public boolean checkUser(@RequestBody User user) {
+  public Map<String, Object> checkUser(@RequestBody User user) {
     return userservice.checkUser(user);
   }
 

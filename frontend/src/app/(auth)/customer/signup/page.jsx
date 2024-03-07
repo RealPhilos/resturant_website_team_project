@@ -29,7 +29,7 @@ function CustomerSignUpPage() {
         "Content-Type": "application/json",
       },
     });
-
+   
     if (res.ok) {
       toast({
         title: "Signup success",

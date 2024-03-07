@@ -1,5 +1,7 @@
 package restaurant.login;
 
+import java.util.HashMap;
+import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,13 +26,20 @@ public class UserService {
    * @param user is what we are checking for.
    * @return true if user is in the database.
    */
-  public boolean checkUser(User user) {
+  public Map<String, Object> checkUser(User user) {
+    Map<String, Object> result = new HashMap<>();
     if (userRepo.existsById(user.getUsername())) {
-      return user.getPassword().equals(userRepo.getUser(user.getUsername()).get().getPassword());
+        String password = user.getPassword();
+      boolean isPasswordCorrect = password != null && password.equals(userRepo.getUser(user.getUsername()).get().getPassword());
+        result.put("isPasswordCorrect", isPasswordCorrect);
+        if (isPasswordCorrect) {
+            result.put("role", userRepo.getUser(user.getUsername()).get().getRole());
+        }
     } else {
-      return false;
+        result.put("isPasswordCorrect", false);
     }
-  }
+    return result;
+}
 
   /**
    * This is to add a user to the database and it knows if it is a customer.
