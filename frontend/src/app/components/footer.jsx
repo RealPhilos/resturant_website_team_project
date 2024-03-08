@@ -8,7 +8,7 @@ const Footer = () => {
       <div className="container mx-auto px-4">
       <div className="flex justify-between items-center">
           {/* Content of the footer */}
-          <p className="text-gray-600">&copy; 2024 Your Company. All rights reserved.</p>
+          <p className="text-gray-600">&copy; 2023 – 2024 Oaxaca’s. All Rights Reserved</p>
         </div>
       </div>
     </footer>
