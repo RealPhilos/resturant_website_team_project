@@ -1,0 +1,39 @@
+import React from 'react';
+
+const ReservationButton = () => {
+  const handleReservation = async () => {
+    try {
+      const response = await fetch('http://localhost:8080/reservations', {
+        method: 'POST', // or 'PUT' depending on your API
+        headers: {
+          'Content-Type': 'application/json',
+          // You may need additional headers, such as authorization
+        },
+        // Replace this with the actual data you want to send
+        body: JSON.stringify({
+          // Your data here
+        }),
+      });
+
+      if (response.ok) {
+        console.log('Reservation successful!');
+        // You may want to perform additional actions upon successful reservation
+      } else {
+        console.error('Reservation failed.');
+      }
+    } catch (error) {
+      console.error('Error during reservation:', error);
+    }
+  };
+
+  return (
+    <button
+      className="flex flex-col bottom-8 gap-4 w-full bg-green-500 hover:bg-green-700 text-white px-3 py-2 rounded-md w-25 h-25 mt-8  items-center"
+      onClick={handleReservation}
+    >
+      Reserve
+    </button>
+  );
+};
+
+export default ReservationButton;
