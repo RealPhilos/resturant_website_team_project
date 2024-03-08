@@ -1,7 +1,6 @@
-package restaurant.login;
+package restaurant.customer;
 
 import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author Krish Macwan - Zlac463
  */
 @RestController
-@RequestMapping(path = "/login")
+@RequestMapping(path = "/customer")
 public class UserController {
 
   private UserService userservice;
@@ -23,8 +22,8 @@ public class UserController {
     this.userservice = userservice;
   }
 
-  @PostMapping("check")
-  public boolean checkUser(@RequestBody User user) {
+  @PostMapping("login")
+  public boolean loginUser(@RequestBody User user) {
     return userservice.checkUser(user);
   }
 
@@ -33,9 +32,9 @@ public class UserController {
    * 
    * @param user is the object that will be created when the user makes a account.
    */
-  @PostMapping("add")
+  @PostMapping("register")
   public String addUser(@RequestBody User user) {
-    if (!checkUser(user)) {
+    if (!loginUser(user)) {
       userservice.addUser(user);
       return "User added";
     } else {

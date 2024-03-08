@@ -1,4 +1,4 @@
-package restaurant.login;
+package restaurant.customer;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.Entity;

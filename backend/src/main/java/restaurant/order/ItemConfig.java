@@ -5,8 +5,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
-import restaurant.login.User;
-import restaurant.login.UserRepository;
+import restaurant.customer.User;
+import restaurant.customer.UserRepository;
 
 /**
  * Configuration class for initializing items and associating them with users.

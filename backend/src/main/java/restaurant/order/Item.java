@@ -12,9 +12,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.PostPersist;
 import jakarta.persistence.Table;
 import java.time.LocalDateTime;
-import restaurant.login.User;
-
-
+import restaurant.customer.User;
 
 /**
  * Represents an item ordered in a restaurant.
