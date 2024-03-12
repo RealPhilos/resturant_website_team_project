@@ -4,7 +4,7 @@ import { AuthContext } from "@/app/providers/auth";
 import { useToast } from "@/components/ui/use-toast";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import { useForm } from "react-hook-form";
 
 function CustomerLoginPage() {
@@ -28,7 +28,7 @@ function CustomerLoginPage() {
   const handleLoginSubmit = async (data) => {
     const { username, password } = data;
 
-    const res = await fetch("http://localhost:8080/login/check", {
+    const res = await fetch("http://localhost:8080/customer/login", {
       method: "POST",
       body: JSON.stringify({
         username,
@@ -40,13 +40,27 @@ function CustomerLoginPage() {
     });
 
     if (res.ok) {
-      setIsLoggedIn(true);
-      setUsername(username);
+      const isAuthenticated = await res.json();
+
+      if (isAuthenticated) {
+        setIsLoggedIn(true);
+        setUsername(username);
+        toast({
+          title: "Login success",
+          description: "Your account login is successful!",
+        });
+        router.push("/");
+      } else {
+        toast({
+          title: "Login falied",
+          description: "Invalid credentials!",
+        });
+      }
+    } else {
       toast({
-        title: "Login success",
-        description: "Your account login is successful!",
+        title: "Login falied",
+        description: "Invalid credentials!",
       });
-      router.push("/");
     }
   };
 
