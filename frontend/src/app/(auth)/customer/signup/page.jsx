@@ -17,8 +17,8 @@ function CustomerSignUpPage() {
   const { toast } = useToast();
 
   const handleSignUpSubmit = async (data) => {
-    const { username, password, confirmPassword } = data;
-    const res = await fetch("http://localhost:8080/customer/register", {
+    const { username, password } = data;
+    const res = await fetch("http://localhost:8080/user/register", {
       method: "POST",
       body: JSON.stringify({
         username,

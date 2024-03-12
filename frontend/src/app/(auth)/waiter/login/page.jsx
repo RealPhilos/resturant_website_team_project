@@ -1,6 +1,59 @@
-import React from "react";
+"use client";
+
+import { AuthContext } from "@/app/providers/auth";
+import { useToast } from "@/components/ui/use-toast";
+import { useRouter } from "next/navigation";
+import { useContext, useEffect } from "react";
+import { useForm } from "react-hook-form";
 
 function LoginPage() {
+  const { isLoggedIn, setIsLoggedIn, setUsername } = useContext(AuthContext);
+  const router = useRouter();
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const { toast } = useToast();
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      return router.replace("/");
+    }
+  }, [isLoggedIn]);
+
+  const handleLoginSubmit = async (data) => {
+    const { username, password } = data;
+
+    const res = await fetch("http://localhost:8080/user/waiter/login", {
+      method: "POST",
+      body: JSON.stringify({
+        username,
+        password,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    if (res.ok) {
+      setIsLoggedIn(true);
+      setUsername(username);
+      toast({
+        title: "Login success",
+        description: "Your account login is successful!",
+      });
+      router.push("/");
+    } else {
+      toast({
+        title: "Login falied",
+        description: "Invalid credentials!",
+      });
+    }
+  };
+
   return (
     <div>
       <form className="mx-auto w-2/5 border border-green-800 rounded p-8 mt-12 flex flex-col gap-7 items-center">

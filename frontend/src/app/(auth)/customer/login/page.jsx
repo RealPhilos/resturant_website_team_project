@@ -28,7 +28,7 @@ function CustomerLoginPage() {
   const handleLoginSubmit = async (data) => {
     const { username, password } = data;
 
-    const res = await fetch("http://localhost:8080/customer/login", {
+    const res = await fetch("http://localhost:8080/user/login", {
       method: "POST",
       body: JSON.stringify({
         username,
