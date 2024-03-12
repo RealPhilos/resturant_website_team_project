@@ -1,13 +1,12 @@
 package restaurant.waiter;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import java.util.List;
-import restaurant.order.Item;
 
+/**
+ * Waiter model.
+ */
 @Entity
 @Table(name = "Waiter")
 public class Waiter {
@@ -16,9 +15,6 @@ public class Waiter {
   private String password;
   private String role;
   //marks the items field as the managed side of the relationship with Item entities for JSON format
-  @JsonManagedReference
-  @OneToMany(mappedBy = "Waiter")//one-to-many relationship between Waiter and Item entities.
-  private List<Item> items;
 
   /**
    * Constructor for the Waiter object.
@@ -39,14 +35,6 @@ public class Waiter {
   }
 
   public Waiter() {}
-
-  public List<Item> getItems() {
-    return items;
-  }
-
-  public void setItems(List<Item> items) {
-    this.items = items;
-  }
 
   public String getUsername() {
     return username;
