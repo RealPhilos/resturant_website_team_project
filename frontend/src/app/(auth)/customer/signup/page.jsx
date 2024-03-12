@@ -18,7 +18,7 @@ function CustomerSignUpPage() {
 
   const handleSignUpSubmit = async (data) => {
     const { username, password, confirmPassword } = data;
-    const res = await fetch("http://localhost:8080/login/add", {
+    const res = await fetch("http://localhost:8080/customer/register", {
       method: "POST",
       body: JSON.stringify({
         username,

@@ -1,6 +1,8 @@
 package restaurant.customer;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -24,9 +26,17 @@ public class UserController {
     this.userservice = userservice;
   }
 
+  /**
+   * handler method for user login.
+   * 
+   * @param user is the object that will be checked.
+   */
   @PostMapping("login")
-  public boolean loginUser(@RequestBody User user) {
-    return userservice.checkUser(user);
+  public ResponseEntity<String> loginUser(@RequestBody User user) {
+    if (userservice.checkUser(user)) {
+      return new ResponseEntity<>("Login successful", HttpStatus.OK);
+    }
+    return new ResponseEntity<>("Login failed", HttpStatus.BAD_REQUEST);
   }
 
   /**
@@ -35,12 +45,13 @@ public class UserController {
    * @param user is the object that will be created when the user makes a account.
    */
   @PostMapping("register")
-  public String addUser(@RequestBody User user) {
-    if (!loginUser(user)) {
+  public ResponseEntity<String> registerUser(@RequestBody User user) {
+    try {
       userservice.addUser(user);
-      return "User added";
-    } else {
-      return "Username already in use";
+      return new ResponseEntity<>("Register successful", HttpStatus.OK);
+    } catch(Exception e) {
+      System.out.println(e);
+      return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
     }
   }
 }

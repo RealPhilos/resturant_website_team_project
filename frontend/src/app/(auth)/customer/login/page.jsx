@@ -40,22 +40,13 @@ function CustomerLoginPage() {
     });
 
     if (res.ok) {
-      const isAuthenticated = await res.json();
-
-      if (isAuthenticated) {
-        setIsLoggedIn(true);
-        setUsername(username);
-        toast({
-          title: "Login success",
-          description: "Your account login is successful!",
-        });
-        router.push("/");
-      } else {
-        toast({
-          title: "Login falied",
-          description: "Invalid credentials!",
-        });
-      }
+      setIsLoggedIn(true);
+      setUsername(username);
+      toast({
+        title: "Login success",
+        description: "Your account login is successful!",
+      });
+      router.push("/");
     } else {
       toast({
         title: "Login falied",

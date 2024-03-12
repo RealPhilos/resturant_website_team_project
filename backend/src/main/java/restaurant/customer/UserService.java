@@ -39,6 +39,9 @@ public class UserService {
    */
   public void addUser(User user) {
     User temp;
+    if (userRepo.existsById(user.getUsername())) {
+      throw new Error("User already existed");
+    }
     if (user.getRole() == null) {
       temp = new User(user.getUsername(), user.getPassword(), "Customer");
     } else {
