@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import React from "react";
-import api from "../services/axiosConfig";
+import api from "../../services/axiosConfig";
 
 const handleClick = () => {
   const data = {

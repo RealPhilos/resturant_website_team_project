@@ -1,6 +1,5 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
-import NavBar from "./components/nav-bar";
 import AuthProvider from "./providers/auth";
 import { Toaster } from "@/components/ui/toaster";
 
@@ -16,8 +15,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={inter.className}>
         <AuthProvider>
-          <NavBar />
-          <div className="px-[13vw]">{children}</div>
+          <div>{children}</div>
         </AuthProvider>
         <Toaster />
       </body>

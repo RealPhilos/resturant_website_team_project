@@ -1,5 +1,5 @@
 "use client";
-import api from "../services/api";
+import api from "../../services/api";
 import { useState, useEffect } from "react";
 
 function Basket() {
