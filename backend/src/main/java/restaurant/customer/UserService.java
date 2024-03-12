@@ -33,6 +33,20 @@ public class UserService {
   }
 
   /**
+   * Checks if the provided user has waiter access.
+   * 
+   * @param user is what we are checking for.
+   * @return true if user is in the database and has waiter role.
+   */
+  public boolean checkWaiter(User user) {
+    if (checkUser(user)) {
+      return userRepo.getUser(user.getUsername()).get().getRole().equals("waiter");
+    } else {
+      return false;
+    }
+  }
+
+  /**
    * This is to add a user to the database and it knows if it is a customer.
    * 
    * @param user the user to be added.
@@ -47,6 +61,8 @@ public class UserService {
     } else {
       temp = new User(user.getUsername(), user.getPassword(), user.getRole());
     }
+
+    System.out.println(temp);
     userRepo.save(temp);
   }
 }

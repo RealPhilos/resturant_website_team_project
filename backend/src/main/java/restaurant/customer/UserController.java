@@ -13,10 +13,11 @@ import org.springframework.web.bind.annotation.RestController;
  * A controller connecting the logic with the api.
  * 
  * @author Krish Macwan - Zlac463
+ * @author Ahmed Alyami - Wlis021
  */
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
-@RequestMapping(path = "/customer")
+@RequestMapping(path = "/user")
 public class UserController {
 
   private UserService userservice;
@@ -34,6 +35,19 @@ public class UserController {
   @PostMapping("login")
   public ResponseEntity<String> loginUser(@RequestBody User user) {
     if (userservice.checkUser(user)) {
+      return new ResponseEntity<>("Login successful", HttpStatus.OK);
+    }
+    return new ResponseEntity<>("Login failed", HttpStatus.BAD_REQUEST);
+  }
+
+  /**
+   * handler method for waiter login.
+   * 
+   * @param user is the object that will be checked.
+   */
+  @PostMapping("waiter/login")
+  public ResponseEntity<String> loginWaiter(@RequestBody User user) {
+    if (userservice.checkWaiter(user)) {
       return new ResponseEntity<>("Login successful", HttpStatus.OK);
     }
     return new ResponseEntity<>("Login failed", HttpStatus.BAD_REQUEST);

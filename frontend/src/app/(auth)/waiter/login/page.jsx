@@ -1,4 +1,3 @@
-import Link from "next/link";
 import React from "react";
 
 function LoginPage() {
@@ -19,12 +18,6 @@ function LoginPage() {
             className="p-2 bg-gray-200 rounded-md"
             placeholder="Enter your password"
           />
-          <span className="text-sm text-gray-600">
-            Already a member? Sign Up{" "}
-            <Link className="text-green-900 font-semibold" href="/auth/signup">
-              here!
-            </Link>
-          </span>
         </div>
         <input
           className="bg-green-800 p-3 w-40 rounded-lg text-white cursor-pointer"
