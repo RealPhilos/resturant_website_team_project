@@ -5,7 +5,7 @@ import { AuthContext } from "../providers/auth";
 import Link from "next/link";
 
 export default function AuthButton() {
-  const { isLoggedIn, user } = useContext(AuthContext);
+  const { isLoggedIn, user, setUser } = useContext(AuthContext);
   if (isLoggedIn) {
     return (
       <div>
@@ -19,11 +19,9 @@ export default function AuthButton() {
             </button>
           </Link>
         )}
-        <Link href="/customer/logout">
-          <button className="bg-green-800 text-white px-3 py-2 rounded-md">
-            Logout
-          </button>
-        </Link>
+        <button className="bg-green-800 text-white px-3 py-2 rounded-md ml-3">
+          Logout
+        </button>
       </div>
     );
   }
