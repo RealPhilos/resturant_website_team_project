@@ -1,4 +1,4 @@
-import NavBar from "./dashboard/navbar";
+import NavBar from "./navbar";
 
 export default async function DashboardLayout({ children }) {
   return (
