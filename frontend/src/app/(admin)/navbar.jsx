@@ -23,13 +23,6 @@ const navigationLinks = [
 ];
 
 export default function NavBar() {
-  //   const user = useSession().data?.user;
-  //   const role = user?.role;
-
-  //   const filteredNavlinks = navlinks.filter((navlink) =>
-  //     navlink.access.includes(role!),
-  //   );
-
   const pathname = `/${usePathname().split("/")[1] || ""}`;
 
   return (
