@@ -23,7 +23,8 @@ public class UserConfig {
       User malcolm = new User("Malcolm", "123", "Customer");
       User philip = new User("Philip", "123", "Chef");
       User parvesh = new User("Parvesh", "123", "waiter");
-      repository.saveAll(List.of(krish, luque, malcolm, philip, parvesh));
+      User ahmed = new User("Ahmed", "123", "waiter");
+      repository.saveAll(List.of(krish, luque, malcolm, philip, parvesh, ahmed));
     };
   }
 }
