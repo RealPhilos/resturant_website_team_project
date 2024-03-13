@@ -12,7 +12,7 @@ const navigationLinks = [
   },
   {
     name: "Menus",
-    href: "menus",
+    href: "admin-menu",
     access: [],
   },
   {
@@ -45,7 +45,7 @@ export default function NavBar() {
               )}
             >
               <Link
-                href={`/admin/${navlink.href}`}
+                href={`/${navlink.href}`}
                 className={`pl-6 font-semibold ${
                   pathname == navlink.href
                     ? "text-green-600"
