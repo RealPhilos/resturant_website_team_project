@@ -1,6 +1,16 @@
-import NavBar from "./navbar";
+"use client";
 
-export default async function DashboardLayout({ children }) {
+import { useContext } from "react";
+import NavBar from "./navbar";
+import { AuthContext } from "../providers/auth";
+import { redirect } from "next/navigation";
+
+export default function DashboardLayout({ children }) {
+  const { user } = useContext(AuthContext);
+
+  if (!user || user.role !== "waiter") {
+    redirect("/");
+  }
   return (
     <>
       <section className="h-full">
