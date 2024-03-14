@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import MenuList from "./components/menuList";
 import MenuHeader from "./components/menuHeader";
-import { AuthContext } from "../providers/auth";
+import { AuthContext } from "@/app/providers/auth";
 import { useContext } from "react";
 
 import Image from "next/image";
@@ -15,7 +15,7 @@ import Link from "next/link";
  * @author WLIS205 - Parvesh Kumar
  */
 function MenuPage() {
-  const { role } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
   const [showModal, setShowModal] = useState(false);
   const [currentItem, setCurrentItem] = useState(null);
   const [quantity, setQuantity] = useState(1);
@@ -233,9 +233,14 @@ function MenuPage() {
           </div>
         </>
       )}
-      { (role == "Chef"  || role == "Waiter") && 
+      { (user.role == "Chef"  || user.role == "Waiter") && 
       <>
-        <button className = "py-1.5 bg-green-700 text-white mr-2 px-2.5 text-sm rounded-2xl">Change Menu</button>
+        
+        <Link href="/admin-menu">
+          <button className="py-1.5 bg-green-700 text-white mr-2 px-2.5 text-sm rounded-2xl">
+            Change Menu
+          </button>
+        </Link>
         <br></br>
         <hr />
         <br></br>

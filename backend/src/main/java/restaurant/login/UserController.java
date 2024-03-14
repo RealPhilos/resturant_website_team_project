@@ -1,8 +1,11 @@
 package restaurant.login;
-import java.util.Map;
+
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,21 +15,49 @@ import org.springframework.web.bind.annotation.RestController;
  * A controller connecting the logic with the api.
  * 
  * @author Krish Macwan - Zlac463
+ * @author Ahmed Alyami - Wlis021
  */
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
-@RequestMapping(path = "/login")
+@RequestMapping(path = "/user")
 public class UserController {
 
   private UserService userservice;
+  private final UserRepository userRepo;
 
   @Autowired
-  public UserController(UserService userservice) {
+  public UserController(UserService userservice, UserRepository userRepo) {
     this.userservice = userservice;
+    this.userRepo = userRepo;
   }
 
-  @PostMapping("check")
-  public Map<String, Object> checkUser(@RequestBody User user) {
-    return userservice.checkUser(user);
+ 
+
+
+  /**
+   * handler method for user login.
+   * 
+   * @param user is the object that will be checked.
+   */
+  @PostMapping("login")
+  public User loginUser(@RequestBody User user) {
+    if (userservice.checkUser(user)) {
+      return (userRepo.getUser(user.getUsername()).get());
+    }
+    return null;
+  }
+
+  /**
+   * handler method for waiter login.
+   * 
+   * @param user is the object that will be checked.
+   */
+  @PostMapping("waiter/login")
+  public ResponseEntity<String> loginWaiter(@RequestBody User user) {
+    if (userservice.checkWaiter(user)) {
+      return new ResponseEntity<>("Login successful", HttpStatus.OK);
+    }
+    return new ResponseEntity<>("Login failed", HttpStatus.BAD_REQUEST);
   }
 
   /**
@@ -34,13 +65,14 @@ public class UserController {
    * 
    * @param user is the object that will be created when the user makes a account.
    */
-  @PostMapping("add")
-  public String addUser(@RequestBody User user) {
-    if (!checkUser(user)) {
+  @PostMapping("register")
+  public ResponseEntity<String> registerUser(@RequestBody User user) {
+    try {
       userservice.addUser(user);
-      return "User added";
-    } else {
-      return "Username already in use";
+      return new ResponseEntity<>("Register successful", HttpStatus.OK);
+    } catch(Exception e) {
+      System.out.println(e);
+      return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
     }
   }
 }

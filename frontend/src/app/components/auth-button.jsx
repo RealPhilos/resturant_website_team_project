@@ -32,7 +32,7 @@ export default function AuthButton() {
     );
   }
   return (
-    <Link href="/customer/login">
+    <Link href="/login">
       <button className="bg-green-800 text-white px-3 py-2 rounded-md">
         Login
       </button>

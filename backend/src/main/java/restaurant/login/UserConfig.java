@@ -1,4 +1,4 @@
-package restaurant.customer;
+package restaurant.login;
 
 import java.util.List;
 import org.springframework.boot.CommandLineRunner;

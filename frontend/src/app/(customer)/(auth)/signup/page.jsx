@@ -4,7 +4,7 @@ import { useToast } from "@/components/ui/use-toast";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 
-function CustomerSignUpPage() {
+function SignUpPage() {
   const {
     register,
     handleSubmit,
@@ -36,7 +36,7 @@ function CustomerSignUpPage() {
         description:
           "Account signup is successful! You can login using this credentials now.",
       });
-      router.push("/customer/login");
+      router.push("/login");
     }
   };
 
@@ -102,4 +102,4 @@ function CustomerSignUpPage() {
   );
 }
 
-export default CustomerSignUpPage;
+export default SignUpPage;

@@ -1,4 +1,4 @@
-package restaurant.customer;
+package restaurant.login;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -26,26 +26,16 @@ public class UserService {
    * @param user is what we are checking for.
    * @return true if user is in the database.
    */
-  public Map<String, Object> checkUser(User user) {
-    Map<String, Object> result = new HashMap<>();
+  public boolean checkUser(User user) {
+    boolean isPasswordCorrect = false;
     if (userRepo.existsById(user.getUsername())) {
         String password = user.getPassword();
-      boolean isPasswordCorrect = password != null && password.equals(userRepo.getUser(user.getUsername()).get().getPassword());
-        result.put("isPasswordCorrect", isPasswordCorrect);
-        if (isPasswordCorrect) {
-            result.put("role", userRepo.getUser(user.getUsername()).get().getRole());
-        }
-    } else {
-        result.put("isPasswordCorrect", false);
+       isPasswordCorrect = password != null && password.equals(userRepo.getUser(user.getUsername()).get().getPassword());   
     }
-    return result;
+    return isPasswordCorrect;
 }
 
   /**
-   * Checks if the provided user has waiter access.
-   * 
-   * @param user is what we are checking for.
-   * @return true if user is in the database and has waiter role.
    */
   public boolean checkWaiter(User user) {
     if (checkUser(user)) {

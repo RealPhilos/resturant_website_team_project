@@ -2,11 +2,12 @@
 
 import { AuthContext } from "@/app/providers/auth";
 import { useToast } from "@/components/ui/use-toast";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useContext, useEffect } from "react";
 import { useForm } from "react-hook-form";
 
-function WaiterLoginPage() {
+function LoginPage() {
   const { isLoggedIn, setIsLoggedIn, setUser } = useContext(AuthContext);
   const router = useRouter();
 
@@ -27,7 +28,7 @@ function WaiterLoginPage() {
   const handleLoginSubmit = async (data) => {
     const { username, password } = data;
 
-    const res = await fetch("http://localhost:8080/user/waiter/login", {
+    const res = await fetch("http://localhost:8080/user/login", {
       method: "POST",
       body: JSON.stringify({
         username,
@@ -38,11 +39,15 @@ function WaiterLoginPage() {
       },
     });
 
+ 
+  
     if (res.ok) {
+      const user = await res.json();
+      console.log(user.role);
       setIsLoggedIn(true);
       setUser({
         username,
-        role: "waiter",
+        role: user.role,
       });
       toast({
         title: "Login success",
@@ -63,7 +68,7 @@ function WaiterLoginPage() {
         onSubmit={handleSubmit(handleLoginSubmit)}
         className="mx-auto w-2/5 border border-green-800 rounded p-8 mt-12 flex flex-col gap-7 items-center"
       >
-        <span className="text-xl font-bold">Waiter Login</span>
+        <span className="text-xl font-bold">Login</span>
         <div className="flex flex-col w-3/4 gap-1">
           <label>Username</label>
           <input
@@ -86,6 +91,15 @@ function WaiterLoginPage() {
           {errors.password && (
             <span className="text-red-700">Password is required</span>
           )}
+          <span className="text-sm text-gray-600">
+            Not a member? Sign Up{" "}
+            <Link
+              className="text-green-900 font-semibold"
+              href="/signup"
+            >
+              here!
+            </Link>
+          </span>
         </div>
         <input
           className="bg-green-800 p-3 w-40 rounded-lg text-white cursor-pointer"
@@ -97,4 +111,4 @@ function WaiterLoginPage() {
   );
 }
 
-export default WaiterLoginPage;
+export default LoginPage;
