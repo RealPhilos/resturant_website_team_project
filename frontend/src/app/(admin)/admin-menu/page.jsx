@@ -9,56 +9,72 @@ export default function MenuPage() {
 
   const handleRemove = async (id) => {
     try {
-      // Send a DELETE request to delete the food item with the specified id
       console.log(id);
       await api.delete(`/foods/${id}`);
-
-      // If the deletion is successful, update the menu list by filtering out the deleted item
-      setMenus(menus => menus.filter(menu => menu.id !== id));
+      
+      setMenus(menus => menus.filter(menu => menu.foodId !== id));
     } catch (error) {
       console.error("Error removing menu item:", error);
     }
   };
 
+
+
   const handleAddToMenu = async () => {
-    try {
-      const response = await api.post("/foods", { name: "New Menu Item" });
-      setMenus([...menus, response.data]);
-    } catch (error) {
-      console.error("Error adding menu item:", error);
-    }
+    // Code to open the popup form
+    const formWindow = window.open("/form", "_blank", "width=400,height=400");
+    formWindow.document.write("<h1>Add to Menu</h1>");
+    formWindow.document.write("<form>");
+    formWindow.document.write("<div><label for='name'>Name:</label>");
+    formWindow.document.write("<input type='text' id='name' name='name'></div>");
+    formWindow.document.write("<div><label for='desc'>Description:</label>");
+    formWindow.document.write("<input type='text' id='desc' name='desc'></div>");
+    formWindow.document.write("<div><label for='category'>Category:</label>");
+    formWindow.document.write("<input type='text' id='category' name='category'></div>");
+    formWindow.document.write("<div><label for='price'>Price:</label>");
+    formWindow.document.write("<input type='text' id='price' name='price'></div>");
+    formWindow.document.write("<button type='submit'>Submit</button>");
+    formWindow.document.write("</form>");
+
+    formWindow.document.querySelector("form").addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const name = formWindow.document.querySelector("#name").value;
+      const description = formWindow.document.querySelector("#desc").value;
+      const category = formWindow.document.querySelector("#category").value;
+      const price = formWindow.document.querySelector("#price").value;
+      console.log(name, description, category, price);
+      try {
+        const response = await api.post(`/foods`, {
+            name: name,
+            description: description,
+            category: category,
+            price: price
+        });
+        const updatedMenuResponse = await api.get("/foods");
+        setMenus(updatedMenuResponse.data);
+        formWindow.close();
+      } catch (error) {
+        console.error("Error adding menu item:", error);
+      }
+    });
   };
 
+  
+
   useEffect(() => {
     const fetchMenu = async () => {
       try {
         const response = await api.get("/foods");
-        // Sort the menu items alphabetically by name by default
         console.log(response.data);
         setMenus(response.data);
       } catch (error) {
         console.error("Error fetching menu data:", error);
       }
     };
-
+  
     fetchMenu();
-  }, [menus]); // Add 'menus' as a dependency to the useEffect hook
-
-
-  useEffect(() => {
-    const fetchMenu = async () => {
-      try {
-        const response = await api.get("/foods");
-        // Sort the menu items alphabetically by name by default
-        console.log(response.data);
-        setMenus(response.data);
-      } catch (error) {
-        console.error("Error fetching menu data:", error);
-      }
-    };
-
-    fetchMenu();
-  }, []);
+  }, []); 
+  
 
   return (
     <div>

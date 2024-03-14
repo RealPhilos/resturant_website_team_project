@@ -233,7 +233,7 @@ function MenuPage() {
           </div>
         </>
       )}
-      { (user.role == "Chef"  || user.role == "Waiter") && 
+      { (user && (user.role == "Chef"  || user.role == "Waiter")) && 
       <>
         
         <Link href="/admin-menu">
