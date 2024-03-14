@@ -6,6 +6,7 @@ import Link from "next/link";
 
 export default function AuthButton() {
   const { isLoggedIn, setIsLoggedIn, user, setUser } = useContext(AuthContext);
+
   if (isLoggedIn) {
     return (
       <div>
