@@ -26,7 +26,13 @@ export default function MenuPage() {
       <div className="flex flex-col gap-3 mt-5">
         {menus.map((menu) => (
           <div className="border border-gray-400 rounded-lg">
-            <img className="h-28 w-28 rounded-lg" src={menu.imgPath} alt="" />
+            <div className="flex gap-3">
+              <img className="h-28 w-28 rounded-lg" src={menu.imgPath} alt="" />
+              <div className="flex flex-col w-96">
+                <span className="font-semibold text-xl">{menu.name}</span>
+                <span>{menu.description}</span>
+              </div>
+            </div>
           </div>
         ))}
       </div>
