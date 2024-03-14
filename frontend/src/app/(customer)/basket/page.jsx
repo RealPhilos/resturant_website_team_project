@@ -1,6 +1,9 @@
 "use client";
-import api from "../services/api";
+import api from "../../services/api";
 import { useState, useEffect } from "react";
+import { useToast } from "@/components/ui/use-toast";
+import { useContext } from "react";
+import { AuthContext } from "@/app/providers/auth";
 
 function Basket() {
   const [cart, setCart] = useState(() => {
@@ -48,30 +51,64 @@ function Basket() {
     );
   }, 0);
 
+  const { toast } = useToast();
+  const { username } = useContext(AuthContext); // To retrieve the username from the user logged in.
+
   const sendOrdersToServer = async () => {
+    // Check if the cart is empty
+    if (cart.length === 0) {
+      toast({
+        title: "Empty Basket",
+        description:
+          "Your basket is empty. Please add items before sending the order.",
+        status: "warning",
+        duration: 5000,
+        isClosable: true,
+      });
+    }
+
+    let successItems = []; // Keep track of successfully sent items
+    let errorItems = []; // Keep track of items that failed to send
+
     for (const item of cart) {
       const orderData = {
         name: item.name,
         quantity: item.quantity,
         tableNumber: "table 1",
-        status: "",
-        user: {
-          username: "Malcolm",
-        },
+        status: "", // Already set to ordered.
+        username: username,
       };
 
       try {
         await api.post("/order/add", orderData);
-        console.log(`Order for ${item.name} sent successfully.`);
-        //alert(`Order for ${item.name} sent successfully.`);
+        successItems.push(item.name); // Add item name to success list
       } catch (error) {
         console.error(`Error sending order for ${item.name}:`, error);
-        alert(`Error sending order for ${item.name}.`);
+        errorItems.push(item.name); // Add item name to error list
       }
     }
 
-    setCart([]);
-    alert("Orders sent successfully!");
+    // After all orders have been attempted
+    if (successItems.length > 0) {
+      setCart([]);
+      toast({
+        title: "Orders Sent",
+        description: `Orders for ${successItems.join(", ")} sent successfully.`,
+        status: "success",
+        duration: 5000,
+        isClosable: true,
+      });
+    }
+
+    if (errorItems.length > 0) {
+      toast({
+        title: "Some Orders Failed",
+        description: `Error sending orders for ${errorItems.join(", ")}.`,
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+      });
+    }
   };
 
   return (
@@ -163,8 +200,9 @@ function Basket() {
         >
           Send Orders
         </button>
+
         <button className="float-right mr-1 text-lg font-semibold text-white bg-green-800 rounded-2xl px-3 py-2 mt-2">
-          Go to checkout
+          Call waiter
         </button>
       </div>
     </div>

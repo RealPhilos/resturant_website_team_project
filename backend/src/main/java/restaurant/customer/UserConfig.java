@@ -1,4 +1,4 @@
-package restaurant.login;
+package restaurant.customer;
 
 import java.util.List;
 import org.springframework.boot.CommandLineRunner;
@@ -22,7 +22,9 @@ public class UserConfig {
       User luque = new User("Luque", "123", "Chef");
       User malcolm = new User("Malcolm", "123", "Customer");
       User philip = new User("Philip", "123", "Chef");
-      repository.saveAll(List.of(krish, luque, malcolm, philip));
+      User parvesh = new User("Parvesh", "123", "waiter");
+      User ahmed = new User("Ahmed", "123", "waiter");
+      repository.saveAll(List.of(krish, luque, malcolm, philip, parvesh, ahmed));
     };
   }
 }

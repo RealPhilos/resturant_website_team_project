@@ -30,7 +30,7 @@ public class ItemService {
   }
 
   public List<Item> getItemsByUsername(String username) {
-    return itemRepository.findByUserUsername(username);
+    return itemRepository.findByUsername(username);
   }
   
   public List<Item> getItemsByTableNumber(String tableNumber) {
@@ -69,7 +69,7 @@ public class ItemService {
    * @param username The username for which items should be deleted.
    */
   public void deleteItemsByUsername(String username) {
-    List<Item> itemsToDelete = itemRepository.findByUserUsername(username);
+    List<Item> itemsToDelete = itemRepository.findByUsername(username);
     itemRepository.deleteAll(itemsToDelete);
   }
 }

@@ -1,19 +1,16 @@
 package restaurant.order;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+
 import jakarta.persistence.PostPersist;
 import jakarta.persistence.Table;
 import java.time.LocalDateTime;
-import restaurant.login.User;
-
 
 
 /**
@@ -29,32 +26,27 @@ public class Item {
   @Id // Indicates that this field is the primary key of the entity.
   @GeneratedValue(strategy = GenerationType.IDENTITY) // Specifies how the ID should be generated.
   private Long id; // Unique identifier for the item.
-
-  private String name; // Name of the item.
-  private Integer quantity; // Quantity of the item.
-  private String tableNumber; // Table number where the item is ordered.
+  private String name; 
+  private Integer quantity; 
+  private String tableNumber; 
   private LocalDateTime orderTime; // Timestamp when the item was ordered.
-  
+
   @Enumerated(EnumType.STRING) // This will store the enum value as a string in the database
   private OrderStatus orderStatus; // Status of the order.
-
-  @JsonBackReference // Used to break the serialization loop between User and Item entities.
-  @ManyToOne // Indicates a many-to-one relationship with User entity.
-  @JoinColumn(name = "username", referencedColumnName = "username")
-  private User user; // User who ordered the item.
-
+  private String username;
+  
   // Default constructor
   public Item() {
   }
 
   /**
-   * Constructor without id.
+   * Constructor
    */
-  public Item(String name, Integer quantity, String tableNumber, User user) {
+  public Item(String name, Integer quantity, String tableNumber, String username) {
     this.name = name;
     this.quantity = quantity;
     this.tableNumber = tableNumber;
-    this.user = user;
+    this.username = username;
     this.orderStatus = OrderStatus.ORDERED;
   }
 
@@ -68,12 +60,11 @@ public class Item {
     return orderStatus;
   }
 
-  public User getUser() {
-    return user;
+  public String getUsername(){
+    return username;
   }
-
-  public void setUser(User user) {
-    this.user = user;
+  public void setUsername(String username){
+    this.username = username;
   }
 
   public Long getId() {
@@ -121,7 +112,7 @@ public class Item {
         + ", tableNumber= " + tableNumber  
         + ", orderTime= " + orderTime 
         + ", orderStatus= " + orderStatus
-        + ", user= " + user 
+        + ", username= " + username 
         + '}';
   }
 }

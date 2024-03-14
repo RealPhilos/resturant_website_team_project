@@ -3,9 +3,9 @@ package restaurant.order;
 
 
 import java.util.List;
-import java.util.Optional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
-//import org.springframework.data.jpa.repository.Query;
+
 import org.springframework.stereotype.Repository;
 
 /**
@@ -17,12 +17,9 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ItemRepository extends JpaRepository<Item, Long> {
 
-  //SELECT * FROM item WHERE name = ?
-  //@Query("SELECT i FROM Item i WHERE i.name = ?1")
-  Optional<Item> findItemByName(String name);
-  
-  List<Item> findByUserUsername(String username);
+  List<Item> findByUsername(String username);
   
   List<Item> findByTableNumber(String tableNumber);
+
 }
 
