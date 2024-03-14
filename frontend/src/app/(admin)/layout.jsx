@@ -8,9 +8,6 @@ import { redirect } from "next/navigation";
 export default function DashboardLayout({ children }) {
   const { user } = useContext(AuthContext);
 
-  if (!user || user.role !== "waiter") {
-    redirect("/");
-  }
   return (
     <>
       <section className="h-full">
