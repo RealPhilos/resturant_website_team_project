@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * @author Kasim
+ */
 @RestController
 @RequestMapping(path = "Table")
 public class TableController {
@@ -37,5 +40,15 @@ public class TableController {
 	@PostMapping(path = "/tableCleaned/{tableNumber}")
 	public void tableCleaned(@PathVariable("tableNumber") int tableNumber) {
 		tableService.tableCleaned(tableNumber);
+	}
+
+	/**
+	 * 
+	 * @return list of TableReservations.
+	 */
+	@GetMapping("/all") // Makes a Get request to /Table/all retrieving all table reservations from
+						// database.
+	public List<TableReservation> getAllTableReservations() {
+		return tableService.getAllTableReservations();
 	}
 }
