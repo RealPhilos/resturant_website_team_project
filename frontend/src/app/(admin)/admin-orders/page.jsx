@@ -1,4 +1,5 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import OrderList from "./order-list";
 
 export default function OrderPage() {
   return (
@@ -19,7 +20,7 @@ export default function OrderPage() {
           </TabsTrigger>
         </TabsList>
         <TabsContent value="all">
-          <p>All</p>
+          <OrderList />
         </TabsContent>
         <TabsContent value="processing">
           <p>Processing</p>
