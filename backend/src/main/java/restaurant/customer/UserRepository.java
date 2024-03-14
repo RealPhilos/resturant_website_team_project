@@ -1,4 +1,4 @@
-package restaurant.login;
+package restaurant.customer;
 
 import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;

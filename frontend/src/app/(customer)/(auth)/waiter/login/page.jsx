@@ -2,13 +2,12 @@
 
 import { AuthContext } from "@/app/providers/auth";
 import { useToast } from "@/components/ui/use-toast";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import { useForm } from "react-hook-form";
 
-function CustomerLoginPage() {
-  const { isLoggedIn, setIsLoggedIn, setUsername } = useContext(AuthContext);
+function WaiterLoginPage() {
+  const { isLoggedIn, setIsLoggedIn, setUser } = useContext(AuthContext);
   const router = useRouter();
 
   const {
@@ -28,7 +27,7 @@ function CustomerLoginPage() {
   const handleLoginSubmit = async (data) => {
     const { username, password } = data;
 
-    const res = await fetch("http://localhost:8080/login/check", {
+    const res = await fetch("http://localhost:8080/user/waiter/login", {
       method: "POST",
       body: JSON.stringify({
         username,
@@ -41,12 +40,20 @@ function CustomerLoginPage() {
 
     if (res.ok) {
       setIsLoggedIn(true);
-      setUsername(username);
+      setUser({
+        username,
+        role: "waiter",
+      });
       toast({
         title: "Login success",
         description: "Your account login is successful!",
       });
       router.push("/");
+    } else {
+      toast({
+        title: "Login falied",
+        description: "Invalid credentials!",
+      });
     }
   };
 
@@ -56,7 +63,7 @@ function CustomerLoginPage() {
         onSubmit={handleSubmit(handleLoginSubmit)}
         className="mx-auto w-2/5 border border-green-800 rounded p-8 mt-12 flex flex-col gap-7 items-center"
       >
-        <span className="text-xl font-bold">Customer Login</span>
+        <span className="text-xl font-bold">Waiter Login</span>
         <div className="flex flex-col w-3/4 gap-1">
           <label>Username</label>
           <input
@@ -79,15 +86,6 @@ function CustomerLoginPage() {
           {errors.password && (
             <span className="text-red-700">Password is required</span>
           )}
-          <span className="text-sm text-gray-600">
-            Not a member? Sign Up{" "}
-            <Link
-              className="text-green-900 font-semibold"
-              href="/customer/signup"
-            >
-              here!
-            </Link>
-          </span>
         </div>
         <input
           className="bg-green-800 p-3 w-40 rounded-lg text-white cursor-pointer"
@@ -99,4 +97,4 @@ function CustomerLoginPage() {
   );
 }
 
-export default CustomerLoginPage;
+export default WaiterLoginPage;

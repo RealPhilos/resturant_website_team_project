@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import MenuCard from "./menuCard";
 import MenuHeader from "./menuHeader";
-import api from "../../services/api";
+import api from "../../../services/api";
 
 /**
  * `MenuList` is a React component that fetches and displays a list of menu items using `MenuCard` components and handles ordering through a callback.

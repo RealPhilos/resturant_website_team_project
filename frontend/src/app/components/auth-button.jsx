@@ -5,18 +5,29 @@ import { AuthContext } from "../providers/auth";
 import Link from "next/link";
 
 export default function AuthButton() {
-  const { isLoggedIn, username } = useContext(AuthContext);
+  const { isLoggedIn, setIsLoggedIn, user, setUser } = useContext(AuthContext);
   if (isLoggedIn) {
     return (
       <div>
         <span className="capitalize mr-4 border border-l-black border-l-2 border-r-0 pl-2 border-t-0 border-b-0">
-          Hello {username},{" "}
+          Hello {user?.username},{" "}
         </span>
-        <Link href="/customer/logout">
-          <button className="bg-green-800 text-white px-3 py-2 rounded-md">
-            Logout
-          </button>
-        </Link>
+        {user && user.role !== "customer" && (
+          <Link href="/dashboard">
+            <button className="bg-green-800 text-white px-3 py-2 rounded-md">
+              Go to dashboard
+            </button>
+          </Link>
+        )}
+        <button
+          onClick={() => {
+            setUser(null);
+            setIsLoggedIn(false);
+          }}
+          className="bg-green-800 text-white px-3 py-2 rounded-md ml-3"
+        >
+          Logout
+        </button>
       </div>
     );
   }

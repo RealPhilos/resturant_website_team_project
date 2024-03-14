@@ -1,12 +1,11 @@
-package restaurant.login;
+package restaurant.customer;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+
 import jakarta.persistence.Table;
-import java.util.List;
-import restaurant.order.Item;
+
 
 /**
  * This holds the values of the users.
@@ -21,15 +20,11 @@ public class User {
   private String username;
   private String password;
   private String role;
-  //marks the items field as the managed side of the relationship with Item entities for JSON format
-  @JsonManagedReference
-  @OneToMany(mappedBy = "user")//one-to-many relationship between User and Item entities.
-  private List<Item> items;
-
+  
   /**
    * Constructor for the user object.
    * 
-   * @param username is a unique value for each user which is also a key.
+   * @param username is a unique value for each user.
    * @param password is made by the user which is kept secret.
    * @param role is given by the restaurant owner.
    */
@@ -45,14 +40,6 @@ public class User {
   }
 
   public User() {}
-
-  public List<Item> getItems() {
-    return items;
-  }
-
-  public void setItems(List<Item> items) {
-    this.items = items;
-  }
 
   public String getUsername() {
     return username;
