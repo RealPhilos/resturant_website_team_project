@@ -25,17 +25,28 @@ export default function MenuPage() {
       <span className="text-3xl font-semibold">Menus ({menus.length})</span>
       <div className="flex flex-col gap-3 mt-5">
         {menus.map((menu) => (
-          <div className="border border-gray-400 rounded-lg">
+          <div className="border border-gray-400 rounded-lg flex justify-between">
             <div className="flex gap-3">
               <img
                 className="h-28 w-28 rounded-l-lg"
                 src={menu.imgPath}
                 alt=""
               />
-              <div className="flex flex-col w-96">
+              <div className="flex flex-col w-96 my-auto">
                 <span className="font-semibold text-xl">{menu.name}</span>
-                <span>{menu.description}</span>
+                <span className="text-sm">{menu.description}</span>
+                <span className="text-xl text-gray-600 font-semibold">
+                  £{menu.price}
+                </span>
               </div>
+            </div>
+            <div className="flex flex-col my-auto gap-3 mr-7">
+              <button className="bg-blue-600 text-white p-2 rounded-lg">
+                Edit
+              </button>
+              <button className="bg-red-600 text-white p-2 rounded-lg">
+                Delete
+              </button>
             </div>
           </div>
         ))}
