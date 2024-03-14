@@ -21,9 +21,14 @@ export default function MenuPage() {
   }, []);
 
   return (
-    <div>
-      <div>
-        <img src="" alt="" />
+    <div className="p-6">
+      <span className="text-3xl font-semibold">Menus ({menus.length})</span>
+      <div className="flex flex-col gap-3 mt-5">
+        {menus.map((menu) => (
+          <div className="border border-gray-400 rounded-lg">
+            <img className="h-28 w-28 rounded-lg" src={menu.imgPath} alt="" />
+          </div>
+        ))}
       </div>
     </div>
   );
