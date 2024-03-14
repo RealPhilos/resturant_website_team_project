@@ -27,7 +27,11 @@ export default function MenuPage() {
         {menus.map((menu) => (
           <div className="border border-gray-400 rounded-lg">
             <div className="flex gap-3">
-              <img className="h-28 w-28 rounded-lg" src={menu.imgPath} alt="" />
+              <img
+                className="h-28 w-28 rounded-l-lg"
+                src={menu.imgPath}
+                alt=""
+              />
               <div className="flex flex-col w-96">
                 <span className="font-semibold text-xl">{menu.name}</span>
                 <span>{menu.description}</span>
