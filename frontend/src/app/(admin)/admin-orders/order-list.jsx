@@ -30,7 +30,7 @@ export default function OrderList({ order }) {
       </TableHeader>
       <TableBody>
         <TableRow>
-          <TableCell className="font-medium">1</TableCell>
+          <TableCell className="font-medium">{order.id}</TableCell>
           <TableCell>{order.quantity} x {order.name}</TableCell>
           <TableCell>{order.username}</TableCell>
           <TableCell>{formattedOrderTime}</TableCell>
