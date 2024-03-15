@@ -3,6 +3,15 @@
 
 import React, { useEffect, useState } from "react";
 import api from "../../services/api";
+
+
+
+/**
+ * Menu Admin Page
+ * 
+ * @Author Zkac229 - Philip Anaafi Asumadu
+ */
+
 export default function MenuPage() {
 
   const [menus, setMenus] = useState([]);
