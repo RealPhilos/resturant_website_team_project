@@ -7,29 +7,39 @@ import {
   TableRow,
 } from "@/components/ui/table";
 
-export default function OrderList() {
+
+export default function OrderList({ order }) {
+  console.log(order);
+  if (!order) {
+    return null; 
+  }
+
+  const orderDate = new Date(order.orderTime[0], order.orderTime[1] - 1, order.orderTime[2], order.orderTime[3], order.orderTime[4], order.orderTime[5]);
+  const formattedOrderTime = orderDate.toLocaleTimeString();
+
   return (
     <Table>
       <TableHeader>
         <TableRow>
           <TableHead className="w-[100px]">Id</TableHead>
-          <TableHead>Menus</TableHead>
-          <TableHead>Customer</TableHead>
-          <TableHead>Amount</TableHead>
-          <TableHead className="text-right">Status</TableHead>
+          <TableHead style={{ width: '150px' }}>Item</TableHead>
+          <TableHead style={{ width: '150px' }}>Customer</TableHead>
+          <TableHead style={{ width: '150px' }}>Order Time</TableHead>
+          <TableHead style={{ width: '150px' }} className="text-right">Status</TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
         <TableRow>
-          <TableCell className="font-medium">1</TableCell>
-          <TableCell>1 x Pizza, 2 x Burger</TableCell>
-          <TableCell>Ahmed Alyami</TableCell>
-          <TableCell>£25.00</TableCell>
+          <TableCell className="font-medium">{order.id}</TableCell>
+          <TableCell>{order.quantity} x {order.name}</TableCell>
+          <TableCell>{order.username}</TableCell>
+          <TableCell>{formattedOrderTime}</TableCell>
           <TableCell className="text-right text-green-600">
-            Processing
+            {order.status}
           </TableCell>
         </TableRow>
       </TableBody>
     </Table>
   );
 }
+

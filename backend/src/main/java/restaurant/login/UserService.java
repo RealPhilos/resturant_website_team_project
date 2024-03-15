@@ -1,5 +1,7 @@
-package restaurant.customer;
+package restaurant.login;
 
+import java.util.HashMap;
+import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,18 +27,15 @@ public class UserService {
    * @return true if user is in the database.
    */
   public boolean checkUser(User user) {
+    boolean isPasswordCorrect = false;
     if (userRepo.existsById(user.getUsername())) {
-      return user.getPassword().equals(userRepo.getUser(user.getUsername()).get().getPassword());
-    } else {
-      return false;
+        String password = user.getPassword();
+       isPasswordCorrect = password != null && password.equals(userRepo.getUser(user.getUsername()).get().getPassword());   
     }
-  }
+    return isPasswordCorrect;
+}
 
   /**
-   * Checks if the provided user has waiter access.
-   * 
-   * @param user is what we are checking for.
-   * @return true if user is in the database and has waiter role.
    */
   public boolean checkWaiter(User user) {
     if (checkUser(user)) {

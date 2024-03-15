@@ -52,7 +52,7 @@ function Basket() {
   }, 0);
 
   const { toast } = useToast();
-  const { username } = useContext(AuthContext); // To retrieve the username from the user logged in.
+  const { user } = useContext(AuthContext); // To retrieve the username from the user logged in.
 
   const sendOrdersToServer = async () => {
     // Check if the cart is empty
@@ -76,7 +76,7 @@ function Basket() {
         quantity: item.quantity,
         tableNumber: "table 1",
         status: "", // Already set to ordered.
-        username: username,
+        username: user.username,
       };
 
       try {

@@ -1,4 +1,4 @@
-package restaurant.customer;
+package restaurant.login;
 
 
 import jakarta.persistence.Entity;

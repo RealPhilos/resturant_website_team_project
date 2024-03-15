@@ -1,4 +1,6 @@
-package restaurant.customer;
+package restaurant.login;
+
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,11 +23,16 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserController {
 
   private UserService userservice;
+  private final UserRepository userRepo;
 
   @Autowired
-  public UserController(UserService userservice) {
+  public UserController(UserService userservice, UserRepository userRepo) {
     this.userservice = userservice;
+    this.userRepo = userRepo;
   }
+
+ 
+
 
   /**
    * handler method for user login.
@@ -33,11 +40,11 @@ public class UserController {
    * @param user is the object that will be checked.
    */
   @PostMapping("login")
-  public ResponseEntity<String> loginUser(@RequestBody User user) {
+  public User loginUser(@RequestBody User user) {
     if (userservice.checkUser(user)) {
-      return new ResponseEntity<>("Login successful", HttpStatus.OK);
+      return (userRepo.getUser(user.getUsername()).get());
     }
-    return new ResponseEntity<>("Login failed", HttpStatus.BAD_REQUEST);
+    return null;
   }
 
   /**

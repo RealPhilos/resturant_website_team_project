@@ -1,69 +1,52 @@
 "use client";
 
-import { AuthContext } from "@/app/providers/auth";
 import { useToast } from "@/components/ui/use-toast";
 import { useRouter } from "next/navigation";
-import { useContext, useEffect } from "react";
 import { useForm } from "react-hook-form";
 
-function WaiterLoginPage() {
-  const { isLoggedIn, setIsLoggedIn, setUser } = useContext(AuthContext);
-  const router = useRouter();
-
+function SignUpPage() {
   const {
     register,
     handleSubmit,
+    watch,
     formState: { errors },
   } = useForm();
 
+  const router = useRouter();
+
   const { toast } = useToast();
 
-  useEffect(() => {
-    if (isLoggedIn) {
-      return router.replace("/");
-    }
-  }, [isLoggedIn]);
-
-  const handleLoginSubmit = async (data) => {
+  const handleSignUpSubmit = async (data) => {
     const { username, password } = data;
-
-    const res = await fetch("http://localhost:8080/user/waiter/login", {
+    const res = await fetch("http://localhost:8080/user/register", {
       method: "POST",
       body: JSON.stringify({
         username,
         password,
+        role: "customer",
       }),
       headers: {
         "Content-Type": "application/json",
       },
     });
-
+   
     if (res.ok) {
-      setIsLoggedIn(true);
-      setUser({
-        username,
-        role: "waiter",
-      });
       toast({
-        title: "Login success",
-        description: "Your account login is successful!",
+        title: "Signup success",
+        description:
+          "Account signup is successful! You can login using this credentials now.",
       });
-      router.push("/");
-    } else {
-      toast({
-        title: "Login falied",
-        description: "Invalid credentials!",
-      });
+      router.push("/login");
     }
   };
 
   return (
     <div>
       <form
-        onSubmit={handleSubmit(handleLoginSubmit)}
+        onSubmit={handleSubmit(handleSignUpSubmit)}
         className="mx-auto w-2/5 border border-green-800 rounded p-8 mt-12 flex flex-col gap-7 items-center"
       >
-        <span className="text-xl font-bold">Waiter Login</span>
+        <span className="text-xl font-bold">Customer Sign Up</span>
         <div className="flex flex-col w-3/4 gap-1">
           <label>Username</label>
           <input
@@ -78,8 +61,8 @@ function WaiterLoginPage() {
         <div className="flex flex-col w-3/4 gap-1">
           <label>Password</label>
           <input
-            {...register("password", { required: true })}
             type="password"
+            {...register("password", { required: true })}
             className="p-2 bg-gray-200 rounded-md"
             placeholder="Enter your password"
           />
@@ -87,14 +70,36 @@ function WaiterLoginPage() {
             <span className="text-red-700">Password is required</span>
           )}
         </div>
+        <div className="flex flex-col w-3/4 gap-1">
+          <label>Confirm Password</label>
+          <input
+            type="password"
+            {...register("confirmPassword", {
+              required: true,
+              validate: (cp) => {
+                if (watch("password") != cp) {
+                  return "Please enter the same password from above!";
+                }
+              },
+            })}
+            className="p-2 bg-gray-200 rounded-md"
+            placeholder="Confirm your password"
+          />
+          {errors.confirmPassword && (
+            <span className="text-red-700">
+              {errors.confirmPassword.message ||
+                "Confirm password field is required"}
+            </span>
+          )}
+        </div>
         <input
           className="bg-green-800 p-3 w-40 rounded-lg text-white cursor-pointer"
           type="submit"
-          value="Log In"
+          value="Sign Up"
         />
       </form>
     </div>
   );
 }
 
-export default WaiterLoginPage;
+export default SignUpPage;
