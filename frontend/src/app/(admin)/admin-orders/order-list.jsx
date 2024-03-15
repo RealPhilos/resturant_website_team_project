@@ -22,10 +22,10 @@ export default function OrderList({ order }) {
       <TableHeader>
         <TableRow>
           <TableHead className="w-[100px]">Id</TableHead>
-          <TableHead>Item</TableHead>
-          <TableHead>Customer</TableHead>
-          <TableHead>Order Time</TableHead>
-          <TableHead className="text-right">Status</TableHead>
+          <TableHead style={{ width: '150px' }}>Item</TableHead>
+          <TableHead style={{ width: '150px' }}>Customer</TableHead>
+          <TableHead style={{ width: '150px' }}>Order Time</TableHead>
+          <TableHead style={{ width: '150px' }} className="text-right">Status</TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
@@ -42,3 +42,4 @@ export default function OrderList({ order }) {
     </Table>
   );
 }
+
