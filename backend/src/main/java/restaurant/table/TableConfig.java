@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class TableConfig {
   @Bean
-  CommandLineRunner commandLineRunner(TableRepository repository) {
+  CommandLineRunner tableCMDLineRunner(TableRepository repository) {
     return args -> {
       TableReservation table1 = new TableReservation(1, 4, TableStatus.FREE);
       TableReservation table2 = new TableReservation(2, 4, TableStatus.FREE);
