@@ -1,0 +1,28 @@
+package restaurant.login;
+
+import java.util.List;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
+
+/**
+ * This is to pre-make a table.
+ * 
+ * @author Krish Macwan - Zlac463
+ */
+@Configuration
+@Order(1)
+public class UserConfig {
+
+  @Bean
+  CommandLineRunner commandLineRunner(UserRepository repository) {
+    return args -> {
+      User krish = new User("Krish", "123", "Customer");
+      User luque = new User("Luque", "123", "Chef");
+      User malcolm = new User("Malcolm", "123", "Customer");
+      User philip = new User("Philip", "123", "Chef");
+      repository.saveAll(List.of(krish, luque, malcolm, philip));
+    };
+  }
+}
