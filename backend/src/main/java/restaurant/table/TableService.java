@@ -52,4 +52,9 @@ public class TableService {
 			}
 		}
 	}
+
+	public List<TableReservation> getAllTableReservations() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
