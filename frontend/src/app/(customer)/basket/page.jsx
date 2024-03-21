@@ -76,7 +76,7 @@ function Basket() {
         quantity: item.quantity,
         tableNumber: "table 1",
         status: "", // Already set to ordered.
-        username: user.username,
+        username: user?.username || "guest",
       };
 
       try {
