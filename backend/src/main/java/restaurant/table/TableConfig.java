@@ -6,6 +6,9 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+/**
+ * Config class to make data seeding fot table reservation.
+ */
 @Configuration
 public class TableConfig {
   @Bean
