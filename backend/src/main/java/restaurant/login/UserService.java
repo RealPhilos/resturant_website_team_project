@@ -27,13 +27,15 @@ public class UserService {
   public boolean checkUser(User user) {
     boolean isPasswordCorrect = false;
     if (userRepo.existsById(user.getUsername())) {
-        String password = user.getPassword();
-       isPasswordCorrect = password != null && password.equals(userRepo.getUser(user.getUsername()).get().getPassword());   
+      String password = user.getPassword();
+      isPasswordCorrect = password != null
+          && password.equals(userRepo.getUser(user.getUsername()).get().getPassword());
     }
     return isPasswordCorrect;
-}
+  }
 
   /**
+   * method for checking waiter.
    */
   public boolean checkWaiter(User user) {
     if (checkUser(user)) {
