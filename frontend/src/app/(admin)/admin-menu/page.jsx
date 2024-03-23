@@ -10,14 +10,16 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import { useForm } from "react-hook-form";
 
 export default function MenuPage() {
   const [menus, setMenus] = useState([]);
 
-  const [name, setName] = useState("");
-  const [price, setPrice] = useState("");
-  const [description, setDescription] = useState("");
-  const [category, setCategory] = useState("");
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
   useEffect(() => {
     const fetchMenu = async () => {
@@ -33,7 +35,9 @@ export default function MenuPage() {
     fetchMenu();
   }, []);
 
-  console.log(menus);
+  const handleMenuAdd = async (data) => {
+    console.log(data);
+  };
 
   return (
     <div className="p-6">
@@ -49,33 +53,40 @@ export default function MenuPage() {
             <DialogHeader>
               <DialogTitle>Add Menu</DialogTitle>
             </DialogHeader>
-            <div className="grid gap-4 py-4">
-              <div className="grid grid-cols-4 items-center gap-4">
+            <form
+              className="flex flex-col gap-2"
+              onSubmit={handleSubmit(handleMenuAdd)}
+            >
+              <div className="flex flex-col items-start w-full gap-1">
                 <label htmlFor="name" className="text-right">
                   Name
                 </label>
                 <input
-                  id="name"
-                  defaultValue="Pedro Duarte"
-                  className="col-span-3"
+                  {...register("name", { required: true })}
+                  className="h-8 border border-gray-300 rounded-md w-full"
                 />
+                {errors.name && (
+                  <span className="text-red-700">Menu name is required</span>
+                )}
               </div>
-              <div className="grid grid-cols-4 items-center gap-4">
-                <label htmlFor="username" className="text-right">
-                  Username
+              <div className="flex flex-col items-start w-full gap-1">
+                <label htmlFor="description" className="text-right">
+                  Description
                 </label>
-                <input
-                  id="username"
-                  defaultValue="@peduarte"
-                  className="col-span-3"
+                <textarea
+                  {...register("description", { required: true })}
+                  className="h-20 border border-gray-300 rounded-md w-full"
                 />
+                {errors.description && (
+                  <span className="text-red-700 w-full">
+                    Menu description is required
+                  </span>
+                )}
               </div>
-            </div>
-            <DialogFooter>
-              <button className="bg-green-800 text-white px-2 rounded-lg">
+              <button className="bg-green-800 text-white rounded-lg mt-4 py-3">
                 Submit
               </button>
-            </DialogFooter>
+            </form>
           </DialogContent>
         </Dialog>
       </div>

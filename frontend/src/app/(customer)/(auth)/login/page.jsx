@@ -39,25 +39,23 @@ function LoginPage() {
       },
     });
 
- 
-  
     if (res.headers.get("Content-Type")?.includes("application/json")) {
       const user = await res.json();
       console.log(user.role);
       setIsLoggedIn(true);
       setUser({
-      username,
-      role: user.role,
+        username,
+        role: user.role,
       });
       toast({
-      title: "Login success",
-      description: "Your account login is successful!",
+        title: "Login success",
+        description: "Your account login is successful!",
       });
       router.push("/");
     } else {
       toast({
-      title: "Login failed",
-      description: "Invalid credentials!",
+        title: "Login failed",
+        description: "Invalid credentials!",
       });
     }
   };
@@ -93,10 +91,7 @@ function LoginPage() {
           )}
           <span className="text-sm text-gray-600">
             Not a member? Sign Up{" "}
-            <Link
-              className="text-green-900 font-semibold"
-              href="/signup"
-            >
+            <Link className="text-green-900 font-semibold" href="/signup">
               here!
             </Link>
           </span>
