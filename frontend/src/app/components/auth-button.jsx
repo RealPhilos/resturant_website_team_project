@@ -13,7 +13,7 @@ export default function AuthButton() {
         <span className="capitalize mr-4 border border-l-black border-l-2 border-r-0 pl-2 border-t-0 border-b-0">
           Hello {user?.username},{" "}
         </span>
-        {(user && (user.role == "Chef"  || user.role == "Waiter")) && (
+        {user && (user.role == "Chef" || user.role == "Waiter") && (
           <Link href="/dashboard">
             <button className="bg-green-800 text-white px-3 py-2 rounded-md">
               Go to dashboard

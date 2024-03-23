@@ -7,7 +7,6 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-
 import jakarta.persistence.PostPersist;
 import jakarta.persistence.Table;
 import java.time.LocalDateTime;
@@ -26,21 +25,20 @@ public class Item {
   @Id // Indicates that this field is the primary key of the entity.
   @GeneratedValue(strategy = GenerationType.IDENTITY) // Specifies how the ID should be generated.
   private Long id; // Unique identifier for the item.
-  private String name; 
-  private Integer quantity; 
-  private String tableNumber; 
+  private String name;
+  private Integer quantity;
+  private String tableNumber;
   private LocalDateTime orderTime; // Timestamp when the item was ordered.
 
   @Enumerated(EnumType.STRING) // This will store the enum value as a string in the database
   private OrderStatus orderStatus; // Status of the order.
   private String username;
-  
+
   // Default constructor
-  public Item() {
-  }
+  public Item() {}
 
   /**
-   * Constructor
+   * Item constructor.
    */
   public Item(String name, Integer quantity, String tableNumber, String username) {
     this.name = name;
@@ -50,20 +48,21 @@ public class Item {
     this.orderStatus = OrderStatus.ORDERED;
   }
 
-  // Getters and Setters 
-  
+  // Getters and Setters
+
   public void setStatus(String status) {
     this.orderStatus = OrderStatus.convertFromString(status);
   }
-  
+
   public OrderStatus getStatus() {
     return orderStatus;
   }
 
-  public String getUsername(){
+  public String getUsername() {
     return username;
   }
-  public void setUsername(String username){
+
+  public void setUsername(String username) {
     this.username = username;
   }
 
@@ -108,12 +107,9 @@ public class Item {
 
   @Override
   public String toString() {
-    return "Item{" + "id= " + id + ", name= " + name  + ", quantity= " + quantity 
-        + ", tableNumber= " + tableNumber  
-        + ", orderTime= " + orderTime 
-        + ", orderStatus= " + orderStatus
-        + ", username= " + username 
-        + '}';
+    return "Item{" + "id= " + id + ", name= " + name + ", quantity= " + quantity + ", tableNumber= "
+        + tableNumber + ", orderTime= " + orderTime + ", orderStatus= " + orderStatus
+        + ", username= " + username + '}';
   }
 }
 

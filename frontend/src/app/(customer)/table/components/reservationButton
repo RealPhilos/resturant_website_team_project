@@ -1,0 +1,60 @@
+import React, { useState, useEffect } from 'react';
+
+const ReservationButton = () => {
+  const [tableData, setTableData] = useState([]);
+
+  // Function to fetch data from the database
+  const fetchData = async () => {
+    try {
+      const response = await fetch('http://localhost:8080/tables');
+      if (response.ok) {
+        const data = await response.json();
+        setTableData(data);
+      } else {
+        console.error('Failed to fetch table data.');
+      }
+    } catch (error) {
+      console.error('Error fetching table data:', error);
+    }
+  };
+
+  // Call the fetchData function when the component mounts
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const handleReservation = async () => {
+    try {
+      const response = await fetch('http://localhost:8080/reservations', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          // TO-DO handle table data
+        }),
+      });
+
+      if (response.ok) {
+        console.log('Reservation successful!');
+        alert("Reservation successful!");
+      } else {
+        console.error('Reservation failed.');
+        alert("Reservation failed");
+      }
+    } catch (error) {
+      console.error('Error during reservation:', error);
+    }
+  };
+
+  return (
+    <button
+      className="flex flex-col bottom-8 gap-4 w-full bg-green-500 hover:bg-green-700 text-white px-3 py-2 rounded-md w-25 h-25 mt-8  items-center"
+      onClick={handleReservation}
+    >
+      Reserve
+    </button>
+  );
+};
+
+export default ReservationButton;
