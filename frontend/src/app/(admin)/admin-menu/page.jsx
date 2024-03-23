@@ -5,10 +5,10 @@ import { useEffect, useState } from "react";
 import {
   Dialog,
   DialogContent,
-  DialogFooter,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
+  DialogClose,
 } from "@/components/ui/dialog";
 import { useForm } from "react-hook-form";
 
@@ -18,6 +18,7 @@ export default function MenuPage() {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm();
 
@@ -36,7 +37,17 @@ export default function MenuPage() {
   }, []);
 
   const handleMenuAdd = async (data) => {
-    console.log(data);
+    try {
+      const newMenu = {
+        ...data,
+        imgPaht: "",
+      };
+      const response = await api.post("/foods", newMenu);
+      setMenus([...menus, newMenu]);
+      reset();
+    } catch (error) {
+      console.error("Error creating new menu");
+    }
   };
 
   return (
@@ -63,10 +74,40 @@ export default function MenuPage() {
                 </label>
                 <input
                   {...register("name", { required: true })}
-                  className="h-8 border border-gray-300 rounded-md w-full"
+                  className="pl-2 h-8 border border-gray-300 rounded-md w-full"
                 />
                 {errors.name && (
                   <span className="text-red-700">Menu name is required</span>
+                )}
+              </div>
+              <div className="flex flex-col items-start w-full gap-1">
+                <label htmlFor="price" className="text-right">
+                  Price
+                </label>
+                <input
+                  type="number"
+                  {...register("price", { required: true })}
+                  className="pl-2 h-8 border border-gray-300 rounded-md w-full"
+                />
+                {errors.price && (
+                  <span className="text-red-700">Menu price is required</span>
+                )}
+              </div>
+              <div className="flex flex-col items-start w-full gap-1">
+                <label htmlFor="category" className="text-right">
+                  Category
+                </label>
+                <select
+                  {...register("category", { required: true })}
+                  className="pl-2 h-8 border border-gray-300 rounded-md w-full"
+                >
+                  <option>Main</option>
+                  <option>Sides</option>
+                </select>
+                {errors.category && (
+                  <span className="text-red-700">
+                    Menu category is required
+                  </span>
                 )}
               </div>
               <div className="flex flex-col items-start w-full gap-1">
@@ -75,7 +116,7 @@ export default function MenuPage() {
                 </label>
                 <textarea
                   {...register("description", { required: true })}
-                  className="h-20 border border-gray-300 rounded-md w-full"
+                  className="pl-2 h-20 border border-gray-300 rounded-md w-full"
                 />
                 {errors.description && (
                   <span className="text-red-700 w-full">
@@ -83,9 +124,11 @@ export default function MenuPage() {
                   </span>
                 )}
               </div>
-              <button className="bg-green-800 text-white rounded-lg mt-4 py-3">
-                Submit
-              </button>
+              <DialogClose className="">
+                <button className="w-full bg-green-800 text-white rounded-lg mt-4 py-3">
+                  Submit
+                </button>
+              </DialogClose>
             </form>
           </DialogContent>
         </Dialog>
