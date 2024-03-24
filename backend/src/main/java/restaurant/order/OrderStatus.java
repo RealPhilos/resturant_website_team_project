@@ -6,7 +6,8 @@ package restaurant.order;
  * @author Luque van der Merwe - ZLAC180
  */
 public enum OrderStatus {
-  ORDERED("ordered"), COOKING("cooking"), DONE("done"), DELIVERED("delivered"), WAITING_FOR_WAITER("waiting");
+  ORDERED("ordered"), COOKING("cooking"), DONE("done"), DELIVERED("delivered"), WAITING_FOR_WAITER(
+      "waiting");
 
   private String textValue;
 

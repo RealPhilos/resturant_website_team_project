@@ -11,12 +11,12 @@ import org.springframework.data.jpa.repository.Query;
  * @author Krish Macwan - Zlac463
  */
 public interface UserRepository extends JpaRepository<User, String> {
-	
-	// Method to find users by their role
-	List<User> findByRole(String role);
+
+  // Method to find users by their role
+  List<User> findByRole(String role);
 
   @Query("SELECT u FROM User u WHERE u.username = ?1")
   Optional<User> getUser(String username);
-  
+
 }
 
