@@ -6,9 +6,10 @@ import AuthButton from "./auth-button";
 
 function NavBar() {
   return (
-    <div className="bg-gray-300 px-[13vw] py-7 flex items-center justify-between">
+    <div className="bg-gray-300 px-[13vw] py-7 flex items-center justify-between"
+    style={{ backgroundColor: "#FAFAF5" }}>
       <Link href="/">
-        <span className="text-xl text-green-800">Restaurant</span>
+        <span className="text-xl text-green-800">Oaxaca Restaurant</span>
       </Link>
       <div className="flex gap-9 text-gray-700 items-center">
         <Link href="/menu">

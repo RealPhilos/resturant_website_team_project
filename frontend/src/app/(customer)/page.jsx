@@ -5,8 +5,15 @@ import Link from "next/link";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { Link as ScrollLink } from "react-scroll";
+import { Fade } from 'react-awesome-reveal';
+import { AuthContext } from "./../providers/auth";
+import { useState, useEffect, useContext } from 'react';
+import OrderButton from "../components/order-now-button";
+import Footer from "../components/footer";
 
 export default function Home() {
+  
   var settings = {
     dots: true,
     infinite: true,
@@ -17,13 +24,9 @@ export default function Home() {
     prevArrow: <PrevArrow />,
   };
 
-  const hotItems = [
-    { name: "Pizza", rating: 4.5, image: "/pizza.jpeg" },
-    { name: "Burger", rating: 4.6, image: "/pizza.jpeg" },
-    { name: "Sandwich", rating: 4.1, image: "/pizza.jpeg" },
-    { name: "Pasta", rating: 4.3, image: "/pizza.jpeg" },
-    // Add more restaurants as needed
-  ];
+  const { user, setUser, isLoggedIn, setIsLoggedIn } = useContext(AuthContext);
+  const userType = user ? user.role : null;
+  const username = user ? user.username : null;
 
   return (
     <div>
@@ -49,100 +52,156 @@ export default function Home() {
         <br></br>
 
         <Slider {...settings}>
+        <Fade>
           <div>
-            <h1 className="text-2xl font-serif underline mb-4">What's New?</h1>
-            <img
-              src="/pizza.jpeg"
-              alt="What's New?"
-              className="w-full rounded-t-3xl h-56 object-cover"
-            />
+          <video
+          src="/entranceVid.mp4" 
+          autoPlay
+          loop
+          muted alt="Oaxaca" 
+          style={{ 
+          width: "80%",
+          height: "300px",
+          borderRadius: "1.5rem", 
+          margin: "auto" }} 
+          className="w-full rounded-t-3xl object-cover"/>
           </div>
+          </Fade>
+          <Fade>
           <div>
-            <h1 className="text-2xl font-serif underline mb-4">Most Popular</h1>
-            <img
-              src="/pizza.jpeg"
-              alt="Most Popular"
-              className="w-full rounded-t-3xl h-56 object-cover"
-            />
+          <video
+          src="/steakVid.mp4" 
+          autoPlay
+          loop
+          muted alt="Oaxaca" 
+          style={{ 
+          width: "80%",
+          height: "300px",
+          borderRadius: "1.5rem", 
+          margin: "auto" }} 
+          className="w-full rounded-t-3xl object-cover"/>
           </div>
+          </Fade>
+          <Fade>
           <div>
-            <h1 className="text-2xl font-serif underline mb-4">Best Deal</h1>
-            <img
-              src="/pizza.jpeg"
-              alt="Best Deal"
-              className="w-full rounded-t-3xl h-56 object-cover"
-            />
+          <video
+          src="/interiorVid.mp4" 
+          autoPlay
+          loop
+          muted alt="Oaxaca" 
+          style={{ 
+          width: "80%",
+          height: "300px",
+          borderRadius: "1.5rem", 
+          margin: "auto",
+          objectFit: "cover", // This makes the video maintain its aspect ratio while filling the container.
+          objectPosition: "50% 100%" // This aligns the video to the bottom of the container.  
+        }} 
+          className="w-full rounded-t-3xl object-cover"/>
           </div>
+          </Fade>
           {/* Add more slides as needed */}
         </Slider>
 
         <br></br>
         <hr />
         <br></br>
+        <Fade>
+  <h1 className="text-2xl font-serif mb-4" style={{ textAlign: "center" }}>
+    {" "}
+    Quick Navigation{" "}
+  </h1>
+  <div style={{ display: "flex", justifyContent: "center", marginTop: "20px" }}>
 
-        <h1 className="text-2xl font-serif mb-4">
-          {" "}
-          Today's Offers <span className="font-bold no-underline">5% Off</span>
-        </h1>
+    <ScrollLink to="mostPopular" smooth={true} duration={500}>
+      <button 
+      style={{ 
+        margin: "10px",
+        backgroundColor: "#FAFAF5",
+        padding: "1em",
+        borderRadius: "1.5rem", 
+        border: "1px solid #000000", 
+        }}>Most Popular</button>
+    </ScrollLink>
 
-        <div style={{ display: "flex", justifyContent: "space-between" }}>
-          {hotItems.map((restaurant, index) => (
-            <div
-              key={index}
-              className="flex items-center justify-center text-center border-2 border-gray-300 p-4 rounded-lg"
-              style={{ width: "30%", height: "auto" }}
-            >
-              <div style={{ width: "100%", height: "110%" }}>
-                <img
-                  src={restaurant.image}
-                  alt={restaurant.name}
-                  className="w-full h-full"
-                  style={{ objectFit: "contain" }}
-                />
-              </div>
-              <div className="w-full ml-4">
-                <h2 className="font-serif">{restaurant.name}</h2>
-                <p>Rating: {restaurant.rating}</p>
-              </div>
-            </div>
-          ))}
-        </div>
+    <ScrollLink to="healthyOptions" smooth={true} duration={500}>
+      <button 
+      style={{ 
+        margin: "10px",
+        backgroundColor: "#FAFAF5",
+        padding: "1em",
+        borderRadius: "1.5rem", 
+        border: "1px solid #000000",
+        }}>Healthy Options</button>
+    </ScrollLink>
 
-        <br></br>
-        <hr />
-        <br></br>
-
-        <h1 className="text-2xl font-serif mb-4">
-          {" "}
-          Healthy Options To Explore{" "}
-        </h1>
-        <div style={{ display: "flex", justifyContent: "space-between" }}>
-          {hotItems.map((restaurant, index) => (
-            <div
-              key={index}
-              className="flex items-center justify-center text-center border-2 border-gray-300 p-4 rounded-lg"
-              style={{ width: "30%", height: "auto" }}
-            >
-              <div style={{ width: "100%", height: "110%" }}>
-                <img
-                  src={restaurant.image}
-                  alt={restaurant.name}
-                  className="w-full h-full"
-                  style={{ objectFit: "contain" }}
-                />
-              </div>
-              <div className="w-full ml-4">
-                <h2 className="font-serif">{restaurant.name}</h2>
-                <p>Rating: {restaurant.rating}</p>
-              </div>
-            </div>
-          ))}
-        </div>
+    <ScrollLink to="onlyAtOaxacas" smooth={true} duration={500}>
+      <button 
+      style={{ 
+        margin: "10px",
+        backgroundColor: "#FAFAF5",
+        padding: "1em",
+        borderRadius: "1.5rem", 
+        border: "1px solid #000000", 
+        }}>Only At Oaxaca's</button>
+    </ScrollLink>
+  </div>
+</Fade>
 
         <br></br>
         <hr />
         <br></br>
+        
+        <div style={{ 
+        borderRadius: "1.5rem", 
+        border: "2px solid #000000",  }}>
+        <br></br>
 
+        <Fade>
+        <div
+        id = "mostPopular"
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            padding: "1em",
+            marginTop: "2em",
+          }}
+        >
+          <video
+          src="/steakVid.mp4" 
+          autoPlay
+          loop
+          muted alt="Steak" 
+          style={{ width: "40%",
+          borderRadius: "1.5rem", 
+          margin: "auto" }} />
+          <div style={{ 
+            width: "50%", 
+      display: "flex", 
+      flexDirection: "column", 
+      alignItems: "center", 
+      justifyContent: "center" }}>
+            <h1 className="text-3xl font-serif">World Famous Lamb Steak!</h1>
+            <p>Most Popular</p>
+            <OrderButton userType={userType} isLoggedIn={isLoggedIn} />
+          </div>
+        </div>
+        </Fade>
+
+        <br></br>
+        </div>
+
+        <br></br>
+        
+
+        <div style={{ 
+        backgroundColor: "#FAFAF5",
+        borderRadius: "1.5rem", 
+        border: "2px solid #000000",  }}>
+        <br></br>
+
+        <Fade>
         <div
           style={{
             display: "flex",
@@ -152,143 +211,252 @@ export default function Home() {
             marginTop: "2em",
           }}
         >
-          <img src="/pizza.jpeg" alt="Mobile app" style={{ width: "40%" }} />
-          <div style={{ width: "50%" }}>
-            <h1 className="text-3xl font-serif">Download the Mobile App</h1>
-            <p>Get 10% Off Your First Order</p>
+          <div style={{ 
+            width: "50%", 
+      display: "flex", 
+      flexDirection: "column", 
+      alignItems: "center", 
+      justifyContent: "center" }}>
+            <h1 className="text-3xl font-serif">Award Winning Wings!</h1>
+            <p>Most Popular</p>
+            <OrderButton userType={userType} isLoggedIn={isLoggedIn} />
+          </div>
+          <video
+          src="/wingsVid.mp4" 
+          autoPlay
+          loop
+          muted alt="Wings" 
+          style={{ width: "40%",
+          borderRadius: "1.5rem", 
+          margin: "auto" }} />
+        </div>
+        </Fade>
+
+        <br></br>
+        </div>
+
+        <br></br>
+
+        <div 
+        id="healthyOptions"
+        style={{ 
+        borderRadius: "1.5rem", 
+        border: "2px solid #000000",  }}>
+        <br></br>
+
+        <Fade>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            padding: "1em",
+            marginTop: "2em",
+          }}
+        >
+          <video
+          src="/tacosVid.mp4" 
+          autoPlay
+          loop
+          muted alt="Tacos" 
+          style={{ width: "40%",
+          borderRadius: "1.5rem", 
+          margin: "auto" }} />
+          <div style={{ 
+            width: "50%", 
+      display: "flex", 
+      flexDirection: "column", 
+      alignItems: "center", 
+      justifyContent: "center" }}>
+            <h1 className="text-3xl font-serif">Try Our Tacos!</h1>
+            <p>Great Healthy Option</p>
+            <OrderButton userType={userType} isLoggedIn={isLoggedIn} />
+          </div>
+        </div>
+        </Fade>
+
+        <br></br>
+        </div>
+
+        <br></br>
+
+        <div style={{ 
+        borderRadius: "1.5rem", 
+        border: "2px solid #000000",
+        backgroundColor: "#FAFAF5",  }}>
+        <br></br>
+
+        <Fade>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            padding: "1em",
+            marginTop: "2em",
+          }}
+        >
+          <div style={{ 
+            width: "50%", 
+      display: "flex", 
+      flexDirection: "column", 
+      alignItems: "center", 
+      justifyContent: "center" }}>
+            <h1 className="text-3xl font-serif">Try Our Salad!</h1>
+            <p>Great Healthy Option</p>
+            <OrderButton userType={userType} isLoggedIn={isLoggedIn} />
+          </div>
+          <video
+          src="/saladVid.mp4" 
+          autoPlay
+          loop
+          muted alt="Salad" 
+          style={{ width: "40%",
+          borderRadius: "1.5rem", 
+          margin: "auto" }} />
+        </div>
+        </Fade>
+
+        <br></br>
+        </div>
+
+        <br></br>
+
+        <div 
+        id="onlyAtOaxacas"
+        style={{ 
+        borderRadius: "1.5rem", 
+        border: "2px solid #000000",  }}>
+        <br></br>
+
+        <Fade>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            padding: "1em",
+            marginTop: "2em",
+          }}
+        >
+          <video
+          src="/pizzaVid.mp4" 
+          autoPlay
+          loop
+          muted alt="Pizza" 
+          style={{ width: "40%",
+          borderRadius: "1.5rem", 
+          margin: "auto" }} />
+          <div style={{ 
+            width: "50%", 
+      display: "flex", 
+      flexDirection: "column", 
+      alignItems: "center", 
+      justifyContent: "center" }}>
+            <h1 className="text-3xl font-serif">Try Our Pizza!</h1>
+            <p>Only At Oaxaca's</p>
+            <OrderButton userType={userType} isLoggedIn={isLoggedIn} />
+          </div>
+        </div>
+        </Fade>
+
+        <br></br>
+        </div>
+
+        <br></br>
+
+        <div style={{ 
+        borderRadius: "1.5rem", 
+        border: "2px solid #000000",
+        backgroundColor: "#FAFAF5",  }}>
+        <br></br>
+
+        <Fade>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            padding: "1em",
+            marginTop: "2em",
+          }}
+        >
+          <div style={{ 
+            width: "50%", 
+      display: "flex", 
+      flexDirection: "column", 
+      alignItems: "center", 
+      justifyContent: "center" }}>
+            <h1 className="text-3xl font-serif">Try Our Burger!</h1>
+            <p>Only At Oaxaca's</p>
+            <OrderButton userType={userType} isLoggedIn={isLoggedIn} />
+          </div>
+          <video
+          src="/burgerVid.mp4" 
+          autoPlay
+          loop
+          muted alt="Burger" 
+          style={{ width: "40%",
+          borderRadius: "1.5rem", 
+          margin: "auto" }} />
+        </div>
+        </Fade>
+
+        <br></br>
+        </div>
+
+        <br></br>
+
+        <div style={{ 
+        borderRadius: "1.5rem", 
+        border: "2px solid #000000",  }}>
+        <br></br>
+
+        <Fade>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            padding: "1em",
+            marginTop: "2em",
+          }}
+        >
+          <video
+          src="/appVid.mp4" 
+          autoPlay
+          loop
+          muted alt="Download The App" 
+          style={{ width: "40%",
+          borderRadius: "1.5rem", 
+          margin: "auto" }} />
+          <div style={{ 
+            width: "50%", 
+      display: "flex", 
+      flexDirection: "column", 
+      alignItems: "center", 
+      justifyContent: "center" }}>
+            <h1 className="text-3xl font-serif">Download the Mobile App!</h1>
+            <p>Coming Very Soon</p>
             <button className="bg-green-800 text-white px-3 py-2 rounded-md">
-              Find Out More
+              Find Out More!
             </button>
           </div>
         </div>
+        </Fade>
 
         <br></br>
-        <hr />
-        <br></br>
-
-        <h1 className="text-2xl font-serif mb-4"> Only At Oaxaca's </h1>
-        <div style={{ display: "flex", justifyContent: "space-between" }}>
-          {hotItems.map((restaurant, index) => (
-            <div
-              key={index}
-              className="flex items-center justify-center text-center border-2 border-gray-300 p-4 rounded-lg"
-              style={{ width: "30%", height: "auto" }}
-            >
-              <div style={{ width: "100%", height: "110%" }}>
-                <img
-                  src={restaurant.image}
-                  alt={restaurant.name}
-                  className="w-full h-full"
-                  style={{ objectFit: "contain" }}
-                />
-              </div>
-              <div className="w-full ml-4">
-                <h2 className="font-serif">{restaurant.name}</h2>
-                <p>Rating: {restaurant.rating}</p>
-              </div>
-            </div>
-          ))}
         </div>
 
         <br></br>
-        <hr />
-        <br></br>
-
-        <h1 className="text-2xl font-serif mb-4"> Popular Near You </h1>
-        <div style={{ display: "flex", justifyContent: "space-between" }}>
-          {hotItems.map((restaurant, index) => (
-            <div
-              key={index}
-              className="flex items-center justify-center text-center border-2 border-gray-300 p-4 rounded-lg"
-              style={{ width: "30%", height: "auto" }}
-            >
-              <div style={{ width: "100%", height: "110%" }}>
-                <img
-                  src={restaurant.image}
-                  alt={restaurant.name}
-                  className="w-full h-full"
-                  style={{ objectFit: "contain" }}
-                />
-              </div>
-              <div className="w-full ml-4">
-                <h2 className="font-serif">{restaurant.name}</h2>
-                <p>Rating: {restaurant.rating}</p>
-              </div>
-            </div>
-          ))}
-        </div>
+        
       </main>
 
       <br></br>
       <hr />
       <br></br>
 
-      <footer>
-        <div
-          className="footer"
-          style={{ display: "flex", justifyContent: "left" }}
-        >
-          <div style={{ marginRight: "5em", textAlign: "center" }}>
-            <h1 className="text-l font-serif mb-1">Other Information</h1>
-            <ul>
-              <li className="text-xs">
-                <Link href="/">About Us</Link>
-              </li>
-              <li className="text-xs">
-                <Link href="/">Careers</Link>
-              </li>
-              <li className="text-xs">
-                <Link href="/">More Oaxaca</Link>
-              </li>
-              <li className="text-xs">
-                <Link href="/">Help</Link>
-              </li>
-            </ul>
-          </div>
-          <div style={{ marginRight: "5em", textAlign: "center" }}>
-            <h1 className="text-l font-serif mb-1">Follow Us!</h1>
-            <ul>
-              <li className="text-xs">
-                <Link href="/">Instagram</Link>
-              </li>
-              <li className="text-xs">
-                <Link href="/">Twitter</Link>
-              </li>
-              <li className="text-xs">
-                <Link href="/">Facebook</Link>
-              </li>
-            </ul>
-          </div>
-          <div style={{ marginRight: "20em", textAlign: "center" }}>
-            <h1 className="text-l font-serif mb-1">Download Our App!</h1>
-            <ul>
-              <li className="text-xs">
-                <Link href="/">App Store</Link>
-              </li>
-              <li className="text-xs">
-                <Link href="/">Google Play Store</Link>
-              </li>
-            </ul>
-          </div>
-          <div style={{ textAlign: "center" }}>
-            <span className="text-xl text-green-800">Oaxaca Restaurant</span>
-          </div>
-        </div>
-
-        <br></br>
-        <hr />
-
-        <div className="text-xs" style={{ textAlign: "right" }}>
-          <Link href="/">Privacy Statement |</Link>
-          <Link href="/"> Terms & Conditions |</Link>
-          <Link href="/"> Cookie Policy </Link>
-          {/* Add other links here */}
-        </div>
-
-        <p className="text-xs" style={{ textAlign: "right" }}>
-          © 2023 – 2024 Oaxaca’s. All Rights Reserved
-        </p>
-      </footer>
+      <Footer />
     </div>
   );
 }
@@ -298,9 +466,18 @@ function NextArrow(props) {
   return (
     <div
       className={className}
-      style={{ ...style, display: "block", background: "green" }}
+      style={{ 
+        ...style, 
+        display: "block",
+        display: "flex", 
+        alignItems: "center", 
+        justifyContent: "center",  
+        background: "rgba(0, 128, 0, 0.5)", 
+        width: "50px", 
+        height: "50px" }}
       onClick={onClick}
-    />
+    >
+    </div>
   );
 }
 
@@ -309,7 +486,14 @@ function PrevArrow(props) {
   return (
     <div
       className={className}
-      style={{ ...style, display: "block", background: "green" }}
+      style={{ ...style,
+        display: "block", 
+        display: "flex", 
+        alignItems: "center", 
+        justifyContent: "center",
+        background: "rgba(0, 128, 0, 0.5)", 
+        width: "50px", 
+        height: "50px" }}
       onClick={onClick}
     />
   );
