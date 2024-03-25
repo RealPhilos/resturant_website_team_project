@@ -15,16 +15,17 @@ public class TableService {
 		this.tableRepo = tableRepo;
 	}
 
-	public List<TableReservation> getAllTable() {
+	public List<TableReservation> getAllTableReservations() {
 		return tableRepo.findAll();
 	}
 
-	public boolean bookTable(String username, int size) {
+	public boolean bookTable(int tableNumber, String username, int size) {
 		List<TableReservation> allList = tableRepo.findAll();
 		for (TableReservation i : allList) {
-			if (i.getTableSize() == size && i.getTableStatus().equals(TableStatus.FREE)) {
+			if (i.getTableNumber() == tableNumber &&
+			    i.getTableSize() == size && i.getTableStatus().equals(TableStatus.FREE)) {
 				i.setUsername(username);
-				i.setTableStatus(TableStatus.INUSE);
+				i.setTableStatus(TableStatus.OCCUPIED);
 				tableRepo.save(i);
 				return true;
 			}
@@ -51,10 +52,5 @@ public class TableService {
 				tableRepo.save(i);
 			}
 		}
-	}
-
-	public List<TableReservation> getAllTableReservations() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 }
