@@ -10,11 +10,18 @@ export default function DashboardPage() {
   const { toast } = useToast();
   const router = useRouter();
 
-  const handleLogout = (e) => {
+  const getRandomEmoji = () => {
+    const emojis = ["👍", "👋", "🫡"];
+    return emojis[Math.floor(Math.random() * emojis.length)];
+  };
+
+  const handleReturn = (e) => {
     e.preventDefault(); // Prevent default link behavior
 
+    const emoji = getRandomEmoji();
+
     toast({
-      title: "You have returned to our homepage!",
+      title: `You have returned to our home page ${emoji}`,
       status: "success",
       duration: 5000,
       isClosable: true,
@@ -45,7 +52,7 @@ export default function DashboardPage() {
         </div>
         <div className="flex justify-end">
           {" "}
-          <a onClick={handleLogout} className="flex items-center">
+          <a onClick={handleReturn} className="flex items-center">
             <span className="text-gray-800">Return to </span>
             <img src="/Icon.png" alt="Oaxaca Icon" className="w-12 h-12 ml-2" />
             <span className="text-xl text-green-800 ml-2">axaca</span>
