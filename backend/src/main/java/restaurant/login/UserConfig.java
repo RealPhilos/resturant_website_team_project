@@ -4,7 +4,6 @@ import java.util.List;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.annotation.Order;
 
 /**
  * This is to pre-make a table.
@@ -12,7 +11,6 @@ import org.springframework.core.annotation.Order;
  * @author Krish Macwan - Zlac463
  */
 @Configuration
-@Order(1)
 public class UserConfig {
 
   @Bean
