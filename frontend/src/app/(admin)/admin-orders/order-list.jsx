@@ -7,14 +7,20 @@ import {
   TableRow,
 } from "@/components/ui/table";
 
-
 export default function OrderList({ order }) {
   console.log(order);
   if (!order) {
-    return null; 
+    return null;
   }
 
-  const orderDate = new Date(order.orderTime[0], order.orderTime[1] - 1, order.orderTime[2], order.orderTime[3], order.orderTime[4], order.orderTime[5]);
+  const orderDate = new Date(
+    order.orderTime[0],
+    order.orderTime[1] - 1,
+    order.orderTime[2],
+    order.orderTime[3],
+    order.orderTime[4],
+    order.orderTime[5]
+  );
   const formattedOrderTime = orderDate.toLocaleTimeString();
 
   return (
@@ -22,24 +28,29 @@ export default function OrderList({ order }) {
       <TableHeader>
         <TableRow>
           <TableHead className="w-[100px]">Id</TableHead>
-          <TableHead style={{ width: '150px' }}>Item</TableHead>
-          <TableHead style={{ width: '150px' }}>Customer</TableHead>
-          <TableHead style={{ width: '150px' }}>Order Time</TableHead>
-          <TableHead style={{ width: '150px' }} className="text-right">Status</TableHead>
+          <TableHead style={{ width: "150px" }}>Item</TableHead>
+          <TableHead style={{ width: "150px" }}>Customer</TableHead>
+          <TableHead style={{ width: "150px" }}>Order Time</TableHead>
+          <TableHead style={{ width: "150px" }} className="text-right">
+            Status
+          </TableHead>
+          <TableHead style={{ width: "150px" }}>Table</TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
         <TableRow>
           <TableCell className="font-medium">{order.id}</TableCell>
-          <TableCell>{order.quantity} x {order.name}</TableCell>
+          <TableCell>
+            {order.quantity} x {order.name}
+          </TableCell>
           <TableCell>{order.username}</TableCell>
           <TableCell>{formattedOrderTime}</TableCell>
           <TableCell className="text-right text-green-600">
             {order.status}
           </TableCell>
+          <TableCell>{order.tableNumber}</TableCell>
         </TableRow>
       </TableBody>
     </Table>
   );
 }
-
