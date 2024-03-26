@@ -40,6 +40,7 @@ export default function MenuPage() {
   const handleMenuAdd = async (data) => {
     try {
       const newMenu = {
+        
         ...data,
       };
       const response = await api.post("/foods", newMenu);
@@ -54,6 +55,7 @@ export default function MenuPage() {
     console.log(data, id);
     try {
       const updatedMenu = {
+        foodId: id,
         ...data,
       };
       const response = await api.put(`/foods/${id}`, updatedMenu);
