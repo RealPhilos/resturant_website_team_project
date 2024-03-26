@@ -7,7 +7,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 
-export default function OrderList({ orders }) {
+export default function OrderList({ orders, setOrders }) {
   const formattedOrderTime = (date) =>
     new Date(
       date[0],
@@ -17,6 +17,24 @@ export default function OrderList({ orders }) {
       date[4],
       date[5]
     ).toLocaleTimeString();
+
+  const handleEditStatus = async (id, status) => {
+    try {
+      const response = await api.put(`/order/${id}`, status);
+      // Sort the menu items alphabetically by name by default
+      setOrders(
+        orders.map((order) => {
+          if (order.id == id) {
+            order.status = status;
+          }
+
+          return order;
+        })
+      );
+    } catch (error) {
+      console.error("Error fetching menu data:", error);
+    }
+  };
 
   return (
     <Table>
@@ -48,12 +66,18 @@ export default function OrderList({ orders }) {
             <TableCell>{order.tableNumber}</TableCell>
             <TableCell>
               {order.status == "COOKING" && (
-                <button className="text-white bg-blue-600 p-2 rounded-md">
+                <button
+                  onClick={() => handleEditStatus(order.id, "DONE")}
+                  className="text-white bg-blue-600 p-2 rounded-md"
+                >
                   Mark as ready
                 </button>
               )}
               {order.status == "DONE" && (
-                <button className="text-white bg-green-600 p-2 rounded-md">
+                <button
+                  onClick={() => handleEditStatus(order.id, "DELIVERED")}
+                  className="text-white bg-green-600 p-2 rounded-md"
+                >
                   Mark as done
                 </button>
               )}
