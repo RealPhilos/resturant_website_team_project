@@ -1,7 +1,9 @@
 "use client";
+import TableColour from "../components/table-colour";
+import { useState } from 'react';
 import TableStatus from "./components/TableStatus";
-import Footer from '../../components/footer';
-import AuthProvider from "../../providers/auth";
+import Footer from '../components/footer';
+import AuthProvider from "../providers/auth";
 
 // @author Luque van der Merwe - ZLAC180
 
