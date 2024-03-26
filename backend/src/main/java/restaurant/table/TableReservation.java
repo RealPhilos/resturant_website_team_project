@@ -4,12 +4,14 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 
 /**
- * @author Luque van der Merwe - ZLAC180
- * Entity class representing a table reservation in the restaurant.
+ * Entity class for table reservation.
+ *
+ * @author Luque van der Merwe - ZLAC180 Entity class representing a table reservation in the
+ *         restaurant.
  */
 @Entity
 public class TableReservation {
-  
+
   @Id
   private int tableNumber;
   private String username;
@@ -28,11 +30,12 @@ public class TableReservation {
     this.tableSize = tableSize;
     this.tableStatus = tableStatus;
   }
+
   /**
-	 * Default constructor.
-	 */
+   * Default constructor.
+   */
   public TableReservation() {}
-  
+
   /**
    * Getter method for tableNumber.
    * 
@@ -41,6 +44,7 @@ public class TableReservation {
   public int getTableNumber() {
     return tableNumber;
   }
+
   /**
    * Setter method for tableNumber.
    * 
@@ -49,6 +53,7 @@ public class TableReservation {
   public void setTableNumber(int tableNumber) {
     this.tableNumber = tableNumber;
   }
+
   /**
    * Getter method for username.
    * 
@@ -57,6 +62,7 @@ public class TableReservation {
   public String getUsername() {
     return username;
   }
+
   /**
    * Setter method for username.
    * 
@@ -65,6 +71,7 @@ public class TableReservation {
   public void setUsername(String username) {
     this.username = username;
   }
+
   /**
    * Getter method for tableSize.
    * 
@@ -73,6 +80,7 @@ public class TableReservation {
   public int getTableSize() {
     return tableSize;
   }
+
   /**
    * Setter method for tableSize.
    * 
@@ -81,6 +89,7 @@ public class TableReservation {
   public void setTableSize(int tableSize) {
     this.tableSize = tableSize;
   }
+
   /**
    * Getter method for tableStatus.
    * 
@@ -89,6 +98,7 @@ public class TableReservation {
   public TableStatus getTableStatus() {
     return tableStatus;
   }
+
   /**
    * Setter method for tableStatus.
    * 
@@ -97,6 +107,7 @@ public class TableReservation {
   public void setTableStatus(TableStatus tableStatus) {
     this.tableStatus = tableStatus;
   }
+
   /**
    * Returns the string representation of the table reservation.
    * 

@@ -3,10 +3,15 @@
 import { useContext } from "react";
 import NavBar from "./navbar";
 import { AuthContext } from "../providers/auth";
-import { redirect } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 
 export default function DashboardLayout({ children }) {
   const { user } = useContext(AuthContext);
+  const router = useRouter();
+
+  if (!user) {
+    router.replace("/");
+  }
 
   return (
     <>
