@@ -33,7 +33,7 @@ export default function OrderPage() {
             <span>All</span>
           </TabsTrigger>
           <TabsTrigger className="cursor-pointer" value="processing">
-            <span>Processing</span>
+            <span>Cooking</span>
           </TabsTrigger>
           <TabsTrigger className="cursor-pointer" value="ready">
             <span>Ready</span>
@@ -43,7 +43,9 @@ export default function OrderPage() {
           <OrderList orders={orders} />
         </TabsContent>
         <TabsContent value="processing">
-          <p>Processing</p>
+          <OrderList
+            orders={orders.filter((order) => order.status == "COOKING")}
+          />
         </TabsContent>
         <TabsContent value="ready">
           <p>Ready</p>
