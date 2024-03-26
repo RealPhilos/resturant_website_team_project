@@ -71,7 +71,19 @@ export default function MenuPage() {
   };
 
 
-
+  const handleMenuDelete = async (id) => {  
+    try {
+      const response = await api.delete(`/foods/${id}`);
+      if (response.status === 200) {
+        setMenus((prevMenus) => prevMenus.filter((menu) => menu.foodId !== id));
+      } else {
+        console.error("Failed to delete menu:", response.statusText);
+      }
+    } catch (error) {
+      console.error("Error deleting menu:", error);
+    }
+  }
+  
   return (
     <div className="p-6">
   <div className="flex justify-between">
@@ -294,7 +306,7 @@ export default function MenuPage() {
             </form>
           </DialogContent>
         </Dialog>
-        <button className="bg-red-600 text-white p-2 rounded-lg">
+        <button onClick={() => handleMenuDelete(menu.foodId)} className="bg-red-600 text-white p-2 rounded-lg">
           Delete
         </button>
       </div>
