@@ -1,18 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import api from "../../services/api";
 import { AuthContext } from "@/app/providers/auth";
-import { useContext } from "react";
 
 function TableStatus({ openModal }) {
     const [tableStatuses, setTableStatuses] = useState([]);
-    const { user } = useContext(AuthContext);
+    const { isLoggedIn, username } = useContext(AuthContext); // Accessing context
 
     useEffect(() => {
         const fetchTableStatuses = async () => {
             try {
                 const response = await api.get("/table");
                 if (response && response.data && Array.isArray(response.data)) {
-                    // Check if response.data is an array
                     const sortedData = response.data.sort((a, b) => (a.tableNumber - b.tableNumber));
                     setTableStatuses(sortedData);
                 } else {
@@ -38,10 +36,10 @@ function TableStatus({ openModal }) {
         }
     };
 
-    const reserveTable = async (user, tableNumber, tableSize) => {
-        console.log('User:', user); // Log user object
+    // Function to reserve table
+    const reserveTable = async (tableNumber, tableSize) => {
         try {
-            const response = await api.post(`table/bookTable/${tableNumber}/${user.username}/${tableSize}`);
+            const response = await api.post(`table/bookTable/${tableNumber}/${username}/${tableSize}`);
             if (response.status === 200) {
                 // Update table status locally  
                 const updatedTableStatuses = tableStatuses.map(table => {
@@ -58,14 +56,13 @@ function TableStatus({ openModal }) {
             console.error('Error reserving table:', error);
         }
     };
-    
 
     return (
         <div className="grid grid-cols-4 gap-4">
             {tableStatuses.map((table, index) => (
                 <button key={index} className={`p-4 rounded-lg ${getStatusColor(table.tableStatus)}`} onClick={() => {
                     if (table.tableStatus === 'FREE') {
-                        reserveTable(user, table.tableNumber, table.tableSize); // Pass tableNumber as argument
+                        reserveTable(table.tableNumber, table.tableSize);
                     } else {
                         // Optionally handle click on other table statuses
                     }
