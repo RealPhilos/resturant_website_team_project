@@ -31,23 +31,25 @@ export default function OrderPage() {
           <TabsTrigger className="cursor-pointer" value="all">
             <span>All</span>
           </TabsTrigger>
-          <TabsTrigger className="cursor-pointer" value="processing">
-            <span>Cooking</span>
+          <TabsTrigger className="cursor-pointer" value="chef">
+            <span>Chef</span>
           </TabsTrigger>
-          <TabsTrigger className="cursor-pointer" value="ready">
-            <span>Ready</span>
+          <TabsTrigger className="cursor-pointer" value="waiter">
+            <span>Waiter</span>
           </TabsTrigger>
         </TabsList>
         <TabsContent value="all">
           <OrderList setOrders={setOrders} orders={orders} />
         </TabsContent>
-        <TabsContent value="processing">
+        <TabsContent value="chef">
           <OrderList
             setOrders={setOrders}
-            orders={orders.filter((order) => order.status == "COOKING")}
+            orders={orders.filter(
+              (order) => order.status == "COOKING" || order.status === "ORDERED"
+            )}
           />
         </TabsContent>
-        <TabsContent value="ready">
+        <TabsContent value="waiter">
           <OrderList
             setOrders={setOrders}
             orders={orders.filter((order) => order.status == "DONE")}
