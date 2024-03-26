@@ -19,28 +19,56 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(path = "table")
 public class TableController {
   private TableService tableService;
-
+  
+  /**
+   * Constructor injection of {@link restaurant.table.TableService}.
+   * 
+   * @param tableService the service responsible for table operations.
+   */
   @Autowired
   public TableController(TableService tableService) {
     this.tableService = tableService;
   }
-
+  
+  /**
+   * Endpoint to get all table reservations.
+   * 
+   * @return a list of {@link restaurant.table.TableReservation}.
+   */
   @GetMapping
   public List<TableReservation> getAllTable() {
     return tableService.getAllTableReservations();
   }
-
+  
+  /**
+   * EndPoint to book a table for a specific user and size.
+   * 
+   * @param tableNumber the number of the table to be booked.
+   * @param username the username of the user booking the table.
+   * @param size the size of the table to be booked.
+   * @return {@code true} if the table was successfully booked, {@code false} otherwise.
+   */
   @PostMapping(path = "/bookTable/{tableNumber}/{username}/{size}")
   public boolean bookTable(@PathVariable("tableNumber") int tableNumber,
       @PathVariable("username") String username, @PathVariable("size") int size) {
     return tableService.bookTable(tableNumber, username, size);
   }
-
+  
+  /**
+   * Endpoint to mark a table as finished.
+   * 
+   * @param username the username of the user who finished dining.
+   */
   @PostMapping(path = "/tableFinish/{username}")
   public void tableFinish(@PathVariable("username") String username) {
     tableService.tableFinish(username);
   }
-
+  
+  /**
+   * Endpoint to mark a table as cleaned.
+   * 
+   * @param tableNumber the number of the table to be marked as cleaned.
+   */
   @PostMapping(path = "/tableCleaned/{tableNumber}")
   public void tableCleaned(@PathVariable("tableNumber") int tableNumber) {
     tableService.tableCleaned(tableNumber);
