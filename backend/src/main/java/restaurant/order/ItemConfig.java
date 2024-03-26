@@ -25,13 +25,13 @@ public class ItemConfig {
   @Bean
   CommandLineRunner itemDataInitializer(ItemRepository itemRepository) {
     return args -> {
-      Item sushi = new Item("sushi", 3, "table 1", "Malcolm");
+      Item sushi = new Item("sushi", 3, "Table 1", "Malcolm");
       sushi.setStatus("ordered");
-      Item pasta = new Item("pasta", 2, "table 1", "Malcolm");
+      Item pasta = new Item("pasta", 2, "Table 1", "Malcolm");
       pasta.setStatus("cooking");
-      Item pizza = new Item("pizza", 3, "table 2", "Krish");
+      Item pizza = new Item("pizza", 3, "Table 2", "Krish");
       pizza.setStatus("done");
-      Item burger = new Item("burger", 3, "table 2", "Krish");
+      Item burger = new Item("burger", 3, "Table 2", "Krish");
       burger.setStatus("delivered");
       itemRepository.saveAll(List.of(sushi, pasta, pizza, burger));
     };
