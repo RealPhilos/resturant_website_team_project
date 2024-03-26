@@ -48,7 +48,9 @@ export default function OrderPage() {
           />
         </TabsContent>
         <TabsContent value="ready">
-          <p>Ready</p>
+          <OrderList
+            orders={orders.filter((order) => order.status == "DONE")}
+          />
         </TabsContent>
       </Tabs>
     </div>
