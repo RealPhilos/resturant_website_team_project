@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * Controller class for managing tables.
+ * This is the Controller class to handle HTTP requests related to restaurants'
+ * tables.
+ * 
  * @author Kasim
  * @author Luque van der Merwe - ZLAC180
  */

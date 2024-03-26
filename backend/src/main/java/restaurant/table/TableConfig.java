@@ -6,7 +6,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * config class for table.
+ * This is the configuration class for initialising table reservations in the restaurant.
+ * @author Kasim - zjac003
  */
 @Configuration
 public class TableConfig {
