@@ -8,16 +8,17 @@ import React, { useEffect, useState } from "react";
 export default function OrderPage() {
   const [orders, setOrders] = useState([]);
 
+  const fetchOrders = async () => {
+    try {
+      const response = await api.get("/order");
+      // Sort the menu items alphabetically by name by default
+      setOrders(response.data);
+    } catch (error) {
+      console.error("Error fetching order data:", error);
+    }
+  };
+
   useEffect(() => {
-    const fetchOrders = async () => {
-      try {
-        const response = await api.get("/order");
-        // Sort the menu items alphabetically by name by default
-        setOrders(response.data);
-      } catch (error) {
-        console.error("Error fetching order data:", error);
-      }
-    };
     fetchOrders();
   }, []);
 
@@ -39,7 +40,11 @@ export default function OrderPage() {
           </TabsTrigger>
         </TabsList>
         <TabsContent value="all">
-          <OrderList setOrders={setOrders} orders={orders} />
+          <OrderList
+            setOrders={setOrders}
+            orders={orders}
+            refreshOrders={fetchOrders}
+          />
         </TabsContent>
         <TabsContent value="chef">
           <OrderList
@@ -47,12 +52,14 @@ export default function OrderPage() {
             orders={orders.filter(
               (order) => order.status == "COOKING" || order.status === "ORDERED"
             )}
+            refreshOrders={fetchOrders}
           />
         </TabsContent>
         <TabsContent value="waiter">
           <OrderList
             setOrders={setOrders}
             orders={orders.filter((order) => order.status == "DONE")}
+            refreshOrders={fetchOrders}
           />
         </TabsContent>
       </Tabs>
