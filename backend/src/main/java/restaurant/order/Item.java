@@ -51,6 +51,7 @@ public class Item {
   // Getters and Setters
 
   public void setStatus(String status) {
+    System.out.println(OrderStatus.convertFromString(status));
     this.orderStatus = OrderStatus.convertFromString(status);
   }
 

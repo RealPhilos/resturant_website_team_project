@@ -1,3 +1,4 @@
+import api from "@/app/services/api";
 import {
   Table,
   TableBody,
@@ -20,19 +21,25 @@ export default function OrderList({ orders, setOrders }) {
 
   const handleEditStatus = async (id, status) => {
     try {
-      const response = await api.put(`/order/${id}`, status);
+      const response = await api.put(`/order/${id}`, status, {
+        headers: {
+          "Content-Type": "text/plain",
+        },
+      });
+
+      console.log(response);
       // Sort the menu items alphabetically by name by default
       setOrders(
         orders.map((order) => {
           if (order.id == id) {
-            order.status = status;
+            order.status = status?.toUpperCase();
           }
 
           return order;
         })
       );
     } catch (error) {
-      console.error("Error fetching menu data:", error);
+      console.error("Error fetching order data:", error);
     }
   };
 
@@ -67,7 +74,7 @@ export default function OrderList({ orders, setOrders }) {
             <TableCell>
               {order.status == "COOKING" && (
                 <button
-                  onClick={() => handleEditStatus(order.id, "DONE")}
+                  onClick={() => handleEditStatus(order.id, "done")}
                   className="text-white bg-blue-600 p-2 rounded-md"
                 >
                   Mark as ready
@@ -75,7 +82,7 @@ export default function OrderList({ orders, setOrders }) {
               )}
               {order.status == "DONE" && (
                 <button
-                  onClick={() => handleEditStatus(order.id, "DELIVERED")}
+                  onClick={() => handleEditStatus(order.id, "delivered")}
                   className="text-white bg-green-600 p-2 rounded-md"
                 >
                   Mark as done

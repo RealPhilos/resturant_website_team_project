@@ -2,6 +2,7 @@ package restaurant.order;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,7 +18,10 @@ import org.springframework.web.bind.annotation.RestController;
  * Controller class for managing item-related requests.
  * 
  * @Author Malcolm Berset - Zlac157
+ * @Author Parvesh Kumar - Wlis205
+ * @Author Ahmed Alyami - Wlis021
  */
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping(path = "/order")
 public class ItemController {
@@ -91,11 +95,18 @@ public class ItemController {
     return "Item added successfully";
   }
 
+  /**
+   * Change the status of the order.
+   *
+   * @param orderId path variable orderId
+   * @param status the updated item
+   */
   @PutMapping(path = "{orderId}")
   public void updateOrder(@PathVariable("orderId") Long orderId,
-      @RequestParam(required = false) String status) {
-    itemService.updateOrderStatus(orderId, status);
+      @RequestBody String status) {
 
+    System.out.println("Controller value: " + status);
+    itemService.updateOrderStatus(orderId, status);
   }
 
   /**

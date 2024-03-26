@@ -86,7 +86,9 @@ public class ItemService {
         () -> new IllegalStateException("Item with ID " + orderId + " does not exist"));
 
     if (status != null) {
-      order.setName(status);
+      order.setStatus(status);
     }
+
+    itemRepository.save(order);
   }
 }
