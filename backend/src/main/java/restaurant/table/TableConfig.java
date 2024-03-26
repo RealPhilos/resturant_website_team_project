@@ -1,11 +1,14 @@
 package restaurant.table;
 
 import java.util.List;
-
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+/**
+ * This is the configuration class for initialising table reservations in the restaurant.
+ * @author Kasim - zjac003
+ */
 @Configuration
 public class TableConfig {
   @Bean
