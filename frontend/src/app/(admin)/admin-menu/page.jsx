@@ -81,6 +81,18 @@ export default function MenuPage() {
                 )}
               </div>
               <div className="flex flex-col items-start w-full gap-1">
+                <label htmlFor="imgPath" className="text-right">
+                  ImgPath
+                </label>
+                <input
+                  {...register("imgPath", { required: true })}
+                  className="pl-2 h-8 border border-gray-300 rounded-md w-full"
+                />
+                {errors.price && (
+                  <span className="text-red-700">Menu price is required</span>
+                )}
+              </div>
+              <div className="flex flex-col items-start w-full gap-1">
                 <label htmlFor="price" className="text-right">
                   Price
                 </label>
@@ -135,6 +147,7 @@ export default function MenuPage() {
       </div>
       <div className="flex flex-col gap-3 mt-5">
         {menus.map((menu) => (
+
           <div className="border border-gray-400 rounded-lg flex justify-between">
             <div className="flex gap-3">
               <img
