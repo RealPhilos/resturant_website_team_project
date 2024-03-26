@@ -1,14 +1,10 @@
 package restaurant.order;
 
 
+import jakarta.transaction.Transactional;
 import java.util.List;
-import java.util.Objects;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import jakarta.transaction.Transactional;
-import restaurant.menu.Food;
 
 /**
  * Service class responsible for managing items.
@@ -37,7 +33,7 @@ public class ItemService {
   public List<Item> getItemsByUsername(String username) {
     return itemRepository.findByUsername(username);
   }
-  
+
   public List<Item> getItemsByTableNumber(String tableNumber) {
     return itemRepository.findByTableNumber(tableNumber);
   }
@@ -80,16 +76,19 @@ public class ItemService {
 
   /**
    * method for updating the order entity based on the id.
+   * 
    * @param orderId id of the order
    * @param status status of the order
    */
   @Transactional
   public void updateOrderStatus(Long orderId, String status) {
-    Item order = itemRepository.findById(orderId)
-        .orElseThrow(() -> new IllegalStateException("Item with ID " + orderId + " does not exist"));
+    Item order = itemRepository.findById(orderId).orElseThrow(
+        () -> new IllegalStateException("Item with ID " + orderId + " does not exist"));
 
     if (status != null) {
-      order.setName(status);
+      order.setStatus(status);
     }
+
+    itemRepository.save(order);
   }
 }

@@ -1,3 +1,4 @@
+import api from "@/app/services/api";
 import {
   Table,
   TableBody,
@@ -7,7 +8,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 
-export default function OrderList({ orders }) {
+export default function OrderList({ orders, setOrders }) {
   const formattedOrderTime = (date) =>
     new Date(
       date[0],
@@ -17,6 +18,30 @@ export default function OrderList({ orders }) {
       date[4],
       date[5]
     ).toLocaleTimeString();
+
+  const handleEditStatus = async (id, status) => {
+    try {
+      const response = await api.put(`/order/${id}`, status, {
+        headers: {
+          "Content-Type": "text/plain",
+        },
+      });
+
+      console.log(response);
+      // Sort the menu items alphabetically by name by default
+      setOrders(
+        orders.map((order) => {
+          if (order.id == id) {
+            order.status = status?.toUpperCase();
+          }
+
+          return order;
+        })
+      );
+    } catch (error) {
+      console.error("Error fetching order data:", error);
+    }
+  };
 
   return (
     <Table>
@@ -48,12 +73,18 @@ export default function OrderList({ orders }) {
             <TableCell>{order.tableNumber}</TableCell>
             <TableCell>
               {order.status == "COOKING" && (
-                <button className="text-white bg-blue-600 p-2 rounded-md">
+                <button
+                  onClick={() => handleEditStatus(order.id, "done")}
+                  className="text-white bg-blue-600 p-2 rounded-md"
+                >
                   Mark as ready
                 </button>
               )}
               {order.status == "DONE" && (
-                <button className="text-white bg-green-600 p-2 rounded-md">
+                <button
+                  onClick={() => handleEditStatus(order.id, "delivered")}
+                  className="text-white bg-green-600 p-2 rounded-md"
+                >
                   Mark as done
                 </button>
               )}

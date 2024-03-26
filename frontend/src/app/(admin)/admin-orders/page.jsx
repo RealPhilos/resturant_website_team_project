@@ -13,7 +13,6 @@ export default function OrderPage() {
       try {
         const response = await api.get("/order");
         // Sort the menu items alphabetically by name by default
-
         setOrders(response.data);
       } catch (error) {
         console.error("Error fetching order data:", error);
@@ -40,15 +39,17 @@ export default function OrderPage() {
           </TabsTrigger>
         </TabsList>
         <TabsContent value="all">
-          <OrderList orders={orders} />
+          <OrderList setOrders={setOrders} orders={orders} />
         </TabsContent>
         <TabsContent value="processing">
           <OrderList
+            setOrders={setOrders}
             orders={orders.filter((order) => order.status == "COOKING")}
           />
         </TabsContent>
         <TabsContent value="ready">
           <OrderList
+            setOrders={setOrders}
             orders={orders.filter((order) => order.status == "DONE")}
           />
         </TabsContent>

@@ -2,6 +2,7 @@ package restaurant.order;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,18 +18,21 @@ import org.springframework.web.bind.annotation.RestController;
  * Controller class for managing item-related requests.
  * 
  * @Author Malcolm Berset - Zlac157
+ * @Author Parvesh Kumar - Wlis205
+ * @Author Ahmed Alyami - Wlis021
  */
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping(path = "/order")
 public class ItemController {
 
   /**
-   *  Calling the ItemService class.
+   * Calling the ItemService class.
    */
   private final ItemService itemService;
 
   // This ItemService is injected into ItemController
-  @Autowired //Indicates that ItemService will be instantiated and injected into the controller.
+  @Autowired // Indicates that ItemService will be instantiated and injected into the controller.
   public ItemController(ItemService itemService) {
     this.itemService = itemService;
   }
@@ -42,7 +46,7 @@ public class ItemController {
   public List<Item> getItems() {
     return itemService.getItems();
   }
-  
+
   /**
    * Retrieves all items ordered by a specific user.
    * 
@@ -54,7 +58,7 @@ public class ItemController {
   public List<Item> getItemsByUsername(@PathVariable String username) {
     return itemService.getItemsByUsername(username);
   }
-  
+
   /**
    * Retrieves all items ordered by a specific table.
    * 
@@ -72,8 +76,8 @@ public class ItemController {
    * Add a new item based on the provided request body.
    *
    * @param item The item to be added.
-   * @return A success message if the item is added successfully, 
-   *         or an error message if any required field is missing.
+   * @return A success message if the item is added successfully, or an error message if any
+   *         required field is missing.
    */
   @PostMapping(path = "add")
   public String addNewItem(@RequestBody Item item) {
@@ -91,11 +95,18 @@ public class ItemController {
     return "Item added successfully";
   }
 
+  /**
+   * Change the status of the order.
+   *
+   * @param orderId path variable orderId
+   * @param status the updated item
+   */
   @PutMapping(path = "{orderId}")
   public void updateOrder(@PathVariable("orderId") Long orderId,
-      @RequestParam(required = false) String status) {
-    itemService.updateOrderStatus(orderId, status);
+      @RequestBody String status) {
 
+    System.out.println("Controller value: " + status);
+    itemService.updateOrderStatus(orderId, status);
   }
 
   /**
@@ -109,7 +120,7 @@ public class ItemController {
     itemService.cancelItem(itemId);
     return "Item canceled successfully";
   }
-  
+
   /**
    * Deletes all items associated with a given username.
    *

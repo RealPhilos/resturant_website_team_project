@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import api from "../../services/api";
+import api from "../../../services/api";
 import { AuthContext } from "@/app/providers/auth";
 
 function TableStatus({ openModal }) {

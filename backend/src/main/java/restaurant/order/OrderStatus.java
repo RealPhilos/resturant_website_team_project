@@ -22,6 +22,7 @@ public enum OrderStatus {
    * @return Returns enum constant corresponding to parameter given
    */
   public static OrderStatus convertFromString(String str) {
+    System.out.println("status in convert: " + str);
     switch (str) {
       case "delivered":
         return OrderStatus.DELIVERED;
