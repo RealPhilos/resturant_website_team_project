@@ -26,7 +26,6 @@ const TablePage = () => {
         </div>
         <hr />
         <br />
-        <Footer />
       </div>
     </AuthProvider>
   );  

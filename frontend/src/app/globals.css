@@ -67,6 +67,10 @@
   }
 }
 
+.text-xxs {
+  font-size: 0.6rem;
+}
+
 @layer base {
   * {
     @apply border-border;

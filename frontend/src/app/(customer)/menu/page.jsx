@@ -250,7 +250,6 @@ function MenuPage() {
      <br></br>
      <br></br>
 
-     <Footer />
     </div>
   );
 }

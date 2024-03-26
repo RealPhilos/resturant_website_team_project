@@ -10,7 +10,6 @@ import { Fade } from 'react-awesome-reveal';
 import { AuthContext } from "./../providers/auth";
 import { useState, useEffect, useContext } from 'react';
 import OrderButton from "../components/order-now-button";
-import Footer from "../components/footer";
 
 export default function Home() {
   
@@ -184,6 +183,7 @@ export default function Home() {
       justifyContent: "center" }}>
             <h1 className="text-3xl font-serif">World Famous Lamb Steak!</h1>
             <p>Most Popular</p>
+            <br></br>
             <OrderButton userType={userType} isLoggedIn={isLoggedIn} />
           </div>
         </div>
@@ -219,6 +219,7 @@ export default function Home() {
       justifyContent: "center" }}>
             <h1 className="text-3xl font-serif">Award Winning Wings!</h1>
             <p>Most Popular</p>
+            <br></br>
             <OrderButton userType={userType} isLoggedIn={isLoggedIn} />
           </div>
           <video
@@ -270,6 +271,7 @@ export default function Home() {
       justifyContent: "center" }}>
             <h1 className="text-3xl font-serif">Try Our Tacos!</h1>
             <p>Great Healthy Option</p>
+            <br></br>
             <OrderButton userType={userType} isLoggedIn={isLoggedIn} />
           </div>
         </div>
@@ -304,6 +306,7 @@ export default function Home() {
       justifyContent: "center" }}>
             <h1 className="text-3xl font-serif">Try Our Salad!</h1>
             <p>Great Healthy Option</p>
+            <br></br>
             <OrderButton userType={userType} isLoggedIn={isLoggedIn} />
           </div>
           <video
@@ -355,6 +358,7 @@ export default function Home() {
       justifyContent: "center" }}>
             <h1 className="text-3xl font-serif">Try Our Pizza!</h1>
             <p>Only At Oaxaca's</p>
+            <br></br>
             <OrderButton userType={userType} isLoggedIn={isLoggedIn} />
           </div>
         </div>
@@ -389,6 +393,7 @@ export default function Home() {
       justifyContent: "center" }}>
             <h1 className="text-3xl font-serif">Try Our Burger!</h1>
             <p>Only At Oaxaca's</p>
+            <br></br>
             <OrderButton userType={userType} isLoggedIn={isLoggedIn} />
           </div>
           <video
@@ -438,8 +443,11 @@ export default function Home() {
       justifyContent: "center" }}>
             <h1 className="text-3xl font-serif">Download the Mobile App!</h1>
             <p>Coming Very Soon</p>
+            <br></br>
             <button className="bg-green-800 text-white px-3 py-2 rounded-md">
+            <Link href="/info">
               Find Out More!
+            </Link>
             </button>
           </div>
         </div>
@@ -449,6 +457,51 @@ export default function Home() {
         </div>
 
         <br></br>
+
+        <div style={{ 
+        borderRadius: "1.5rem", 
+        border: "2px solid #000000",
+        backgroundColor: "#FAFAF5",  }}>
+        <br></br>
+
+        <Fade>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            padding: "1em",
+            marginTop: "2em",
+          }}
+        >
+          <div style={{ 
+            width: "50%", 
+      display: "flex", 
+      flexDirection: "column", 
+      alignItems: "center", 
+      justifyContent: "center" }}>
+            <h1 className="text-3xl font-serif">Join Our Team!</h1>
+            <p>Careers</p>
+            <br></br>
+            <button className="bg-green-800 text-white px-3 py-2 rounded-md">
+            <Link href="/info">
+              Find Out More!
+            </Link>
+            </button>
+          </div>
+          <video
+          src="/chefVid.mp4" 
+          autoPlay
+          loop
+          muted alt="Chef" 
+          style={{ width: "30%",
+          borderRadius: "1.5rem", 
+          margin: "auto" }} />
+        </div>
+        </Fade>
+
+        <br></br>
+        </div>
         
       </main>
 
@@ -456,7 +509,6 @@ export default function Home() {
       <hr />
       <br></br>
 
-      <Footer />
     </div>
   );
 }
