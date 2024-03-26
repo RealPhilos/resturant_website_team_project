@@ -73,20 +73,37 @@ export default function OrderList({ orders, setOrders }) {
             <TableCell>{order.tableNumber}</TableCell>
             <TableCell>
               {order.status == "COOKING" && (
-                <button
-                  onClick={() => handleEditStatus(order.id, "done")}
-                  className="text-white bg-blue-600 p-2 rounded-md"
-                >
-                  Mark as ready
-                </button>
+                <>
+                  <button
+                    onClick={() => handleEditStatus(order.id, "done")}
+                    className="text-white bg-green-600 p-2 rounded-md"
+                  >
+                    Mark as Done
+                  </button>
+                  <span className="ml-2">Chef</span>
+                </>
               )}
               {order.status == "DONE" && (
-                <button
-                  onClick={() => handleEditStatus(order.id, "delivered")}
-                  className="text-white bg-green-600 p-2 rounded-md"
-                >
-                  Mark as done
-                </button>
+                <>
+                  <button
+                    onClick={() => handleEditStatus(order.id, "delivered")}
+                    className="text-white bg-black p-2 rounded-md"
+                  >
+                    Mark as Delivered
+                  </button>
+                  <span className="ml-2">Waiter</span>
+                </>
+              )}
+              {order.status == "ORDERED" && (
+                <>
+                  <button
+                    className="text-white bg-red-600 p-2 rounded-md"
+                    onClick={() => handleEditStatus(order.id, "cooking")}
+                  >
+                    Mark as Cooking
+                  </button>
+                  <span className="ml-2">Chef</span>
+                </>
               )}
             </TableCell>
           </TableRow>

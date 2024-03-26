@@ -10,10 +10,13 @@ function NavBar() {
       className="bg-gray-300 px-[13vw] py-7 flex items-center justify-between"
       style={{ backgroundColor: "#FAFAF5" }}
     >
-      <a href="/" className="flex items-center text-green-800">
-        <img src="/Icon.png" alt="Oaxaca Icon" className="w-12 h-12" />
-        <span className="text-xl text-green-800">axaca</span>
-      </a>
+      <Link href="/">
+        <div className="flex items-center text-green-800 cursor-pointer">
+          <img src="/Icon.png" alt="Oaxaca Icon" className="w-12 h-12" />
+          <span className="text-xl text-green-800">axaca</span>
+        </div>
+      </Link>
+
       <div className="flex gap-9 text-gray-700 items-center">
         <Link href="/menu">
           <span>Menu</span>
