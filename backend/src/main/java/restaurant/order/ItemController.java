@@ -23,12 +23,12 @@ import org.springframework.web.bind.annotation.RestController;
 public class ItemController {
 
   /**
-   *  Calling the ItemService class.
+   * Calling the ItemService class.
    */
   private final ItemService itemService;
 
   // This ItemService is injected into ItemController
-  @Autowired //Indicates that ItemService will be instantiated and injected into the controller.
+  @Autowired // Indicates that ItemService will be instantiated and injected into the controller.
   public ItemController(ItemService itemService) {
     this.itemService = itemService;
   }
@@ -42,7 +42,7 @@ public class ItemController {
   public List<Item> getItems() {
     return itemService.getItems();
   }
-  
+
   /**
    * Retrieves all items ordered by a specific user.
    * 
@@ -54,7 +54,7 @@ public class ItemController {
   public List<Item> getItemsByUsername(@PathVariable String username) {
     return itemService.getItemsByUsername(username);
   }
-  
+
   /**
    * Retrieves all items ordered by a specific table.
    * 
@@ -72,8 +72,8 @@ public class ItemController {
    * Add a new item based on the provided request body.
    *
    * @param item The item to be added.
-   * @return A success message if the item is added successfully, 
-   *         or an error message if any required field is missing.
+   * @return A success message if the item is added successfully, or an error message if any
+   *         required field is missing.
    */
   @PostMapping(path = "add")
   public String addNewItem(@RequestBody Item item) {
@@ -109,7 +109,7 @@ public class ItemController {
     itemService.cancelItem(itemId);
     return "Item canceled successfully";
   }
-  
+
   /**
    * Deletes all items associated with a given username.
    *
