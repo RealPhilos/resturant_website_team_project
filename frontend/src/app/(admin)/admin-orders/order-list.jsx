@@ -34,7 +34,7 @@ export default function OrderList({ orders }) {
       </TableHeader>
       <TableBody>
         {orders.map((order) => (
-          <TableRow>
+          <TableRow key={order.id}>
             <TableCell className="font-medium">{order.id}</TableCell>
             <TableCell>
               {order.quantity} x {order.name}
