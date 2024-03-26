@@ -44,17 +44,15 @@ export default function OrderList({ orders, setOrders }) {
   };
 
   return (
-    <Table>
+    <Table className="min-w-full">
       <TableHeader>
         <TableRow>
-          <TableHead className="w-[100px]">Id</TableHead>
-          <TableHead style={{ width: "150px" }}>Item</TableHead>
-          <TableHead style={{ width: "150px" }}>Customer</TableHead>
-          <TableHead style={{ width: "150px" }}>Order Time</TableHead>
-          <TableHead style={{ width: "150px" }} className="text-right">
-            Status
-          </TableHead>
-          <TableHead style={{ width: "150px" }}>Table</TableHead>
+          <TableHead className="w-1/12">Id</TableHead>
+          <TableHead className="w-3/12">Item</TableHead>
+          <TableHead className="w-2/12">Customer</TableHead>
+          <TableHead className="w-2/12">Order Time</TableHead>
+          <TableHead className="w-1/12 text-right">Status</TableHead>
+          <TableHead className="w-1/12">Table</TableHead>
           <TableHead>Action</TableHead>
         </TableRow>
       </TableHeader>
