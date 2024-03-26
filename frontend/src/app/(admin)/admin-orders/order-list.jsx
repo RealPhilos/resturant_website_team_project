@@ -52,7 +52,7 @@ export default function OrderList({ orders }) {
                   Mark as ready
                 </button>
               )}
-              {order.status == "READY" && (
+              {order.status == "DONE" && (
                 <button className="text-white bg-green-600 p-2 rounded-md">
                   Mark as done
                 </button>
