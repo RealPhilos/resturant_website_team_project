@@ -6,16 +6,13 @@ import api from "../../services/api";
 import React, { useEffect, useState } from "react";
 
 export default function OrderPage() {
-
   const [orders, setOrders] = useState([]);
 
-  
   useEffect(() => {
     const fetchOrders = async () => {
       try {
         const response = await api.get("/order");
         // Sort the menu items alphabetically by name by default
-       
 
         setOrders(response.data);
       } catch (error) {
@@ -36,23 +33,24 @@ export default function OrderPage() {
             <span>All</span>
           </TabsTrigger>
           <TabsTrigger className="cursor-pointer" value="processing">
-            <span>Processing</span>
+            <span>Cooking</span>
           </TabsTrigger>
           <TabsTrigger className="cursor-pointer" value="ready">
             <span>Ready</span>
           </TabsTrigger>
         </TabsList>
         <TabsContent value="all">
-        {orders.map((order) => (
-          <OrderList key={order.id} order={order} />
-          ))}
-          <OrderList />
+          <OrderList orders={orders} />
         </TabsContent>
         <TabsContent value="processing">
-          <p>Processing</p>
+          <OrderList
+            orders={orders.filter((order) => order.status == "COOKING")}
+          />
         </TabsContent>
         <TabsContent value="ready">
-          <p>Ready</p>
+          <OrderList
+            orders={orders.filter((order) => order.status == "DONE")}
+          />
         </TabsContent>
       </Tabs>
     </div>

@@ -26,7 +26,10 @@ function MenuCard({ menu, openModal }) {
         alt={menu.name}
         className="w-full rounded-t-3xl h-56 object-cover"
       />
-      <div className="p-4 rounded-3xl bg-[#FAFAF5]">
+      <div
+        className="p-4 rounded-3xl bg-[#FAFAF5]"
+        style={{ minHeight: "150px" }}
+      >
         <h3 className="text-lg font-semibold">{menu.name}</h3>
         <p className="text-md text-gray-600 mb-2">£{menu.price}</p>
         <p className="text-gray-700 text-sm mb-2">{menu.description}</p>

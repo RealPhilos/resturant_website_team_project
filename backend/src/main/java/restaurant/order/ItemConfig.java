@@ -14,7 +14,6 @@ import org.springframework.core.annotation.Order;
  * @author Luque van der Merwe - ZLAC180
  */
 @Configuration // Indicates that this class is a Spring configuration class.
-@Order(6) // Specifies the order in which this configuration should be loaded.
 public class ItemConfig {
 
   /**

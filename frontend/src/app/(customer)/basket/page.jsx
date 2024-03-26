@@ -69,6 +69,7 @@ function Basket() {
 
     let successItems = []; // Keep track of successfully sent items
     let errorItems = []; // Keep track of items that failed to send
+    const username = user?.username || "guest";
 
     for (const item of cart) {
       const orderData = {
@@ -76,7 +77,7 @@ function Basket() {
         quantity: item.quantity,
         tableNumber: "table 1",
         status: "", // Already set to ordered.
-        username: user.username,
+        username: username,
       };
 
       try {
@@ -92,7 +93,7 @@ function Basket() {
     if (successItems.length > 0) {
       setCart([]);
       toast({
-        title: "Orders Sent",
+        title: `Orders Sent by ${username}`,
         description: `Orders for ${successItems.join(", ")} sent successfully.`,
         status: "success",
         duration: 5000,
@@ -102,7 +103,7 @@ function Basket() {
 
     if (errorItems.length > 0) {
       toast({
-        title: "Some Orders Failed",
+        title: `Some Orders Failed by ${username}`,
         description: `Error sending orders for ${errorItems.join(", ")}.`,
         status: "error",
         duration: 5000,

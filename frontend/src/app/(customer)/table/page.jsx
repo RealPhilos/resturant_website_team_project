@@ -1,6 +1,8 @@
 "use client";
 import TableColour from "../../components/table-colour";
 import { useState } from "react";
+import Link from "next/link";
+import Footer from "@/app/components/footer";
 
 const TablePage = () => {
   // Define the initial state of the tables
@@ -38,38 +40,43 @@ const TablePage = () => {
 
   return (
     <div>
-      <div className="py-6 flex justify-between items-end">
+      <div className="py-6 flex flex-col items-left">
+        <h1 className="text-3xl font-serif font-bold text-gray-800 mb-4">
+          Book a Table
+        </h1>
+
         <div className="flex items-end gap-10">
-          <span className="text-5xl font-serif">Tables</span>
-          <span>
-            Green is Ready, Red is Unavailable, Yellow is the table almost
-            ready.
-          </span>
-          <span>
-            A table for two are for 1-4, a 4 person table is tables 5 -8 and a
-            table for 6 are table 9-12
-          </span>
+          <p className="text-sm text-gray-500">
+            <span className="text-green-500">Green</span> indicates a ready
+            table, <span className="text-red-500">Red</span> means the table is
+            unavailable and <span className="text-yellow-500">Yellow</span>{" "}
+            signifies the table is almost ready.
+          </p>
+          <p className="text-sm text-gray-500">
+            Tables for two are for 1-4, a 4-person table is for tables 5-8, and
+            a 6-person table is for tables 9-12.
+          </p>
         </div>
       </div>
 
       <hr />
 
-      <div className="grid grid-cols-3 gap-4">
+      <div className="grid grid-cols-3 gap-4 bg-gray-300 py-4 mt-8">
         {/* Left Column - 4 tables */}
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-4 items-center">
           {tableStates.slice(0, 4).map((table, index) => (
             <TableColour
               key={table.id}
               index={index} // Pass index as a prop
               status={table.status}
-              size="small"
+              size="medium"
               onClick={() => updateTableStatus(table.id, "free")}
             />
           ))}
         </div>
 
         {/* Middle Column - 4 */}
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-4 items-center">
           {tableStates.slice(4, 8).map((table, index) => (
             <TableColour
               key={table.id}
@@ -79,22 +86,34 @@ const TablePage = () => {
               onClick={() => updateTableStatus(table.id, "free")}
             />
           ))}
+          <span>Reserve a "Green" Table.</span>
         </div>
 
         {/* Right Column - 4 */}
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-4 items-center">
           {tableStates.slice(8, 12).map((table, index) => (
             <TableColour
               key={table.id}
               index={index + 8}
               status={table.status}
-              size="large"
+              size="medium"
               onClick={() => updateTableStatus(table.id, "free")}
             />
           ))}
         </div>
       </div>
-    </div>
+
+      <button className="flex flex-col bottom-8 gap-4 w-full bg-green-500 hover:bg-green-700 text-white px-3 py-2 rounded-md w-25 h-25 mt-8  items-center">
+        Reserve
+      </button>
+
+        <br></br>
+        <hr />
+        <br></br>
+        <br></br>
+
+        <Footer />
+      </div>
   );
 };
 
