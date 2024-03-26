@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { useToast } from "@/components/ui/use-toast";
 import { useContext } from "react";
 import { AuthContext } from "@/app/providers/auth";
+import TableModal from "./components/TableModal";
 
 function Basket() {
   const [cart, setCart] = useState(() => {
@@ -22,6 +23,8 @@ function Basket() {
     setCart((prevCart) => prevCart.filter((item) => item !== itemToRemove));
     console.log(`Removed ${itemToRemove.name} from cart.`);
   };
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [tableNumber, setTableNumber] = useState("");
 
   const [quantityBarOpen, setQuantityBarOpen] = useState(null);
   const [editedQuantity, setEditedQuantity] = useState(null);
@@ -51,10 +54,15 @@ function Basket() {
     );
   }, 0);
 
+  // Function to open modal for table number input
+  const promptTableNumber = () => {
+    setIsModalOpen(true);
+  };
+
   const { toast } = useToast();
   const { user } = useContext(AuthContext); // To retrieve the username from the user logged in.
 
-  const sendOrdersToServer = async () => {
+  const sendOrdersToServer = async (tableNum) => {
     // Check if the cart is empty
     if (cart.length === 0) {
       toast({
@@ -75,7 +83,7 @@ function Basket() {
       const orderData = {
         name: item.name,
         quantity: item.quantity,
-        tableNumber: "table 1",
+        tableNumber: "Table " + tableNum,
         status: "", // Already set to ordered.
         username: username,
       };
@@ -196,11 +204,19 @@ function Basket() {
           Cart Total: £{cartTotal.toFixed(2)}
         </p>
         <button
-          onClick={sendOrdersToServer}
+          onClick={promptTableNumber}
           className="float-right mr-1 text-lg font-semibold text-white bg-green-800 rounded-2xl px-3 py-2 mt-2"
         >
-          Send Orders
+          Order
         </button>
+        <TableModal
+          isOpen={isModalOpen}
+          onClose={() => setIsModalOpen(false)}
+          onSubmit={(tableNum) => {
+            setTableNumber(tableNum);
+            sendOrdersToServer(tableNum);
+          }}
+        />
 
         <button className="float-right mr-1 text-lg font-semibold text-white bg-green-800 rounded-2xl px-3 py-2 mt-2">
           Call waiter
