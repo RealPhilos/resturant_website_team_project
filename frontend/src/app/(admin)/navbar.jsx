@@ -3,47 +3,55 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
+import { AuthContext } from "../providers/auth";
+import { useContext } from "react";
 
 const navigationLinks = [
   {
     name: "Dashboard",
     href: "dashboard",
-    access: [],
+    access: ["Waiter", "Chef"],
   },
   {
     name: "Menus",
     href: "admin-menu",
-    access: [],
+    access: ["Waiter", "Chef"],
   },
   {
     name: "Orders",
     href: "admin-orders",
-    access: [],
+    access: ["Waiter", "Chef"],
   },
   {
     name: "Waiter",
     href: "admin-waiter",
-    access: [],
+    access: ["Waiter"],
   },
   {
     name: "Kitchen Staff",
     href: "admin-kitchenstaff",
-    access: [],
+    access: ["Chef"],
   },
   {
     name: "Tables",
     href: "admin-table",
-    access: [],
+    access: ["Waiter"],
   },
 ];
 
 export default function NavBar() {
   const pathname = `/${usePathname().split("/")[1] || ""}`;
+  const { user } = useContext(AuthContext);
+
+  //Filter links based on user role
+  const accessibleLinks = user
+    ? navigationLinks.filter((link) => link.access.includes(user.role))
+    : [];
 
   return (
     <nav className="fixed h-screen w-56 bg-gray-200">
       <ul className="py-8">
-        {navigationLinks.map((navlink, index) => {
+        {accessibleLinks.map((navlink, index) => {
           return (
             <li
               key={index}
