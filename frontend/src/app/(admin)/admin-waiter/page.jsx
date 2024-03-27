@@ -22,10 +22,12 @@ export default function OrderPage() {
     fetchOrders();
   }, []);
 
+  const doneCount = orders.filter((order) => order.status === "DONE").length;
+
   return (
     <div className="py-10 px-6">
       <span className="text-4xl font-semibold">
-        Orders <span className="text-green-800">({orders.length})</span>
+        Orders to deliver <span className="text-green-800">({doneCount})</span>
       </span>
       <Tabs className="mt-5" defaultValue="waiter">
         <TabsList className="mb-3 flex w-[30%] justify-between">
