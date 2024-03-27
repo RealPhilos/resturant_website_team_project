@@ -31,10 +31,9 @@ export default function OrderList({ orders, setOrders }) {
       // Sort the menu items alphabetically by name by default
       setOrders(
         orders.map((order) => {
-          if (order.id == id) {
+          if (order.id === id) {
             order.status = status?.toUpperCase();
           }
-
           return order;
         })
       );
@@ -42,6 +41,36 @@ export default function OrderList({ orders, setOrders }) {
       console.error("Error fetching order data:", error);
     }
   };
+
+  const handleDeleteOrder = async (id) => {
+    try {
+      await api.delete(`/order/deleteItemById/${id}`);
+      // Remove the deleted order from the state
+      setOrders(orders.filter((order) => order.id !== id));
+    } catch (error) {
+      console.error("Error deleting order:", error);
+    }
+  };
+
+  const sortedOrders = orders.slice().sort((a, b) => {
+    const dateA = new Date(
+      a.orderTime[0],
+      a.orderTime[1] - 1,
+      a.orderTime[2],
+      a.orderTime[3],
+      a.orderTime[4],
+      a.orderTime[5]
+    );
+    const dateB = new Date(
+      b.orderTime[0],
+      b.orderTime[1] - 1,
+      b.orderTime[2],
+      b.orderTime[3],
+      b.orderTime[4],
+      b.orderTime[5]
+    );
+    return dateA - dateB;
+  });
 
   return (
     <Table className="min-w-full">
@@ -57,7 +86,7 @@ export default function OrderList({ orders, setOrders }) {
         </TableRow>
       </TableHeader>
       <TableBody>
-        {orders.map((order) => (
+        {sortedOrders.map((order) => (
           <TableRow key={order.id}>
             <TableCell className="font-medium">{order.id}</TableCell>
             <TableCell>
@@ -69,40 +98,24 @@ export default function OrderList({ orders, setOrders }) {
               {order.status}
             </TableCell>
             <TableCell>{order.tableNumber}</TableCell>
-            <TableCell>
-              {order.status == "COOKING" && (
-                <>
-                  <button
-                    onClick={() => handleEditStatus(order.id, "done")}
-                    className="text-white bg-green-600 p-2 rounded-md"
-                  >
-                    Mark as Done
-                  </button>
-                  <span className="ml-2">Chef</span>
-                </>
-              )}
-              {order.status == "DONE" && (
-                <>
-                  <button
-                    onClick={() => handleEditStatus(order.id, "delivered")}
-                    className="text-white bg-black p-2 rounded-md"
-                  >
-                    Mark as Delivered
-                  </button>
-                  <span className="ml-2">Waiter</span>
-                </>
-              )}
-              {order.status == "ORDERED" && (
-                <>
-                  <button
-                    className="text-white bg-red-600 p-2 rounded-md"
-                    onClick={() => handleEditStatus(order.id, "cooking")}
-                  >
-                    Mark as Cooking
-                  </button>
-                  <span className="ml-2">Chef</span>
-                </>
-              )}
+            <TableCell className="flex gap-4">
+              <select
+                value={order.status}
+                onChange={(e) => handleEditStatus(order.id, e.target.value)}
+                className="p-2 rounded-md"
+              >
+                <option>Choose Status</option>
+                <option value="ordered">Ordered</option>
+                <option value="cooking">Cooking</option>
+                <option value="done">Done</option>
+                <option value="delivered">Delivered</option>
+              </select>
+              <button
+                onClick={() => handleDeleteOrder(order.id)}
+                className="text-white bg-red-800 p-2 rounded-md"
+              >
+                DELETE
+              </button>
             </TableCell>
           </TableRow>
         ))}
