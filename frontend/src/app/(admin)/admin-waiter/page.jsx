@@ -19,8 +19,17 @@ export default function OrderPage() {
   };
 
   useEffect(() => {
+    const fetchOrders = async () => {
+      try {
+        const response = await api.get("/order");
+        // Sort the menu items alphabetically by name by default
+        setOrders(response.data);
+      } catch (error) {
+        console.error("Error fetching order data:", error);
+      }
+    };
     fetchOrders();
-  }, []);
+  });
 
   const doneCount = orders.filter((order) => order.status === "DONE").length;
 
@@ -39,7 +48,6 @@ export default function OrderPage() {
           <OrderList
             setOrders={setOrders}
             orders={orders.filter((order) => order.status == "DONE")}
-            refreshOrders={fetchOrders}
           />
         </TabsContent>
       </Tabs>
