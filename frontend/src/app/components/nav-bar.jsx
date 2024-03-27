@@ -10,11 +10,29 @@ function NavBar() {
   const userType = user ? user.role : null;
   const username = user ? user.username : null;
 
+  // Load the logged-in state from localStorage when the component mounts
+  useEffect(() => {
+    const loggedInUser = localStorage.getItem('user');
+    if (loggedInUser) {
+      setUser(JSON.parse(loggedInUser));
+      setIsLoggedIn(true);
+    }
+  }, []);
+
   function logout() {
     setIsLoggedIn(false);
     setUser(null);
     window.location.href = "/login"; // redirect to the login page
   }
+
+  // Save the logged-in state to localStorage whenever it changes
+  useEffect(() => {
+    if (isLoggedIn) {
+      localStorage.setItem('user', JSON.stringify(user));
+    } else {
+      localStorage.removeItem('user');
+    }
+  }, [isLoggedIn, user]);
 
   return (
     <div
