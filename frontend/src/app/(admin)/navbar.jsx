@@ -26,8 +26,8 @@ const navigationLinks = [
     access: [],
   },
   {
-    name: "Chef",
-    href: "admin-chef",
+    name: "Kitchen Staff",
+    href: "admin-kitchenstaff",
     access: [],
   },
   {
