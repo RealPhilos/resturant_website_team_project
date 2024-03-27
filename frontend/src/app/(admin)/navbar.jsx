@@ -20,6 +20,21 @@ const navigationLinks = [
     href: "admin-orders",
     access: [],
   },
+  {
+    name: "Waiter",
+    href: "admin-waiter",
+    access: [],
+  },
+  {
+    name: "Chef",
+    href: "admin-chef",
+    access: [],
+  },
+  {
+    name: "Tables",
+    href: "admin-table",
+    access: [],
+  },
 ];
 
 export default function NavBar() {
