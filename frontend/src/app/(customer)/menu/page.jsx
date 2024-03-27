@@ -143,7 +143,7 @@ function MenuPage() {
                 {currentItem.description}
               </p>
               <label className="text-lg font-semibold mb-2">
-                Quantity:
+                Quantity:{' '}
                 <input
                   type="number"
                   value={quantity}
@@ -153,6 +153,8 @@ function MenuPage() {
                     width: "200px",
                     height: "25px",
                     textAlign: "center",
+                    borderRadius: "1.5rem", // Make the edges rounded
+                    border: "1px solid #E5E7EB", // Apply a border
                   }}
                 />
               </label>
