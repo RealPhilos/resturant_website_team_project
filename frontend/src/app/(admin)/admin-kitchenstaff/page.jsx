@@ -8,19 +8,18 @@ import React, { useEffect, useState } from "react";
 export default function OrderPage() {
   const [orders, setOrders] = useState([]);
 
-  const fetchOrders = async () => {
-    try {
-      const response = await api.get("/order");
-      // Sort the menu items alphabetically by name by default
-      setOrders(response.data);
-    } catch (error) {
-      console.error("Error fetching order data:", error);
-    }
-  };
-
   useEffect(() => {
+    const fetchOrders = async () => {
+      try {
+        const response = await api.get("/order");
+        // Sort the menu items alphabetically by name by default
+        setOrders(response.data);
+      } catch (error) {
+        console.error("Error fetching order data:", error);
+      }
+    };
     fetchOrders();
-  }, []);
+  });
 
   const cookingAndOrderedCount = orders.filter(
     (order) => order.status === "COOKING" || order.status === "ORDERED"
@@ -44,7 +43,6 @@ export default function OrderPage() {
             orders={orders.filter(
               (order) => order.status == "COOKING" || order.status === "ORDERED"
             )}
-            refreshOrders={fetchOrders}
           />
         </TabsContent>
       </Tabs>
