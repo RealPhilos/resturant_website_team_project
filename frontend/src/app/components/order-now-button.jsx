@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { useRouter } from "next/navigation";
 import { useToast } from "@/components/ui/use-toast";
 
-const OrderButton = ({ userType, isLoggedIn }) => {
+const OrderButton = ({ userType, isLoggedIn, overrideClassName, buttonText }) => {
   const router = useRouter();
   const { toast } = useToast();
 
@@ -18,18 +18,21 @@ const OrderButton = ({ userType, isLoggedIn }) => {
     router.push("/login");
   };
 
+  const buttonClass = overrideClassName ? overrideClassName : "bg-green-800 text-white px-3 py-2 rounded-md";
+  const text = buttonText ? buttonText : "Order Now";
+
   return isLoggedIn && userType === "Customer" ? (
     <Link href="/menu">
-      <button className="bg-green-800 text-white px-3 py-2 rounded-md">
-        Order Now
+      <button className={buttonClass}>
+      {text}
       </button>
     </Link>
   ) : (
     <button 
-      className="bg-green-800 text-white px-3 py-2 rounded-md"
+    className={buttonClass}
       onClick={handleClick}
     >
-      Order Now
+      {text}
     </button>
   );
 };

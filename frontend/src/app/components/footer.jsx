@@ -50,10 +50,12 @@ export default function Footer() {
             </ul>
           </div>
           <div style={{ textAlign: "center" }}>
-          <a href="/" className="flex items-center text-green-800">
-        <img src="/Icon.png" alt="Oaxaca Icon" className="w-12 h-12" />
-        <span className="text-xl text-green-800">axaca</span>
-      </a>
+          <Link href="/">
+          <div className="flex items-center text-green-800">
+          <img src="/Icon.png" alt="Oaxaca Icon" className="w-12 h-12" />
+          <span className="text-xl text-green-800">axaca</span>
+          </div>
+      </Link>
           </div>
         </div>
 
