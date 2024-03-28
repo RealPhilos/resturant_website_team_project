@@ -73,53 +73,55 @@ export default function OrderList({ orders, setOrders }) {
   });
 
   return (
-    <Table className="min-w-full">
-      <TableHeader>
-        <TableRow>
-          <TableHead className="w-1/12">Id</TableHead>
-          <TableHead className="w-3/12">Item</TableHead>
-          <TableHead className="w-2/12">Customer</TableHead>
-          <TableHead className="w-2/12">Order Time</TableHead>
-          <TableHead className="w-1/12 text-right">Status</TableHead>
-          <TableHead className="w-1/12">Table</TableHead>
-          <TableHead>Action</TableHead>
-        </TableRow>
-      </TableHeader>
-      <TableBody>
-        {sortedOrders.map((order) => (
-          <TableRow key={order.id}>
-            <TableCell className="font-medium">{order.id}</TableCell>
-            <TableCell>
-              {order.quantity} x {order.name}
-            </TableCell>
-            <TableCell>{order.username}</TableCell>
-            <TableCell>{formattedOrderTime(order.orderTime)}</TableCell>
-            <TableCell className="text-right text-green-600">
-              {order.status}
-            </TableCell>
-            <TableCell>{order.tableNumber}</TableCell>
-            <TableCell className="flex gap-4">
-              <select
-                value={order.status}
-                onChange={(e) => handleEditStatus(order.id, e.target.value)}
-                className="p-2 rounded-md"
-              >
-                <option>Choose Status</option>
-                <option value="ordered">Ordered</option>
-                <option value="cooking">Cooking</option>
-                <option value="done">Done</option>
-                <option value="delivered">Delivered</option>
-              </select>
-              <button
-                onClick={() => handleDeleteOrder(order.id)}
-                className="text-white bg-red-800 p-2 rounded-md"
-              >
-                DELETE
-              </button>
-            </TableCell>
+    <div className="overflow-y-auto max-h-[900px]">
+      <Table className="min-w-full">
+        <TableHeader>
+          <TableRow>
+            <TableHead className="w-1/12">Id</TableHead>
+            <TableHead className="w-3/12">Item</TableHead>
+            <TableHead className="w-2/12">Customer</TableHead>
+            <TableHead className="w-2/12">Order Time</TableHead>
+            <TableHead className="w-1/12 text-right">Status</TableHead>
+            <TableHead className="w-1/12">Table</TableHead>
+            <TableHead>Action</TableHead>
           </TableRow>
-        ))}
-      </TableBody>
-    </Table>
+        </TableHeader>
+        <TableBody>
+          {sortedOrders.map((order) => (
+            <TableRow key={order.id}>
+              <TableCell className="font-medium">{order.id}</TableCell>
+              <TableCell>
+                {order.quantity} x {order.name}
+              </TableCell>
+              <TableCell>{order.username}</TableCell>
+              <TableCell>{formattedOrderTime(order.orderTime)}</TableCell>
+              <TableCell className="text-right text-green-600">
+                {order.status}
+              </TableCell>
+              <TableCell>{order.tableNumber}</TableCell>
+              <TableCell className="flex gap-4">
+                <select
+                  value={order.status}
+                  onChange={(e) => handleEditStatus(order.id, e.target.value)}
+                  className="p-2 rounded-md"
+                >
+                  <option>Choose Status</option>
+                  <option value="ordered">Ordered</option>
+                  <option value="cooking">Cooking</option>
+                  <option value="done">Done</option>
+                  <option value="delivered">Delivered</option>
+                </select>
+                <button
+                  onClick={() => handleDeleteOrder(order.id)}
+                  className="text-white bg-red-800 p-2 rounded-md"
+                >
+                  DELETE
+                </button>
+              </TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </div>
   );
 }
