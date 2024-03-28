@@ -123,6 +123,10 @@ function MenuPage() {
                 alignItems: "center",
               }}
             >
+              <div className="flex items-center text-green-800">
+          <img src="/Icon.png" alt="Oaxaca Icon" className="w-12 h-12" />
+          <span className="text-xl text-green-800">axaca</span>
+        </div>
               <h1 className="text-5xl font-serif underline mb-4">
                 {currentItem.name}
               </h1>
@@ -201,7 +205,7 @@ function MenuPage() {
                   cursor: "pointer",
                 }}
                 onMouseEnter={(e) =>
-                  (e.target.style.backgroundColor = "#90EE90")
+                  (e.target.style.backgroundColor = "#FFCCCB")
                 }
                 onMouseLeave={(e) =>
                   (e.target.style.backgroundColor = "#FAFAF5")

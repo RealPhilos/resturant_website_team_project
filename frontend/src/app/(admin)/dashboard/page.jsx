@@ -21,7 +21,8 @@ export default function DashboardPage() {
     const emoji = getRandomEmoji();
 
     toast({
-      title: `You have returned to our home page ${emoji}`,
+      title: `Exited Dashboard`,
+      description: "Your have successful!y exited the dashboard!",
       status: "success",
       duration: 5000,
       isClosable: true,
