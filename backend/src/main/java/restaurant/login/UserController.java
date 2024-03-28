@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author Krish Macwan - Zlac463
  * @author Ahmed Alyami - Wlis021
  */
-@CrossOrigin(origins = "http://localhost:3000")
+
 @RestController
 @RequestMapping(path = "/user")
 public class UserController {

@@ -25,15 +25,16 @@ public class ItemConfig {
   @Bean
   CommandLineRunner itemDataInitializer(ItemRepository itemRepository) {
     return args -> {
-      Item sushi = new Item("sushi", 3, "Table 1", "Malcolm");
-      sushi.setStatus("ordered");
-      Item pasta = new Item("pasta", 2, "Table 1", "Malcolm");
-      pasta.setStatus("cooking");
-      Item pizza = new Item("pizza", 3, "Table 2", "Krish");
-      pizza.setStatus("done");
-      Item burger = new Item("burger", 3, "Table 2", "Krish");
-      burger.setStatus("delivered");
-      itemRepository.saveAll(List.of(sushi, pasta, pizza, burger));
+
+      //Item sushi = new Item("sushi", 3, "Table 1", "Malcolm");
+      //sushi.setStatus("ordered");
+      //Item pasta = new Item("pasta", 2, "Table 1", "Malcolm");
+      // pasta.setStatus("cooking");
+      // Item pizza = new Item("pizza", 3, "Table 2", "Krish");
+      // pizza.setStatus("done");
+      // Item burger = new Item("burger", 3, "Table 2", "Krish");
+      // burger.setStatus("delivered");
+      // itemRepository.saveAll(List.of(sushi, pasta, pizza, burger));
     };
   }
 }
