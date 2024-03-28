@@ -53,15 +53,15 @@ public class TableController {
       @PathVariable("username") String username, @PathVariable("size") int size) {
     return tableService.bookTable(tableNumber, username, size);
   }
-  
+
   /**
    * Endpoint to mark a table as finished.
    * 
-   * @param username the username of the user who finished dining.
+   * @param tableNumber the table number who finished dining.
    */
-  @PostMapping(path = "/tableFinish/{username}")
-  public void tableFinish(@PathVariable("username") String username) {
-    tableService.tableFinish(username);
+  @PostMapping(path = "/tableFinish/{tableNumber}")
+  public void tableFinish(@PathVariable("tableNumber") int tableNumber) {
+    tableService.tableFinish(tableNumber);
   }
   
   /**
@@ -73,4 +73,5 @@ public class TableController {
   public void tableCleaned(@PathVariable("tableNumber") int tableNumber) {
     tableService.tableCleaned(tableNumber);
   }
+  
 }
