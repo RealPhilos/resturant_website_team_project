@@ -1,6 +1,5 @@
 package restaurant.notification;
 
-import java.time.LocalDateTime;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -10,7 +9,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.PostPersist;
 import jakarta.persistence.Table;
-import restaurant.order.OrderStatus;
+import java.time.LocalDateTime;
 
 /**
  * model class for notification.
@@ -40,7 +39,7 @@ public class Notification {
   /**
    * constructor method for notification.,
    *
-   * @param username  Customer who called waiter
+   * @param username Customer who called waiter
    * @param tableNumber table number of the customer
    */
   public Notification(String username, String tableNumber) {
@@ -49,7 +48,7 @@ public class Notification {
     this.notificationStatus = NotificationStatus.WAITING;
   }
 
- public String getUsername() {
+  public String getUsername() {
     return username;
   }
 
@@ -74,7 +73,7 @@ public class Notification {
   }
 
 
- 
+
   public LocalDateTime getNotificationTime() {
     return notificationTime;
   }
@@ -90,6 +89,6 @@ public class Notification {
   @Override
   public String toString() {
     return "Notification{" + "customer='" + username + ", status='" + notificationStatus
-        + ", notification time=" + notificationTime  + '}';
+        + ", notification time=" + notificationTime + '}';
   }
 }

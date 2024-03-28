@@ -1,28 +1,26 @@
 package restaurant.notification;
 
+import jakarta.transaction.Transactional;
 import java.util.List;
-
-import org.hibernate.mapping.Table;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import jakarta.transaction.Transactional;
 
 
 // import jakarta.persistence.Entity;
 
 /**
  * service class for call waiter.
+ * 
  * @author Philip Anaafi Asumadu - zkac229
  * @author Kasim -zjac003
  */
 @Service
 public class NotificationService {
- private final NotificationRepository notificationRepository;
+  private final NotificationRepository notificationRepository;
 
   @Autowired // Injects the ItemRepository bean into the service.
   public NotificationService(NotificationRepository notificationRepository) {
-    this.notificationRepository  = notificationRepository;
+    this.notificationRepository = notificationRepository;
   }
 
   /**
@@ -65,12 +63,13 @@ public class NotificationService {
   }
 
   /**
-   * Deletes all notifications associated with a specific username.
+   * Deletes all notifications associated with a specific tableNumber.
    *
-   * @param username The username for which notifications should be deleted.
+   * @param tableNumber The tableNumber for which notifications should be deleted.
    */
   public void deleteNotificationsByTableNumber(String tableNumber) {
-    List<Notification> notificationsToDelete = notificationRepository.findByTableNumber(tableNumber);
+    List<Notification> notificationsToDelete =
+        notificationRepository.findByTableNumber(tableNumber);
     notificationRepository.deleteAll(notificationsToDelete);
   }
 

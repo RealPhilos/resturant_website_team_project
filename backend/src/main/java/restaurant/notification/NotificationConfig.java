@@ -24,14 +24,15 @@ public class NotificationConfig {
   @Bean
   CommandLineRunner notificationDataInitializer(NotificationRepository notificationRepository) {
     return args -> {
-      Notification notification1 = new Notification("Philip","Table 1");
-      Notification notification2 = new Notification("Krish","Table 2");
-      Notification notification3 = new Notification("Philip","Table 1");
-      Notification notification4 = new Notification("Krish","Table 2");
+      Notification notification1 = new Notification("Philip", "Table 1");
+      Notification notification2 = new Notification("Krish", "Table 2");
+      Notification notification3 = new Notification("Philip", "Table 1");
+      Notification notification4 = new Notification("Krish", "Table 2");
       notification4.setStatus("done");
 
-      
-      notificationRepository.saveAll(List.of(notification1, notification2, notification3, notification4));
+
+      notificationRepository
+          .saveAll(List.of(notification1, notification2, notification3, notification4));
     };
   }
 }
