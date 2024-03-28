@@ -8,16 +8,6 @@ import React, { useEffect, useState } from "react";
 export default function OrderPage() {
   const [orders, setOrders] = useState([]);
 
-  const fetchOrders = async () => {
-    try {
-      const response = await api.get("/order");
-      // Sort the menu items alphabetically by name by default
-      setOrders(response.data);
-    } catch (error) {
-      console.error("Error fetching order data:", error);
-    }
-  };
-
   useEffect(() => {
     const fetchOrders = async () => {
       try {
