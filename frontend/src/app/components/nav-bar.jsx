@@ -12,7 +12,7 @@ function NavBar() {
 
   // Load the logged-in state from localStorage when the component mounts
   useEffect(() => {
-    const loggedInUser = localStorage.getItem('user');
+    const loggedInUser = localStorage.getItem("user");
     if (loggedInUser) {
       setUser(JSON.parse(loggedInUser));
       setIsLoggedIn(true);
@@ -28,9 +28,9 @@ function NavBar() {
   // Save the logged-in state to localStorage whenever it changes
   useEffect(() => {
     if (isLoggedIn) {
-      localStorage.setItem('user', JSON.stringify(user));
+      localStorage.setItem("user", JSON.stringify(user));
     } else {
-      localStorage.removeItem('user');
+      localStorage.removeItem("user");
     }
   }, [isLoggedIn, user]);
 
@@ -76,6 +76,9 @@ function NavBar() {
               </Link>
               <Link href="/table">
                 <span>Tables</span>
+              </Link>
+              <Link href="/myorders">
+                <span>My Orders</span>
               </Link>
             </>
           )
