@@ -40,32 +40,34 @@ export default function OrderList({ orders, setOrders }) {
   });
 
   return (
-    <Table className="min-w-full">
-      <TableHeader>
-        <TableRow>
-          <TableHead className="w-1/12">Id</TableHead>
-          <TableHead className="w-3/12">Item</TableHead>
-          <TableHead className="w-2/12">Order Time</TableHead>
-          <TableHead className="w-1/12 text-right">Status</TableHead>
-          <TableHead className="w-1/12">Table</TableHead>
-        </TableRow>
-      </TableHeader>
-      <TableBody>
-        {sortedOrders.map((order) => (
-          <TableRow key={order.id}>
-            <TableCell className="font-medium">{order.id}</TableCell>
-            <TableCell>
-              {order.quantity} x {order.name}
-            </TableCell>
-
-            <TableCell>{formattedOrderTime(order.orderTime)}</TableCell>
-            <TableCell className="text-right text-green-600">
-              {order.status}
-            </TableCell>
-            <TableCell>{order.tableNumber}</TableCell>
+    <div className="overflow-y-auto max-h-[500px]">
+      <Table className="min-w-full">
+        <TableHeader>
+          <TableRow>
+            <TableHead className="w-1/12">Id</TableHead>
+            <TableHead className="w-3/12">Item</TableHead>
+            <TableHead className="w-2/12">Order Time</TableHead>
+            <TableHead className="w-1/12 text-right">Status</TableHead>
+            <TableHead className="w-1/12">Table</TableHead>
           </TableRow>
-        ))}
-      </TableBody>
-    </Table>
+        </TableHeader>
+        <TableBody>
+          {sortedOrders.map((order) => (
+            <TableRow key={order.id}>
+              <TableCell className="font-medium">{order.id}</TableCell>
+              <TableCell>
+                {order.quantity} x {order.name}
+              </TableCell>
+
+              <TableCell>{formattedOrderTime(order.orderTime)}</TableCell>
+              <TableCell className="text-right text-green-600">
+                {order.status}
+              </TableCell>
+              <TableCell>{order.tableNumber}</TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </div>
   );
 }
