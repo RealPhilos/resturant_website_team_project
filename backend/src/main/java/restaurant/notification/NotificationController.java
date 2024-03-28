@@ -1,7 +1,7 @@
 package restaurant.notification;
 
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,10 +11,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-
-
-import java.util.List;
-
 /**
  * Controller class for managing notification-related requests.
  * 
@@ -22,20 +18,22 @@ import java.util.List;
  */
 
 @RestController
-@RequestMapping(path = "/notification") 
+@RequestMapping(path = "/notification")
 public class NotificationController {
- /**
+  /**
    * Calling the NotificationService class.
    */
   private final NotificationService notificationService;
 
   // This NotificationService is injected into ItemController
-  @Autowired // Indicates that NotificationService will be instantiated and injected into the controller.
+  // Indicates that NotificationService will be instantiated and injected into the
+  // controller.
+  @Autowired
   public NotificationController(NotificationService notificationService) {
     this.notificationService = notificationService;
   }
-  
-/**
+
+  /**
    * Get a list of notifications in JSON format.
    *
    * @return List of Notifications.
@@ -58,7 +56,7 @@ public class NotificationController {
     return notificationService.getNotificationByTableNumber(tableNumber);
   }
 
- /**
+  /**
    * Add a new notification based on the provided request body.
    *
    * @param notification The notification to be added.
@@ -77,12 +75,12 @@ public class NotificationController {
     if (notification.getTableNumber() == null) {
       return "Please input a table number";
     }
-    
+
     notificationService.addNewNotification(notification);
     return "Notification added successfully";
   }
 
-  
+
   /**
    * Change the status of the notification.
    *
@@ -109,7 +107,7 @@ public class NotificationController {
     return "Item canceled successfully";
   }
 
-    /**
+  /**
    * Deletes all notifications associated with a given table number.
    *
    * @param tableNumber The table number of the notification to be deleted.
@@ -121,11 +119,5 @@ public class NotificationController {
     return "Items canceled successfully";
   }
 }
-
-
-
-
-
-
 
 
