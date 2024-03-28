@@ -1,9 +1,9 @@
 package restaurant.table;
 
 import java.util.List;
-import java.util.Objects;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 
 /**
  * Service class for table management.
@@ -51,13 +51,12 @@ public class TableService {
   /**
    * method for handling table finish.
    *
-   * @param username username of the customer
+   * @param tableNumber number of the table to be cleaned
    */
-  public void tableFinish(String username) {
+  public void tableFinish(int tableNumber) {
     List<TableReservation> allList = tableRepo.findAll();
     for (TableReservation i : allList) {
-      if (Objects.equals(i.getUsername(), username)) {
-        i.setUsername(null);
+      if (i.getTableNumber() == tableNumber) {
         i.setTableStatus(TableStatus.CLEANING);
         tableRepo.save(i);
       }
@@ -67,7 +66,7 @@ public class TableService {
   /**
    * method for handling table cleaned.
    *
-   * @param tableNumber number of the table to be cleaned
+   * @param tableNumber number of the table to be freed
    */
   public void tableCleaned(int tableNumber) {
     List<TableReservation> allList = tableRepo.findAll();
@@ -78,4 +77,5 @@ public class TableService {
       }
     }
   }
+
 }
