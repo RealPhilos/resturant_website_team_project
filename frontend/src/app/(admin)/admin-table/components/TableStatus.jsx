@@ -23,7 +23,7 @@ function TableStatus({ openModal }) {
       }
     };
     fetchTableStatuses();
-  }, []);
+  });
 
   const getStatusColor = (status) => {
     switch (status) {
@@ -61,6 +61,47 @@ function TableStatus({ openModal }) {
     }
   };
 
+  // Function to reserve table
+  const cleanTable = async (tableNumber) => {
+    try {
+      const response = await api.post(`/table/tableFinish/${tableNumber}`);
+      if (response.status === 200) {
+        // Update table status locally
+        const updatedTableStatuses = tableStatuses.map((table) => {
+          if (table.tableNumber === tableNumber) {
+            return { ...table, tableStatus: "CLEANING" };
+          }
+          return table;
+        });
+        setTableStatuses(updatedTableStatuses);
+      } else {
+        console.error("Failed to reserve table:", response);
+      }
+    } catch (error) {
+      console.error("Error reserving table:", error);
+    }
+  };
+
+  const freeTable = async (tableNumber) => {
+    try {
+      const response = await api.post(`/table/tableCleaned/${tableNumber}`);
+      if (response.status === 200) {
+        // Update table status locally
+        const updatedTableStatuses = tableStatuses.map((table) => {
+          if (table.tableNumber === tableNumber) {
+            return { ...table, tableStatus: "FREE" };
+          }
+          return table;
+        });
+        setTableStatuses(updatedTableStatuses);
+      } else {
+        console.error("Failed to reserve table:", response);
+      }
+    } catch (error) {
+      console.error("Error reserving table:", error);
+    }
+  };
+
   return (
     <div className="grid grid-cols-4 gap-10">
       {tableStatuses.map((table, index) => (
@@ -68,11 +109,12 @@ function TableStatus({ openModal }) {
           key={index}
           className={`p-4 rounded-lg ${getStatusColor(table.tableStatus)}`}
           onClick={() => {
-            if (table.tableStatus === "FREE") {
+            if (table.tableStatus === "FREE")
               reserveTable(table.tableNumber, table.tableSize);
-            } else {
-              // Optionally handle click on other table statuses
-            }
+            else if (table.tableStatus === "OCCUPIED")
+              cleanTable(table.tableNumber);
+            else if (table.tableStatus === "CLEANING")
+              freeTable(table.tableNumber);
           }}
         >
           <p className="text-white font-bold">Table {table.tableNumber}</p>
