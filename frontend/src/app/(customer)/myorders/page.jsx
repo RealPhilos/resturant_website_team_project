@@ -6,6 +6,7 @@ import api from "../../services/api";
 import { AuthContext } from "@/app/providers/auth";
 import { useContext } from "react";
 import { useEffect, useState } from "react";
+import ProgressBar from "./progress-bar";
 
 export default function OrderPage() {
   const [orders, setOrders] = useState([]);
@@ -28,6 +29,14 @@ export default function OrderPage() {
     (order) => order.username === user?.username
   ).length;
 
+  const cookingCount = orders.filter(
+    (order) => order.status === "COOKING" && order.username === user?.username
+  ).length;
+
+  const doneCount = orders.filter(
+    (order) => order.status === "DONE" && order.username === user?.username
+  ).length;
+
   return (
     <>
       <div className="py-6 flex justify-between items-end">
@@ -41,10 +50,17 @@ export default function OrderPage() {
       <hr />
 
       <div className="py-10 px-6">
-        <span className="text-4xl font-serif underline my-2">
-          <span className="text-black">{ordersCount} </span>
-          Orders
-        </span>
+        <ProgressBar
+          doneCount={doneCount}
+          cookingCount={cookingCount}
+          totalOrders={ordersCount}
+        />
+        <div className="mt-4">
+          <span className="text-4xl font-serif underline my-2 mt-4">
+            <span className="text-black">({ordersCount}) </span>
+            orders:
+          </span>
+        </div>
         <Tabs className="mt-5">
           <TabsContent>
             <OrderList
