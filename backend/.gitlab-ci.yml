@@ -8,25 +8,21 @@ stages:
 build-job:
   stage: build
   script:
-    - cd backend
     - mvn clean compile
 
 test-job:
   stage: test
   script:
-    -cd backend
     - mvn test
 
 checkstyle-job:
   stage: validation
   script:
-    -cd backend
     - mvn checkstyle:check
 
 package-job:
   stage: package
   script:
-    -cd backend
     - mvn package
   artifacts:
     when: on_success
