@@ -36,7 +36,7 @@ function NavBar() {
 
   return (
     <div
-      className="px-[13vw] py-7 flex items-center justify-between"
+      className="px-[13vw] py-7 flex items-center justify-between sticky top-0 z-20"
       style={{ backgroundColor: "#FAFAF5" }}
     >
       <Link href="/">

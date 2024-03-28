@@ -32,7 +32,7 @@ function TableModal({ isOpen, onClose, onSubmit }) {
 
   return (
     <div
-      className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center"
+      className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50"
       style={{ transition: "opacity .2s ease-in-out" }}
     >
       <div
@@ -70,12 +70,12 @@ function TableModal({ isOpen, onClose, onSubmit }) {
         inputMode="numeric"
         pattern="[0-9\s]{13,19}"
         maxLength="19"
-        className="ml-2 w-full py-2 pl-2"
+        className="ml-2 w-full py-2 pl-2 rounded-md"
         placeholder="xxxx xxxx xxxx xxxx"
         onInput={(e) => {
         e.target.value = e.target.value.replace(/[^\dA-Z]/g, '').replace(/(.{4})/g, '$1 ').trim();
         }}
-        style={{ border: "2px solid black" }}
+        style={{ border: "2px solid black", fontWeight: "600" }}
       />
       </div>
       </div>
@@ -89,7 +89,7 @@ function TableModal({ isOpen, onClose, onSubmit }) {
         inputMode="numeric"
         pattern="[0-9]{2}/[0-9]{2}"
         maxLength="5"
-        className="ml-2 w-full py-2 pl-2"
+        className="ml-2 w-full py-2 pl-2 rounded-md"
         placeholder="MM/YY"
         onInput={(e) => {
           let val = e.target.value;
@@ -99,7 +99,7 @@ function TableModal({ isOpen, onClose, onSubmit }) {
             e.target.value = val.slice(0, -1);
           }
         }}        
-      style={{ border: "2px solid black" }}
+      style={{ border: "2px solid black", fontWeight: "600" }}
     />
       </div>
       </div>
@@ -113,9 +113,9 @@ function TableModal({ isOpen, onClose, onSubmit }) {
       inputMode="numeric"
       pattern="[0-9]{3}"
       maxLength="3"
-      className="ml-2 w-full py-2 pl-2"
+      className="ml-2 w-full py-2 pl-2 rounded-md"
       placeholder="xxx"
-      style={{ border: "2px solid black" }}
+      style={{ border: "2px solid black", fontWeight: "600" }}
       />
       </div>
       </div>
@@ -132,12 +132,13 @@ function TableModal({ isOpen, onClose, onSubmit }) {
             onChange={handleChange}
             min="1"
             max="12"
+            className="ml-2 w-full py-2 pl-2 rounded-md"
             style={{
               width: "200px",
               height: "25px",
               textAlign: "center",
-              borderRadius: "1.5rem", 
               border: "2px solid black",
+              fontWeight: "600",
             }}
           />
       </div>

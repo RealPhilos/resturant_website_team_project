@@ -636,7 +636,9 @@ export default function Information() {
   }}>
     <div className="py-6 flex justify-between items-end">
           <div className="flex items-end gap-10">
-            <span className="text-5xl font-serif">
+            <span 
+            style={{paddingTop:"25px",paddingBottom:"25px",}}
+            className="text-5xl font-serif">
               Frequently Asked Questions
             </span>
           </div>
@@ -645,33 +647,43 @@ export default function Information() {
         <hr />
 
     <div style={{ textAlign: "center", width: "100%" }}>
+    <hr />
     <details >
-      <summary style={{ width: "100%" }} className="text-2xl font-serif">How do I order food?</summary>
-      <p tyle={{ textAlign: "center" }} className="text-1xl font-serif">Head over to the menu page from the navigation bar.</p>
+      <summary style={{ width: "100%", paddingTop:"25px", paddingBottom:"25px" }} className="text-3xl font-serif">How do I order food?</summary>
+      <p tyle={{ textAlign: "center", paddingBottom:"5px" }} className="text-1xl font-serif">Once you are logged in, head over to the menu page from the navigation bar. Once you are done checkout from your basket.</p>
     </details>
+    <hr />
     <details >
-      <summary style={{ width: "100%" }} className="text-2xl font-serif">Can I reserve a table?</summary>
-      <p tyle={{ textAlign: "center" }} className="text-1xl font-serif">Yes, the tables tab shows the available tables, all green tables can be reserved.</p>
+      <summary style={{ width: "100%", paddingTop:"25px", paddingBottom:"25px" }} className="text-3xl font-serif">Can I reserve a table?</summary>
+      <p tyle={{ textAlign: "center", paddingBottom:"5px" }} className="text-1xl font-serif">Yes, the tables tab shows the available tables, all green tables can be reserved by talking to a Waiter.</p>
     </details>
+    <hr />
     <details >
-      <summary style={{ width: "100%" }} className="text-2xl font-serif">Is all your food fresh?</summary>
-      <p style={{ textAlign: "center" }} className="text-1xl font-serif">Yes, all of our food is made with fresh ingredients.</p>
+      <summary style={{ width: "100%", paddingTop:"25px", paddingBottom:"25px" }} className="text-3xl font-serif">Is all your food fresh?</summary>
+      <p style={{ textAlign: "center", paddingBottom:"5px" }} className="text-1xl font-serif">Yes, all of our food is made with fresh ingredients.</p>
     </details>
+    <hr />
     <details>
-      <summary style={{ width: "100%" }} className="text-2xl font-serif">What are the opening times?</summary>
-      <p style={{ textAlign: "center" }} className="text-1xl font-serif">Mon-Thurs: 07:00 - 21:00</p>
-      <p style={{ textAlign: "center" }} className="text-1xl font-serif">Fri-Sun: 08:30 - 23:30</p>
+      <summary style={{ width: "100%", paddingTop:"25px", paddingBottom:"25px" }} className="text-3xl font-serif">What are the opening times?</summary>
+      <p style={{ textAlign: "center", paddingBottom:"5px" }} className="text-1xl font-serif">Mon-Thurs: 07:00 - 21:00</p>
+      <p style={{ textAlign: "center", paddingBottom:"5px"}} className="text-1xl font-serif">Fri-Sun: 08:30 - 23:30</p>
     </details>
+    <hr />
     <details >
-      <summary style={{ width: "100%" }} className="text-2xl font-serif">I am allergic to a specific ingredient, can i remove it?</summary>
-      <p style={{ textAlign: "center" }} className="text-1xl font-serif">Yes, before you order you can remove ingredients you do not want.</p>
+      <summary style={{ width: "100%", paddingTop:"25px", paddingBottom:"25px" }} className="text-3xl font-serif">How can I see the status of my order?</summary>
+      <p style={{ textAlign: "center", paddingBottom:"5px"}} className="text-1xl font-serif">Click "My Orders" in the navigation bar to see all the details of your order.</p>
     </details>
+    <hr />
+    <details >
+      <summary style={{ width: "100%", paddingTop:"25px", paddingBottom:"25px" }} className="text-3xl font-serif">Are there any new dishes?</summary>
+      <p tyle={{ textAlign: "center", paddingBottom:"5px" }} className="text-1xl font-serif">Absolutely! Our menus are updated by the chefs as soon as there is a new item.</p>
+    </details>
+    <hr />
   </div>
   </div>
   </Fade>
 
       <br></br>
-      <hr />
       <br></br>
       
     </div>
