@@ -41,8 +41,9 @@ export default function OrderPage() {
       <hr />
 
       <div className="py-10 px-6">
-        <span className="text-4xl font-semibold">
-          Orders <span className="text-green-800">({ordersCount})</span>
+        <span className="text-4xl font-serif underline my-2">
+          <span className="text-black">{ordersCount} </span>
+          Orders
         </span>
         <Tabs className="mt-5">
           <TabsContent>
